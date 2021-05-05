@@ -110,7 +110,7 @@ const routes: Routes = [
 },
 {
   path: '',
-  redirectTo: 'meme',
+  redirectTo: 'home',
   pathMatch: 'full'
 },
 {path: '**', component: MemeComponent}
