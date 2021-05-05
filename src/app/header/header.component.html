@@ -5,9 +5,7 @@
                 <div class="header_top_left float-left">
                     <ul class="social_icon">
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                     <ul class="social_others">
                         <li><a><i class="fa fa-phone"></i>+216 xx-xxx-xxx</a></li>
@@ -18,15 +16,17 @@
             <div class="col-md-6">
                 <div class="header_top_right text-right">
                     <ul>
-                        <li><a href="#">Account</a></li>
-                        <li><a href="#">My Orders</a></li>
-                        <li><a href="#">Register / Login</a></li>
-                        <li class="searchbox">
+                        <li *ngIf="info.token" ><p class="p-4 text-failure"> Logged in as {{info.username}}  </p></li>
+                        <li><a routerLink="account">Account</a></li>
+                        <li *ngIf="!authority" class="nav-item">
+                            <a class="nav-link" routerLink="auth/login">Register / Login</a>
+                        </li>
+                        <li *ngIf="info.token"><button class="btn btn-secondary" (click)="logout()">Logout</button></li></ul>
+                        <!--<li class="searchbox">
                             <input type="search" placeholder="Search......" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
                             <input type="submit" class="searchbox-submit" value="">
                             <span class="searchbox-icon"><i class="fa fa-search"></i></span>
-                        </li>
-                    </ul>
+                        </li>-->
                 </div>
             </div>
         </div>
@@ -44,12 +44,12 @@
                     <nav>
                         <ul>
                             <li><a href="index.html">HOME</a></li>
-                            <li><a href="#">VIRTUAL VISIT</a></li>
-                            <li><a href="#">FEATURED</a></li>
-                            <li><a href="#">FORUM</a></li>
-                            <li><a href="#">EVENTS</a></li>
-                            <li><a href="#">PROMOTIONS</a></li>
-                            <li><a href="contact.html">CONTACT</a></li>
+                            <li><a routerLink="virtualvisit">VIRTUAL VISIT</a></li>
+                            <li><a routerLink="products">OUR PRODUCTS </a></li>
+                            <li><a routerLink="forum">FORUM</a></li>
+                            <li><a routerLink="events">EVENTS</a></li>
+                            <li *ngIf="authoritymanager" class="nav-item" ><a routerLink="dashboard">DASHBOARD</a></li>
+                            <li><a routerLink="contact">CONTACT US</a></li>
                             <li class="shop_icon">
                                 <a href="checkout.html"><img src="assets/images/menu_icon_img.png" alt="" /></a>
                                 <span>10</span>
@@ -67,15 +67,17 @@
             <nav id="dropdown">
                 <ul>
                     <li><a href="index.html">HOME</a></li>
-                    <li><a href="#">VIRTUAL VISIT</a></li>
-                    <li><a href="#">FEATURED</a></li>
-                    <li><a href="#">FORUM</a></li>
-                    <li><a href="#">EVENTS</a></li>
-                    <li><a href="#">PROMOTIONS</a></li>
-                    <li><a href="#">CONTACT</a></li>
+                            <li><a routerLink="virtualvisit">VIRTUAL VISIT</a></li>
+                            <li><a routerLink="products">OUR PRODUCTS </a></li>
+                            <li><a routerLink="forum">FORUM</a></li>
+                            <li><a routerLink="events">EVENTS</a></li>
+                            <li><a routerLink="contact">CONTACT US</a></li>
                 </ul>
             </nav>
         </div>
     </div>
 </div>
 <!-- mobile-menu-area end -->
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
