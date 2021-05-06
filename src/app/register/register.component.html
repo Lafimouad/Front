@@ -1,7 +1,8 @@
-<div class="alert alert-success" *ngIf="isSignedUp; else signupForm" >
-   Your registration is successful. <strong>Please login!</strong> 
+<div  *ngIf="isSignedUp ; else signupForm ">
+  <div class="alert alert-success"> 
+   Your registration is successful. <strong>Please login!</strong> </div>
+   <app-home></app-home>
   </div>
-
   <div class="center-screen">
   <ng-template #signupForm>
     <div class=" col-md-offset-4"><h1> REGISTRATION FORM </h1>
@@ -43,7 +44,6 @@
           <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
           <div *ngIf="f.submitted && email.invalid">
             <div *ngIf="email.errors.required" class="text-warning">Email is required</div>
-            <div *ngIf="email.errors.email" class="text-warning">Email must be a valid email address</div>
           </div>
         </div>
         <div class="form-group">
@@ -64,7 +64,7 @@
             <option value="MALE">male</option>
           </select></div>
             <div *ngIf="f.submitted && gender.invalid">
-                <div *ngIf="password.errors.required" class="text-warning" >Gender is required</div>
+                <div *ngIf="gender.errors.required" class="text-warning" >Gender is required</div>
             </div>
             </div>
             <div class="form-group">
@@ -76,7 +76,7 @@
               <option value="FARMING_FISHING_FORESTRY">Farming , Fishing and Foerstry</option>
             </select></div>
                <div *ngIf="f.submitted && workfield.invalid">
-                <div *ngIf="password.errors.required"class="text-warning">Work Field is required</div>
+                <div *ngIf="workfield.errors.required"class="text-warning">Work Field is required</div>
             </div>
               </div>
               <div class="form-group">
@@ -87,14 +87,14 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="username">Phone Number</label>
-                <input type="text" class="form-control" name="username" [(ngModel)]="form.phone" #phone="ngModel" required placeholder="+216 "/>
+                <label for="phone">Phone Number</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="form.phone" #phone="ngModel" required minlength="8" placeholder="+216 "/>
                 <div *ngIf="f.submitted && phone.invalid">
                   <div *ngIf="phone.errors.required"class="text-warning">Phone is required</div>
                 </div>
               </div>
-        <div class="form-group">
-          <button class="btn btn-failure">Register</button> <!--disable of not valid-->
+        <div class="form-group"> 
+          <button class="btn btn-failure" [disabled]="!f.valid" >Register</button>
           <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
             Signup failed!<br/>{{errorMessage}}
           </div>

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { AuthLoginInfo } from '../auth/login-info';
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
+  changed = true;
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
@@ -28,6 +30,16 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
     }
+    console.log(this.authService.updatedPassword(this.info.username).subscribe(
+      (response: boolean) => {
+        console.log(response)
+        this.changed = response;
+        console.log(this.changed)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    ));
   }
 
   onSubmit() {

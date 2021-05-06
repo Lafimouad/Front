@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   private signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
-  errorMessage = '';
+  errorMessage = 'Email is not Valid !';
 
   constructor(private authService: AuthService) { }
 

@@ -1,30 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SignUpInfoM } from './auth/SignUpInfo';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private clientUrl = 'http://localhost:8081/client';
-  private managerUrl = 'http://localhost:8081/manager';
-  private adminUrl = 'http://localhost:8081/admin';
-  private delivererUrl = 'http://localhost:8081/deliverer';
+
+ 
+  private managerUrl = 'http://localhost:8081/register/manager';
 
   constructor(private http: HttpClient) { }
 
-  getClientBoard(): any {
-    return this.http.get(this.clientUrl, { responseType: 'text' });
+
+  signUp(info: SignUpInfoM): any {
+    console.log(info);
+    return this.http.post(this.managerUrl, info, httpOptions);
   }
 
-  getManagerBoard(): any {
+ /* getManagerBoard(): any {
     return this.http.get(this.managerUrl, { responseType: 'text' });
-  }
-
-  getAdminBoard(): any {
-    return this.http.get(this.adminUrl, { responseType: 'text' });
-  }
-  getDelivererBoard(): any {
-    return this.http.get(this.delivererUrl, { responseType: 'text' });
-  }
+  }*/
 }

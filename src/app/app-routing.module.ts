@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccessoriesComponent } from './accessories/accessories.component';
 import { AccountComponent } from './account/account.component';
+import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
 import { ClientComponent } from './client/client.component';
@@ -24,6 +25,10 @@ import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
 
 
 const routes: Routes = [ 
+  {
+    path :'accountsmanag', 
+    component : AccountsManagementComponent
+  },
   {
     path :'meme', 
     component : MemeComponent
@@ -89,15 +94,15 @@ const routes: Routes = [
   component: ClientComponent
 },
 {
-  path: 'deliverer',
+  path: 'accountsmanag/deliverer',
   component: DelivererComponent
 },
 {
-  path: 'admin',
+  path: 'accountsmanag/admin',
   component: AdminComponent
 },
 {
-  path: 'manager',
+  path: 'accountsmanag/manager',
   component: ManagerComponent
 },
 {

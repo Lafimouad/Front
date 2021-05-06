@@ -1,13 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-accounts-management',
+  templateUrl: './accounts-management.component.html',
+  styleUrls: ['./accounts-management.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class AccountsManagementComponent implements OnInit {
+  goToDeliverer : boolean = false; 
+  addManagerClicked : boolean = false; 
+  goToAdmin : boolean = false ; 
+  constructor(router:Router, private tokenStorage: TokenStorgeService , private token:TokenStorgeService) { }
 
   private roles: string[];
   public authority: string;
@@ -15,15 +19,8 @@ export class HeaderComponent implements OnInit {
   public authorityadmin : boolean = false ;
   public authorityclient : boolean = false ;
   public authoritydeliverer : boolean = false ;
+  info : any ; 
 
-
-    title = 'Consomi Tounsi';
-  
-    info : any ; 
-    constructor(private route : Router , private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
-
-    
-    
   ngOnInit() {
     this.info = {
       token: this.token.getToken(),
@@ -54,13 +51,24 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
-  
-  logout() {
-    this.token.signOut();
-    this.route.navigateByUrl("home")
-    .then(() => {
-    window.location.reload();
-  }); 
-  }
-}
 
+addManager(){ 
+  this.addManagerClicked = true; 
+  this.goToAdmin = false ; 
+  this.goToDeliverer = false; 
+
+}
+GoToDeliverer(){
+  this.goToDeliverer = true; 
+  this.addManagerClicked=false; 
+  this.goToAdmin = false ; 
+}
+GoToAdmin(){
+  this.goToDeliverer = false; 
+  this.addManagerClicked=false; 
+  this.goToAdmin = true ; 
+}
+reloadPage() {
+  window.location.reload();
+}
+}

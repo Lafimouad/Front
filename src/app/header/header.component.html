@@ -9,7 +9,7 @@
                     </ul>
                     <ul class="social_others">
                         <li><a><i class="fa fa-phone"></i>+216 xx-xxx-xxx</a></li>
-                        <li><a href="#"><i class="fa fa-envelope-o"></i>tn.consomi.tounsi@gmail.com</a></li>
+                        <li><a><i class="fa fa-envelope-o"></i>tn.consomi.tounsi@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -17,11 +17,11 @@
                 <div class="header_top_right text-right">
                     <ul>
                         <li *ngIf="info.token" ><p class="p-4 text-failure"> Logged in as {{info.username}}  </p></li>
-                        <li><a routerLink="account">Account</a></li>
+                        <li *ngIf="authority && !authoritymanager"><a routerLink="account">My Account</a></li>
                         <li *ngIf="!authority" class="nav-item">
                             <a class="nav-link" routerLink="auth/login">Register / Login</a>
                         </li>
-                        <li *ngIf="info.token"><button class="btn btn-secondary" (click)="logout()">Logout</button></li></ul>
+                        <li *ngIf="info.token"><button class="btn btn-secondary" (click)="logout()" >Logout</button></li></ul>
                         <!--<li class="searchbox">
                             <input type="search" placeholder="Search......" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
                             <input type="submit" class="searchbox-submit" value="">
@@ -44,6 +44,7 @@
                     <nav>
                         <ul>
                             <li><a href="index.html">HOME</a></li>
+                            <li *ngIf="authority && !authorityclient && !authoritydeliverer" ><a routerLink="accountsmanag">ACCOUNTS MANAGEMENT</a></li>
                             <li><a routerLink="virtualvisit">VIRTUAL VISIT</a></li>
                             <li><a routerLink="products">OUR PRODUCTS </a></li>
                             <li><a routerLink="forum">FORUM</a></li>

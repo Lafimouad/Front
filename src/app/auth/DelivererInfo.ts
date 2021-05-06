@@ -1,4 +1,5 @@
-export class Client {
+export class Deliverer{
+ 
     //user
     idUser : number;
     phoneNumberUser : string ;
@@ -15,17 +16,18 @@ export class Client {
     enabled :boolean;
     locked : boolean;
     dateBirthUser : string;
-    //client
-    genderClient: string;
-    workfieldClient : string;
+    //deliverer
     Latitude : number;
     Longitude : number;
-    subscriptionDate : Date;
-    subMonth : string;
+    bonusDeliverer : number;
+    delivererOfTheMonthDeliverer: boolean;
+    availableDeliverer: boolean;
+    score_deliverer : number;
+    distanceDeliverer : number;
 
     constructor(id : number ,firstname: string, lastname: string,username: string, email: string, password: string , 
-        phone:string, address:string , gender:string , workfield : string , birthdate : string,
-        latitude : number, longitude : number , subscriptionDate : Date , subMonth : string , role : string ,
+        phone:string, address:string , birthdate : string,bonus: number , deliofmonth:boolean , available:boolean  ,
+        latitude : number, longitude : number , role : string , distance : number , score : number ,
         updated : boolean , nb : number , salary: number , enable : boolean , lock : boolean) {
         //user    
         this.idUser = id;
@@ -43,12 +45,15 @@ export class Client {
         this.updatedPassword=updated;
         this.roleUser=role;
         this.nbaccessUser=nb;
-        //client
+        //deliverer
         this.Latitude=latitude;
         this.Longitude=longitude;
-        this.subscriptionDate=subscriptionDate;
-        this.subMonth=subMonth
-        this.genderClient=gender;
-        this.workfieldClient=workfield;
+        this.bonusDeliverer=bonus;
+        this.score_deliverer=score;
+        this.distanceDeliverer=distance;
+        this.delivererOfTheMonthDeliverer=deliofmonth;
+        this.availableDeliverer=available;
     }
+
+
 }

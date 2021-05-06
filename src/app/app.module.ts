@@ -34,6 +34,7 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
+import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { MemeComponent } from './meme/meme.component';
     AdvertisementsComponent,
     ProductsComponent,
     DashboardComponent,
-    MemeComponent
+    MemeComponent,
+    AccountsManagementComponent
   ],
   imports: [
     BrowserModule,
