@@ -14,6 +14,7 @@ import { EventsComponent } from './events/events.component';
 import { FoodComponent } from './food/food.component';
 import { ForumComponent } from './forum/forum.component';
 import { HomeComponent } from './home/home.component';
+import { ListshelfsComponent } from './listshelfs/listshelfs.component';
 import { LoginComponent } from './login/login.component';
 import { ManagerComponent } from './manager/manager.component';
 import { MemeComponent } from './meme/meme.component';
@@ -64,6 +65,11 @@ const routes: Routes = [
     path: 'food',
     component: FoodComponent
   },
+  {
+    path: 'shelfs',
+    component: ListshelfsComponent
+  }
+  ,
   {
     path: 'donations',
     component: DonationsComponent

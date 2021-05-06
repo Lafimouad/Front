@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-
+ 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void{} 
+  
+  
 }
