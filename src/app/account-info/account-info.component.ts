@@ -8,19 +8,8 @@ import { TokenStorgeService } from '../token-storage.service';
 })
 export class AccountInfoComponent implements OnInit {
 
-  info : any ; 
-  constructor(private token:TokenStorgeService ) { }
+  constructor( ) { }
 
   ngOnInit() {
-    this.info = {
-      token: this.token.getToken(),
-      username: this.token.getUsername(),
-      authorities: this.token.getAuthorities()
-    };
-  }
-
-  logout() {
-    this.token.signOut();
-    window.location.reload();
   }
 }
