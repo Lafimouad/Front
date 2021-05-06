@@ -25,4 +25,11 @@ export class AdminService {
   public deleteClient(clientId: number): Observable<void> {
     return this.http.delete<void>(`http://localhost:8081/ressources/admin/delete/${clientId}`);
   }
+
+  public addAbsence(clientId: number , client : Admin) : Observable<Admin> {
+    return this.http.put<Admin>(`http://localhost:8081/ressources/admin/absent/${clientId}` , client);
+  }
+  public getByID(clientId : number) : Observable<Admin> {
+    return this.http.get<Admin>(`http://localhost:8081/ressources/admin/getbyid/${clientId}`);
+  }
 }

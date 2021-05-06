@@ -1,18 +1,12 @@
-<div class="header_top">
     <div class="row">
         <div class="col-md-12">
-            <div class="header_top_right">
-                <ul>
-                    <li class="searchbox">
-                        <input type="search" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel
-                            name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search Clients..." required>
-                        <span class="searchbox-icon"><i class="fa fa-search"></i></span>
-                    </li>
-                   </ul> 
+                <ul class="searchbox">
+                    <input type="search" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel
+                        name="key" id="searchName" class="form-control mr-sm-2" placeholder="search clients..." required>
+                    <span class="searchbox-icon"><i class="fa fa-search"></i></span>
+                </ul> 
             </div>
         </div>
-    </div>
-</div>   
 <div class="container" id="main-container">
 <div class="row">
 <div *ngFor="let employee of employees" class="col-md-6 col-xl-3">
@@ -29,12 +23,16 @@
        </div>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i class="fa fa-envelope float-right"></i><strong>Work Field : </strong>{{employee?.workfieldClient}}</li>
+        <li class="list-group-item"><i class="fa fa-group float-right"></i><strong>Work Field : </strong>{{employee?.workfieldClient}}</li>
        <li class="list-group-item"><i class="fa fa-envelope float-right"></i><strong>Email : </strong>{{employee?.emailAddressUser}}</li>
        <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong>Phone : </strong> {{employee?.phoneNumberUser}}</li>
-       <li class="list-group-item"><i class="fa fa-envelope float-right"></i><strong>Birthday : </strong> {{employee?.dateBirthUser}}</li>
-       <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong>Address : </strong> {{employee?.addressUser}}</li>
+       <li class="list-group-item"><i class="fa fa-calendar	float-right"></i><strong>Birthday : </strong> {{employee?.dateBirthUser}}</li>
+       <li class="list-group-item"><i class="fa fa-street-view float-right"></i><strong>Address : </strong> {{employee?.addressUser}}</li>
     </ul>
+    <div class="card-body">
+        <div class="float-right btn-group btn-group-sm">
+        </div>
+     </div>
  </div>
 </div>
-</div></div>
+</div>
