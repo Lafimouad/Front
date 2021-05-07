@@ -32,4 +32,8 @@ export class AdminService {
   public getByID(clientId : number) : Observable<Admin> {
     return this.http.get<Admin>(`http://localhost:8081/ressources/admin/getbyid/${clientId}`);
   }
+  public getAdminByUsername(username : string) : Observable<Admin> {
+    return this.http.get<Admin>(`http://localhost:8081/ressources/admin/getbyusername/${username}`);
+  }
 }
+ 

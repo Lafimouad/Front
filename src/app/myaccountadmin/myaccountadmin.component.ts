@@ -1,18 +1,18 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Client } from '../auth/ClientInfo';
-import { ClientService } from '../client.service';
+import { AdminService } from '../admin.service';
+import { Admin } from '../auth/AdminInfo';
 import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
-  selector: 'app-account-info',
-  templateUrl: './account-info.component.html',
-  styleUrls: ['./account-info.component.css']
+  selector: 'app-myaccountadmin',
+  templateUrl: './myaccountadmin.component.html',
+  styleUrls: ['./myaccountadmin.component.css']
 })
-export class AccountInfoComponent implements OnInit {
-  employee : Client;
-  editEmployee : Client;
+export class MyaccountadminComponent implements OnInit {
+
+  employee : Admin;
+  editEmployee : Admin;
   edit : boolean = false ; 
   info : any ;
   private roles: string[];
@@ -22,7 +22,7 @@ export class AccountInfoComponent implements OnInit {
   public authorityclient : boolean = false ;
   public authoritydeliverer : boolean = false ;
 
-  constructor(private route : Router , private serviceClient : ClientService,private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
+  constructor(private serviceClient : AdminService,private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
 
   ngOnInit() {
     this.info = {
@@ -33,8 +33,8 @@ export class AccountInfoComponent implements OnInit {
   }
 
   public getClient(): void {
-    this.serviceClient.getClientByUsername(this.info.username).subscribe(
-      (response: Client) => {
+    this.serviceClient.getAdminByUsername(this.info.username).subscribe(
+      (response: Admin) => {
         this.employee = response;
         console.log(this.employee);
       },
@@ -53,9 +53,9 @@ export class AccountInfoComponent implements OnInit {
     this.edit = false; 
   }
 
-  public updateClient(employee: Client): void {
+  public updateClient(employee: Admin): void {
     this.serviceClient.updateClient(employee).subscribe(
-      (response: Client) => {
+      (response: Admin) => {
         console.log(response);
         this.edit=false;
         this.getClient();

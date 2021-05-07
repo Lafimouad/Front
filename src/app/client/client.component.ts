@@ -15,7 +15,7 @@ export class ClientComponent implements OnInit {
 
   ngOnInit() {
     this.getEmployees();
-  }
+  } 
 
   public getEmployees(): void {
     this.employeeService.getClients().subscribe(

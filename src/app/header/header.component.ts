@@ -15,9 +15,6 @@ export class HeaderComponent implements OnInit {
   public authorityadmin : boolean = false ;
   public authorityclient : boolean = false ;
   public authoritydeliverer : boolean = false ;
-
-
-    title = 'Consomi Tounsi';
   
     info : any ; 
     constructor(private route : Router , private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }

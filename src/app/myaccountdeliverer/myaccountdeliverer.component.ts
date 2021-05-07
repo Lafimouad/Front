@@ -1,18 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Client } from '../auth/ClientInfo';
-import { ClientService } from '../client.service';
+import { Deliverer } from '../auth/DelivererInfo';
+import { DelivererService } from '../deliverer.service';
 import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
-  selector: 'app-account-info',
-  templateUrl: './account-info.component.html',
-  styleUrls: ['./account-info.component.css']
+  selector: 'app-myaccountdeliverer',
+  templateUrl: './myaccountdeliverer.component.html',
+  styleUrls: ['./myaccountdeliverer.component.css']
 })
-export class AccountInfoComponent implements OnInit {
-  employee : Client;
-  editEmployee : Client;
+export class MyaccountdelivererComponent implements OnInit {
+  employee : Deliverer;
+  editEmployee : Deliverer;
   edit : boolean = false ; 
   info : any ;
   private roles: string[];
@@ -22,7 +21,7 @@ export class AccountInfoComponent implements OnInit {
   public authorityclient : boolean = false ;
   public authoritydeliverer : boolean = false ;
 
-  constructor(private route : Router , private serviceClient : ClientService,private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
+  constructor(private serviceClient : DelivererService,private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
 
   ngOnInit() {
     this.info = {
@@ -33,8 +32,8 @@ export class AccountInfoComponent implements OnInit {
   }
 
   public getClient(): void {
-    this.serviceClient.getClientByUsername(this.info.username).subscribe(
-      (response: Client) => {
+    this.serviceClient.getDelivererByUsername(this.info.username).subscribe(
+      (response: Deliverer) => {
         this.employee = response;
         console.log(this.employee);
       },
@@ -53,9 +52,9 @@ export class AccountInfoComponent implements OnInit {
     this.edit = false; 
   }
 
-  public updateClient(employee: Client): void {
+  public updateClient(employee: Deliverer): void {
     this.serviceClient.updateClient(employee).subscribe(
-      (response: Client) => {
+      (response: Deliverer) => {
         console.log(response);
         this.edit=false;
         this.getClient();

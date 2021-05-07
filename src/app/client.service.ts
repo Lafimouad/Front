@@ -17,7 +17,7 @@ export class ClientService {
   public addClient(client: Client): Observable<Client> {
     return this.http.post<Client>(`http://localhost:8081/ressources/client/add`, client);
   }
-
+ 
   public updateClient(client: Client): Observable<Client> {
     return this.http.put<Client>(`http://localhost:8081/ressources/client/update`, client);
   }
@@ -25,4 +25,9 @@ export class ClientService {
   public deleteClient(clientId: number): Observable<void> {
     return this.http.delete<void>(`http://localhost:8081/ressources/client/delete/${clientId}`);
   }
+
+  public getClientByUsername(username : string) : Observable<Client> {
+    return this.http.get<Client>(`http://localhost:8081/ressources/client/getbyusername/${username}`);
+  }
+ 
 }

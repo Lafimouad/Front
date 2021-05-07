@@ -23,7 +23,5 @@ export class UserService {
     return this.http.post(this.managerUrl, info, httpOptions);
   }
 
- /* getManagerBoard(): any {
-    return this.http.get(this.managerUrl, { responseType: 'text' });
-  }*/
+
 }

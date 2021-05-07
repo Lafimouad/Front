@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccessoriesComponent } from './accessories/accessories.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
 import { AccountComponent } from './account/account.component';
 import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
 import { AdminComponent } from './admin/admin.component';

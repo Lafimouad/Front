@@ -7,7 +7,7 @@ export class Client {
     usernameUser: string;
     emailAddressUser: string;
     passwordUser: string;
-    addressUser: string;
+    addressUser: string; 
     roleUser : string; 
     updatedPassword : boolean;
     nbaccessUser : number ;

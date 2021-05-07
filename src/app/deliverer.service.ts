@@ -6,7 +6,7 @@ import { Deliverer } from './auth/DelivererInfo';
 @Injectable({
   providedIn: 'root'
 })
-export class DelivererService {
+export class DelivererService { 
 
   constructor(private http: HttpClient){}
 
@@ -24,5 +24,8 @@ export class DelivererService {
 
   public deleteClient(clientId: number): Observable<void> {
     return this.http.delete<void>(`http://localhost:8081/ressources/deliverer/delete/${clientId}`);
+  }
+  public getDelivererByUsername(username : string) : Observable<Deliverer> {
+    return this.http.get<Deliverer>(`http://localhost:8081/ressources/deliverer/getbyusername/${username}`);
   }
 }

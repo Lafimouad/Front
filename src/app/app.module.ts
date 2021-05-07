@@ -35,6 +35,8 @@ import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
 import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
+import { MyaccountadminComponent } from './myaccountadmin/myaccountadmin.component';
+import { MyaccountdelivererComponent } from './myaccountdeliverer/myaccountdeliverer.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { AccountsManagementComponent } from './accounts-management/accounts-mana
     ProductsComponent,
     DashboardComponent,
     MemeComponent,
-    AccountsManagementComponent
+    AccountsManagementComponent,
+    MyaccountadminComponent,
+    MyaccountdelivererComponent
   ],
   imports: [
     BrowserModule,
