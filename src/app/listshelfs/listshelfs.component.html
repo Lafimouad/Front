@@ -2,7 +2,7 @@
  <div class="container" id="main-container">
  <div class="row">
  
- <a class="shop_now_btn" (click)="onOpenModal(null,'add')">ADD MORE CATEGORIES</a>
+ <a *ngIf="authoritymanager" class="shop_now_btn" (click)="onOpenModal(null,'add')">ADD MORE CATEGORIES</a>
 <div *ngFor="let shelf of shelfs">
     
     <div class="padding_right main_single_product">
@@ -24,8 +24,8 @@
         <div class="product_text_two product_text">
             <h1>{{shelf.typeShelf}}</h1>
             <p>{{shelf.description}}</p>
-            <a class="shop_now_btn" (click)="onOpenModal(shelf,'delete')">DELETE</a>
-            <a class="shop_now_btn" (click)="onOpenModal(shelf,'edit')">UPDATE</a>
+            <a *ngIf="authoritymanager" class="shop_now_btn" (click)="onOpenModal(shelf,'delete')">DELETE</a>
+            <a *ngIf="authoritymanager" class="shop_now_btn" (click)="onOpenModal(shelf,'edit')">UPDATE</a>
         </div>
     </div>
 </div>
