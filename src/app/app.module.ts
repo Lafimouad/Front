@@ -37,6 +37,7 @@ import { MemeComponent } from './meme/meme.component';
 import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
 import { MyaccountadminComponent } from './myaccountadmin/myaccountadmin.component';
 import { MyaccountdelivererComponent } from './myaccountdeliverer/myaccountdeliverer.component';
+import { AccountsDashboardComponent } from './accounts-dashboard/accounts-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { MyaccountdelivererComponent } from './myaccountdeliverer/myaccountdeliv
     MemeComponent,
     AccountsManagementComponent,
     MyaccountadminComponent,
-    MyaccountdelivererComponent
+    MyaccountdelivererComponent,
+    AccountsDashboardComponent
   ],
   imports: [
     BrowserModule,
