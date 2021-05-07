@@ -36,6 +36,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
 import { ShelfComponent } from './shelf/shelf.component';
 import { ListshelfsComponent } from './listshelfs/listshelfs.component';
+import { ShelfService } from './shelf.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,9 @@ import { ListshelfsComponent } from './listshelfs/listshelfs.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule
+      
   ],
+  
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

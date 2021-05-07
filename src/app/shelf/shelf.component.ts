@@ -11,7 +11,7 @@ import { Shelf } from '../shelfstock/Shelf';
 export class ShelfComponent implements OnInit {
 
 
-  @Input() public Shelf;
+  
 
   constructor() { }
 

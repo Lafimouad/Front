@@ -3,10 +3,10 @@ export class Shelf {
   typeShelf: string ;
   description: string;
 
-  constructor(idshelf: number, typeshelf: string, shelfdescription: string) {
+  constructor(idshelf: number, typeshelf: string, description: string) {
     this.idShelf = idshelf;
     this.typeShelf = typeshelf;
-    this.description = shelfdescription;
+    this.description = description;
 
   }
 }
