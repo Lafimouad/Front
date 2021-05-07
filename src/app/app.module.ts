@@ -34,6 +34,8 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
+import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -66,13 +68,14 @@ import { MemeComponent } from './meme/meme.component';
     AdvertisementsComponent,
     ProductsComponent,
     DashboardComponent,
-    MemeComponent
+    MemeComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
