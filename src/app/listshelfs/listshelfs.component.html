@@ -24,8 +24,8 @@
         <div class="product_text_two product_text">
             <h1>{{shelf.typeShelf}}</h1>
             <p>{{shelf.description}}</p>
-            <a class="shop_now_btn" (click)="onOpenModal(null,'delete')">DELETE</a>
-            <a class="shop_now_btn" (click)="onOpenModal(null,'edit')">UPDATE</a>
+            <a class="shop_now_btn" (click)="onOpenModal(shelf,'delete')">DELETE</a>
+            <a class="shop_now_btn" (click)="onOpenModal(shelf,'edit')">UPDATE</a>
         </div>
     </div>
 </div>
@@ -45,14 +45,14 @@
             </button>
          </div>
          <div class="modal-body">
-            <form #addForm="ngForm" > <!--(ngSubmit)="onAddEmloyee(addForm)"-->
+            <form #addForm="ngForm" (ngSubmit)="onAddShelves(addForm)">  <!--(ngSubmit)="onAddEmloyee(addForm)"-->
             <div class="form-group">
                <label for="typeShelf">Type Shelf</label>
                <input type="text" ngModel name="typeShelf" class="form-control" id="typeShelf" placeholder="Type Shelf" required>
             </div>
             <div class="form-group">
                 <label for="lastNameUser">description</label>
-                <input type="text" ngModel name="lastNameUser" class="form-control" id="lastNameUser" placeholder="Last Name" required>
+                <input type="text" ngModel name="description" class="form-control" id="lastNameUser" placeholder="Last Name" required>
             </div>
             <div class="modal-footer">
                <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,25 +70,27 @@
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
-             <h5 class="modal-title" id="updateShelfModalLabel">Edit Shelf</h5>
+             <h5 class="modal-title" id="updateShelfModalLabel">Edit Shelf {{editShelf?.typeShelf}}</h5>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
              </button>
           </div>
           <div class="modal-body">
              <form #editForm="ngForm">
+                <input type="hidden" ngModel="{{editShelf?.idShelf}}" name="idShelf" class="form-control" id="idShelf" placeholder="idShelf">
+
                 <div class="form-group">
-                   <label for="firstNameUser">Type Shelf</label>
-                   <input type="text"  name="firstNameUser" class="form-control" id="firstNameUser" placeholder="Name"> <!--ngModel="{{editEmployee?.firstNameUser}}"-->
+                   <label for="typeShelf">Type Shelf</label>
+                   <input type="text" ngModel="{{editShelf?.typeShelf}}" name="typeShelf" class="form-control" id="typeShelf" placeholder="typeShelf"> <!--ngModel="{{editEmployee?.firstNameUser}}"-->
                 </div>
                 <div class="form-group">
                     <label for="lastNameUser">description</label>
-                    <input type="text" class="form-control" id="lastNameUser" placeholder="Name"> <!-- ngModel="{{editEmployee?.lastNameUser}}" name="lastNameUser"-->
+                    <input type="text" ngModel="{{editShelf?.description}}" name="description" class="form-control" id="description" placeholder="description"> <!-- ngModel="{{editEmployee?.lastNameUser}}" name="lastNameUser"-->
                  </div>
-                
+
                 <div class="modal-footer">
-                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button  data-dismiss="modal" class="btn btn-primary" >Save changes</button> <!--(click)="onUpdateEmloyee(editForm.value)"-->
+                   <button type="button" id="update-shelf-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button (click)="onUpdateShelves(editForm.value)"  data-dismiss="modal" class="btn btn-primary" >Save changes</button> <!--(click)="onUpdateEmloyee(editForm.value)"-->
                 </div>
              </form>
           </div>
@@ -108,10 +110,10 @@
              </button>
           </div>
           <div class="modal-body">
-             <p>Are you sure you want to delete deliverer </p> <!--{{deleteEmployee?.firstNameUser}} {{deleteEmployee?.lastNameUser}}?-->
+             <p>Are you sure you want to delete the shelf {{deleteshelf?.typeShelf}} </p> <!--{{deleteEmployee?.firstNameUser}} {{deleteEmployee?.lastNameUser}}?-->
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button class="btn btn-danger" data-dismiss="modal">Yes</button> <!--(click)="onDeleteEmloyee(deleteEmployee?.idUser)" -->
+                <button (click)="onDeleteShelves(deleteshelf?.idShelf)"class="btn btn-danger" data-dismiss="modal">Yes</button> <!--(click)="onDeleteEmloyee(deleteEmployee?.idUser)" -->
              </div>
           </div>
        </div>
