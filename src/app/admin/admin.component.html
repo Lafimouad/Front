@@ -80,11 +80,12 @@
                 <label for="roleAdmin" class="form-label">Role </label>
                 <div><select class="form-control" aria-label="Default select example" name="roleAdmin"  ngModel id="roleAdmin" required>
                   <option disabled selected > Admin manages </option>
-                  <option value="PRODUCTS_ADMIN">Products</option>
-                  <option value="ACCOUNTS_ADMIN">Accounts</option>
-                  <option value="CLAIMS_ADMIN">Claims</option>
-                  <option value="DELIVERIES_ADMIN">Deliveries</option>
-                  <option value="ADVERTISEMENTS_ADMIN">Advertisements</option>
+                  <option value="PRODUCTS_MANAGER">Products</option>
+                  <option value="ACCOUNTS_MANGER">Accounts</option>
+                  <option value="CLAIMS_MANGER">Claims</option>
+                  <option value="DELIVERIES_MANGER">Deliveries</option>
+                  <option value="ADVERTISEMENTS_MANGER">Advertisements</option>
+                  <option value="EVENT_MANGER">Events</option>
                 </select></div></div>
             <div class="modal-footer">
                <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -132,7 +133,7 @@
                     <label for="roleAdmin">Role</label>
                     <input type="email" ngModel="{{editEmployee?.roleAdmin}}" name="roleAdmin" class="form-control" id="roleAdmin" placeholder="Role">
                     <div id="dateofbirthHelper" class="form-text" class="text-muted">
-                        Roles : PRODUCTS_ADMIN , ACCOUNTS_ADMIN , ADVERTISEMENTS_ADMIN, DELIVERIES_ADMIN, CLAIMS_ADMIN.
+                        Roles : PRODUCTS_MANGER , ACCOUNTS_MANGER , ADVERTISEMENTS_MANGER, DELIVERIES_MANGER, CLAIMS_MANGER , EVENT_MANGER
                     </div>
                  </div>
                 <div class="form-group">
