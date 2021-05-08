@@ -1,0 +1,40 @@
+<section class="container-fluid">
+    <div class="table-responsive">
+    <table class="table table-sm ">
+    <thead>
+        <tr>
+            
+            <th scope="col">Ad Id</th>
+            <th scope="col">Client Id</th>
+            <th scope="col">date of ad</th>
+            <th scope="col">ending date </th>
+            <th scope="col">number of targets</th>
+            <th scope="col">final number of views</th>
+            <th scope="col">cost</th>
+            <th scope="col">channel</th>
+            <th scope="col">Type</th>
+            <th scope="col"></th>
+    
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let thead of ads">
+            
+            <th>{{thead.idAdvertisment}}</th>
+            <td>{{thead.idUser}}</td>
+            <td>{{thead.dateAdvertisment}}</td>
+            <td>{{thead.enddate}}</td>
+            <td>{{thead.targetviews}}</td>
+            <td>{{thead.finalviews}}</td>
+            <td>{{thead.cost}}</td>
+            <td>{{thead.channel}}</td>
+            <td>{{thead.typeAdvertisement}}</td>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingAd(thead.idAdvertisment)"> Delete</button></td>
+           
+        
+          </tr>
+    </tbody>
+    </table>
+   </div>
+</section>

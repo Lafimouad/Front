@@ -1,0 +1,123 @@
+
+<!-----------------------------ADMIN---------------------->
+<div  *ngIf="info.token" >
+    <div *ngIf="authorityadmin" class="nav-item"  >
+      <section class="search-box">
+          <input type="text" placeholder="Type to search.." name="subject" [(ngModel)]="subject">
+          <button class ="search-btn" type="button" (click)="gettingBysubject()">
+              <i class="fas fa-search"></i>
+          </button>
+         
+        </section>
+
+
+
+        <select class="form-control" aria-label="Default select example" name="order" [(ngModel)]="level" >
+            <option value="1">Ascending</option>
+              <option value="2">Descending</option>
+        </select>
+              <button class ="search-btn" type="button"  (click)="func()">
+                <i class="fas fa-search"></i>
+            </button>
+        
+
+
+              
+       
+
+      <!--<div>
+        <div class="row">
+            <div class="col-">
+        <span>By which level you want to order ?</span>
+    </div>
+        <div class="col-sm">
+        <button class ="search-btn" type = "button" (click)="gettingBylevelA()"></button> <p>    Asending<p>
+        </div>
+        <div class="col-sm">
+        <button class ="search-btn" type = "button" (click)="gettingBylevelD()"> </button> <p>    Descending</p>
+        </div>
+    </div>
+      </div>-->
+
+
+    
+        <br>
+        <br>
+        <br>
+      <br>
+      
+
+<section class="container-fluid">
+    <div class="table-responsive">
+    <table class="table table-sm ">
+    <thead>
+        <tr>
+            
+            <th scope="col"  >Claim Id</th>
+            <th scope="col">Client Id</th>
+            <th scope="col">Subject</th>
+            <th scope="col">System Problem </th>
+            <th scope="col">Delivery Problem</th>
+            <th scope="col">Product Problem</th>
+            <th scope="col">Claimed Product Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Description</th>
+            <th scope="col">level </th>
+            <th scope="col">Answer</th>
+            <th scope="col">State</th>
+            <th scope="col">Action</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let claim of claims">
+            
+            <th>{{claim.idClaim}}</th>
+            <td>{{claim.idUser}}</td>
+            <td>{{claim.subject}}</td>
+            <td>{{claim.systemProblem}}</td>
+            <td>{{claim.deliveryProblem}}</td>
+            <td>{{claim.productProblem}}</td>
+            <td>{{claim.productWithProb}}</td>
+            <td>{{claim.date}}</td>
+            <td>{{claim.description}}</td>
+            <td>{{claim.level}}</td>
+            <td>{{claim.decision}}</td>
+            <td>{{claim.status}}</td>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingClaim(claim.idClaim)"> Delete</button></td>
+        
+          </tr>
+    </tbody>
+    </table>
+   </div>
+</section>
+
+    </div>
+</div>
+<!-----------------------------ADMIN---------------------->
+
+<!--<script>
+    const searchBtn = document.querySelector(".search-btn");
+    const cancelBtn = document.querySelector(".cancel-btn");
+    const searchBox = document.querySelector(".search-box");
+    searchBtn.onClick = () => {
+        searchBox.classList.add("active");
+    }
+
+</script>-->
+
+
+
+
+
+
+    <!--<form class="form-inline waves-light" mdbWavesEffect>
+        <div class="md-form mt-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search with subject"name="subject" [(ngModel)]="subject">
+        </div>
+        <span class="input-group-btn">
+            <button class="btn btn-danger" type="button" (click)="gettingBysubject()">
+                
+            </button> 
+        </span>
+      </form>-->

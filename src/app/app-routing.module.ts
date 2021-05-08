@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccessoriesComponent } from './accessories/accessories.component';
 import { AccountComponent } from './account/account.component';
+import { Ad2Component } from './ad2/ad2.component';
+import { Ad3Component } from './ad3/ad3.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
 import { ClientComponent } from './client/client.component';
@@ -9,6 +11,7 @@ import { ClothesComponent } from './clothes/clothes.component';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DelivererComponent } from './deliverer/deliverer.component';
+import { DisplayClaimComponent } from './display-claim/display-claim.component';
 import { DonationsComponent } from './donations/donations.component';
 import { EventsComponent } from './events/events.component';
 import { FoodComponent } from './food/food.component';
@@ -108,6 +111,23 @@ const routes: Routes = [
   path: 'signup',
   component: RegisterComponent
 },
+{
+  path: 'displayClaim',
+  component: DisplayClaimComponent
+},
+{
+  path: 'ads',
+  component: DisplayClaimComponent
+},
+{
+  path: 'ad2',
+  component: Ad2Component
+},
+{
+  path: 'ad3',
+  component: Ad3Component
+},
+
 {
   path: '',
   redirectTo: 'home',

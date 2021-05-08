@@ -1,70 +1,90 @@
-	<!-- Google-Map-Section-start -->
-    <div class="container">
-        <div id="googleMap"></div>
+<!-----------------------------CLIENT---------------------->
+<div  *ngIf="info.token" >
+    <div *ngIf="authorityclient" class="nav-item"  >
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+   
+    <div class="form-group">
+       
+    <label for="Name"><span class="req">* </span> subject: <small>This will be your login user
+            name</small> </label>
+    <input required type="text" [(ngModel)]="claim.subject" name="subject" id="subject"
+        class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
+        </div>
+
+
+<div class="form-group">
+   
+    <label for="firstname"> system problem: </label>
+    <input class="form-control" type="text" [(ngModel)]="claim.systemProblem" name="systemProblem" id="txt" 
+        placeholder="Enter valid email address" />
+    <div id="errFirst"></div>
     </div>
-<!-- Google-Map-Section-end -->
-<!-- Contact-Section-End -->
-    <div class="contact_us section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="contact_us">
-                        <h4>Write your message here</h4>
-                        <form class="form-horizontal" id="mess_form">
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="inputName" placeholder="Your Name">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Your Mail">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input type="email" class="form-control" id="inputEmail2" placeholder="Your Number">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="inputSubject" placeholder="Subject">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <textarea class="form-control" placeholder="Message" rows="9"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12 text-center">
-                                    <button type="submit" class=" shop_now_btn btn btn-default hvr-bounce-to-left">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="address_text">
-                        <div class="single_address">
-                            <h4>Give us a call or write to us about anything</h4>
-                            <p><span>Tel</span></p>
-                            <p>0 800 125 556 8944</p>
-                            <p>0 800 125 556 8945</p>
-                        </div>
-                        <div class="single_address">
-                            <p><span>Email</span></p>
-                            <p>info@architect.com</p>
-                        </div>
-                        <div class="single_address">
-                            <p><span>Address:</span></p>
-                            <p>102-104 Avenue des Champs-Élysées,</p>
-                            <p>75008 Paris, France</p>
-                        </div>
-                        <div class="single_address">
-                            <p><span>Web:</span></p>
-                            <p>www.bootexperts.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+<div class="form-group">
+    
+    <label for="lastname"> delivery problem : </label>
+    <input class="form-control" type="text" [(ngModel)]="claim.deliveryProblem" name="deliveryProblem" id="txt"
+        placeholder="Total year of experience"  />
+    <div id="errLast"></div>
+</div>
+
+<div class="form-group">
+   
+    <label for="email"> product problem: </label>
+    <input class="form-control" type="text" [(ngModel)]="claim.productProblem" name="productProblem"
+        id="email" placeholder="fullstack/backend/developer" />
+    <div class="status" id="status"></div>
+    </div>
+
+<div class="form-group">
+   
+    <label for="email"> description: </label>
+    <input class="form-control"  type="text" [(ngModel)]="claim.description" name="description"
+        id="email" placeholder="fullstack/backend/developer" />
+    <div class="status" id="txt"></div>
+</div>
+
+<div class="form-group">
+    <input class="btn btn-failure" type="submit" name="submit_reg" value="Send Message" (click)="addingClaim()">
+</div>
+    
+            </form>
         </div>
     </div>
+</div>
+</div>
+</div>
+<!-----------------------------CLIENT---------------------->
+<!-----------------------------ADMIN---------------------->
+<div  *ngIf="info.token" >
+    <div *ngIf="authorityclient" class="nav-item"  >
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<!-----------------------------ADMIN---------------------->
+
+
+
+
+
+
+<!-----------------------------USER---------------------->
+
+<div>
+    <button routerLink="/displayClaim" class="btn">Want to check your claims ?</button>
+</div>
+<!-----------------------------USER---------------------->

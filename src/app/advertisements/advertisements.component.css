@@ -1,0 +1,30 @@
+.display-btn{
+    position: absolute;
+    left: 100px;
+    top: 500px;
+    height : 100px;
+    width: 350px;
+    color: #D2B48C;
+    background:  transparent;
+    line-height:50px;
+    text-align: center ;
+    font-size: 40px;
+    border:solid 2px #D2B48C;
+    border-radius:50px;
+    cursor : pointer;
+  }
+  .displayy-btn{
+    position: absolute;
+    right: 100px;
+    top: 500px;
+    height : 100px;
+    width: 350px;
+    color: #D2B48C;
+    background:  transparent;
+    line-height:50px;
+    text-align: center ;
+    font-size: 40px;
+    border:solid 2px #D2B48C;
+    border-radius:50px;
+    cursor : pointer;
+  }

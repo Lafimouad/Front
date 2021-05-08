@@ -3,7 +3,7 @@
   </div>
 
   <div  *ngIf="info.token" class="alert alert-success"> 
-    <strong>Successfuly Logged in!</strong> Good Day {{info.username}} , Welcome to Consomi Tounsi #619  </div>
+    <strong>Successfuly Logged in!</strong> Good Day {{info.username}} , Welcome to Consomi Tounsi #619 {{info.id}} </div>
 
   <div class="center-screen">
   <ng-template #loggedOut>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-secondary">Login</button>
+          <button class="btn btn-secondary" (Click)="gettingid(form.username)" >Login</button>
           <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
             Login failed: {{errorMessage}}
           </div>

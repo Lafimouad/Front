@@ -34,6 +34,11 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
+import { ClaimServiceService } from './claim-service.service';
+import { DisplayClaimComponent } from './display-claim/display-claim.component';
+import { Ad2Component } from './ad2/ad2.component';
+import { Ad3Component } from './ad3/ad3.component';
+
 
 @NgModule({
   declarations: [
@@ -66,15 +71,19 @@ import { MemeComponent } from './meme/meme.component';
     AdvertisementsComponent,
     ProductsComponent,
     DashboardComponent,
-    MemeComponent
+    MemeComponent,
+    DisplayClaimComponent,
+    Ad2Component,
+    Ad3Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+  
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,ClaimServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

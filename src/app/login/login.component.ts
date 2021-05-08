@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdsService } from '../ads.service';
 import { AuthService } from '../auth.service';
 import { AuthLoginInfo } from '../auth/login-info';
 import { TokenStorgeService } from '../token-storage.service';
@@ -9,6 +10,10 @@ import { TokenStorgeService } from '../token-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  /*maha*/
+  id:any;
+  data:any;
+  /*maha*/
   info : any ; 
   form: any = {};
   isLoggedIn = false;
@@ -16,13 +21,20 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
+  
+  
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorgeService ,private token: TokenStorgeService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorgeService ,private token: TokenStorgeService,private service: AdsService) { }
 
   ngOnInit() {
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
+      /*maha*/
+      /*id: this.gettingid(this.token.getUsername()),*/
+
+      
+      /*maha*/
       authorities: this.token.getAuthorities()};
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
@@ -59,4 +71,13 @@ export class LoginComponent implements OnInit {
   reloadPage() {
     window.location.reload();
   }
+  /*maha*/
+  public gettingid(username: string){
+     this.service.wantId(username).subscribe((data)=>{console.log("lafi",data) ;
+    this.id=data} );
+    console.log("3ak3ek ye moufida");
+      
+  
+  /*maha*/
+}
 }
