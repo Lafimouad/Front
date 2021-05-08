@@ -1,1 +1,25 @@
-<p>clothes works!</p>
+<p>food works!</p>
+<h1>clothees</h1>
+
+ <!--ul>
+  <li *ngFor="let product of products">{{ product.name }} </li>
+ </ul-->
+
+ <div *ngFor="let product of products">
+ <div class="padding_left main_single_product section-padding-top">
+    <div class="single_product single_product_two">
+        <div class="product_img tre_shirt_3">
+            <img src="assets/images/product/tre-shirt-3.png" alt="DARK BLUE IMAGE" />
+        </div>
+        <div class="product_text_two product_text">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <p>{{ product.quantityProduct }}</p>
+            <p>{{ product.code }}</p>
+            <p>{{ product.price }}</p>
+            <p>{{ product.weight }}</p>
+            <a class="shop_now_btn" routerLink="food">SHOP NOW</a>
+        </div>
+    </div>
+</div>
+</div>

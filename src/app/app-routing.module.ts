@@ -50,19 +50,19 @@ const routes: Routes = [
     component : ContactComponent
   },
   {
-    path: 'clothes',
+    path: 'home/clothes',
     component: ClothesComponent
   },
   {
-    path: 'tools',
+    path: 'home/tools',
     component: ToolsComponent
   },
   {
-    path: 'accessories',
+    path: 'home/accessories',
     component: AccessoriesComponent
   },
   {
-    path: 'food',
+    path: 'home/food',
     component: FoodComponent
   },
   {

@@ -4,6 +4,7 @@ import { Shelf } from './shelfstock/Shelf';
 import { Injectable} from '@angular/core';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 import { environment } from 'src/environments/environment';
+import { Product } from './models/product';
 
 
 @Injectable({
@@ -33,6 +34,15 @@ export class ShelfService {
   //delete shelfs
   public deleteShelfs(shelfId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/shelf/remove-id/${shelfId}`);
+  }
+
+  ///getshelfs
+  public getProductByShelf(shelfId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiServerUrl}/products/ProductsByShelf/${shelfId}`);
+  }
+
+  public getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiServerUrl}/product`,)
   }
 
   
