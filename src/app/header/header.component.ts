@@ -8,6 +8,7 @@ import { TokenStorgeService } from '../token-storage.service';
 })
 export class HeaderComponent implements OnInit {
 
+ 
   private roles: string[];
   public authority: string;
   public authoritymanager : boolean = false ;

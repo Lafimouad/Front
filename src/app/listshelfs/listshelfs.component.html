@@ -1,8 +1,22 @@
 
  <div class="container" id="main-container">
  <div class="row">
- 
+ <div>
  <a *ngIf="authoritymanager" class="shop_now_btn" (click)="onOpenModal(null,'add')">ADD MORE CATEGORIES</a>
+ <li class="searchbox">
+    <input type="search" (ngModelChange)="searchShelfs(key.value)" #key="ngModel" ngModel name="search"  placeholder="Search......" class="searchbox-input" onkeyup="buttonUp();" required>
+        <!--input type="submit" class="searchbox-submit" value=""-->
+         <span class="searchbox-icon"><i class="fa fa-search"></i></span>
+        </li>
+ </div>
+ <!--div>
+<li class="searchbox">
+ <input type="search" placeholder="Search......" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
+     <input type="submit" class="searchbox-submit" value="">
+      <span class="searchbox-icon"><i class="fa fa-search"></i></span>
+     </li>
+</div-->
+
 <div *ngFor="let shelf of shelfs">
     
     <div class="padding_right main_single_product">

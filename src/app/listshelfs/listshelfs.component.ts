@@ -139,4 +139,18 @@ export class ListshelfsComponent implements OnInit {
       button.click();   
   }
 
+  public searchShelfs(key : string): void{
+    const results: Shelf[] = [];
+    for (const shelf of this.shelfs){
+      if (shelf.typeShelf.toLowerCase().indexOf(key.toLowerCase()) !== -1 
+      || shelf.description.toLowerCase().indexOf(key.toLowerCase()) !== -1 ) {
+        results.push(shelf);
+      }
+    } 
+    this.shelfs = results;
+    if (results.length == 0 || !key ){
+      this.getShelves();
+    }
+  }
+
 }
