@@ -1,11 +1,5 @@
-<p>food works!</p>
-<h1>clothees</h1>
 
- <!--ul>
-  <li *ngFor="let product of products">{{ product.name }} </li>
- </ul-->
-
- <div *ngFor="let product of products">
+ <div *ngFor="let product of products; index as i">
  <div class="padding_left main_single_product section-padding-top">
     <div class="single_product single_product_two">
         <div class="product_img tre_shirt_3">
@@ -19,7 +13,16 @@
             <p>{{ product.price }}</p>
             <p>{{ product.weight }}</p>
             <a class="shop_now_btn" routerLink="food">SHOP NOW</a>
+            <a class="shop_now_btn"  (click)="addtoshelf(i)"  *ngIf="add1 !== i" >ADD TO SHELF</a>   
+            <div *ngIf="add1 === i">
+                <input type="number" class="form-control" placeholder="enter shelf id" #idshelf>
+                <button class="btn btn-primary" (click)="add(idshelf.value)">ADD</button>
+            </div>
         </div>
     </div>
 </div>
 </div>
+
+
+
+

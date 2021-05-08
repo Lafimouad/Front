@@ -46,4 +46,9 @@ export class ShelfService {
   }
 
   
+
+  public AffectProductToShelf(Ids: number,Idp: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/shelf/ProductToShelf/${Ids}/${Idp}`);
+  }
+  
   }
