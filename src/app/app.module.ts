@@ -34,6 +34,12 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import {DataTablesModule} from 'angular-datatables';
+import { DelivererSarraComponent } from './deliverer-sarra/deliverer-sarra.component';
+import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
+import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
+
 
 @NgModule({
   declarations: [
@@ -66,13 +72,18 @@ import { MemeComponent } from './meme/meme.component';
     AdvertisementsComponent,
     ProductsComponent,
     DashboardComponent,
-    MemeComponent
+    MemeComponent,
+    DeliveryComponent,
+    DelivererSarraComponent,
+    AddDelSarraComponent,
+    UpdateDelSarraComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

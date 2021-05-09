@@ -21,9 +21,33 @@ import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
 import { ToolsComponent } from './tools/tools.component';
 import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { DelivererSarraComponent } from './deliverer-sarra/deliverer-sarra.component';
+import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
+import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
+
+
+
+
 
 
 const routes: Routes = [ 
+  {
+    path :'deliverySarra/upDev', 
+    component : UpdateDelSarraComponent
+  },
+  {
+    path :'deliverySarra/addDev', 
+    component : AddDelSarraComponent
+  },
+  {
+    path :'deliverySarra', 
+    component : DelivererSarraComponent
+  },
+  {
+    path :'delivery', 
+    component : DeliveryComponent
+  },
   {
     path :'meme', 
     component : MemeComponent

@@ -17,6 +17,7 @@
                 <div class="header_top_right text-right">
                     <ul>
                         <li *ngIf="info.token" ><p class="p-4 text-failure"> Logged in as {{info.username}}  </p></li>
+                        <li><a routerLink="delivery">My order</a></li>
                         <li><a routerLink="account">Account</a></li>
                         <li *ngIf="!authority" class="nav-item">
                             <a class="nav-link" routerLink="auth/login">Register / Login</a>
@@ -48,6 +49,8 @@
                             <li><a routerLink="products">OUR PRODUCTS </a></li>
                             <li><a routerLink="forum">FORUM</a></li>
                             <li><a routerLink="events">EVENTS</a></li>
+                            <li><a routerLink="delivery">DELIVERY</a></li>
+                            <li><a routerLink="deliverySarra">DELIVERERS</a></li>
                             <li *ngIf="authoritymanager" class="nav-item" ><a routerLink="dashboard">DASHBOARD</a></li>
                             <li><a routerLink="contact">CONTACT US</a></li>
                             <li class="shop_icon">

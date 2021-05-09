@@ -1,0 +1,50 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<h3>Add Deliverer</h3>
+<div class="container">
+  <button class="btn btn-warning" (click)="backClicked()">Back</button>
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <fieldset>
+                  
+                    <legend class="text-center">Valid information is required to add Deliverer. <span class="req"><small>
+                                required *</small></span></legend>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="Name"><span class="req">* </span> Name: <small>This will be your Deliverer's
+        name</small> </label>
+      <input type="text" class="form-control" id="firstNameUser" required [(ngModel)]="deliverer.firstNameUser" name="firstNameUser" placeholder="Enter the deliverer's name..">
+    </div>
+
+    <div class="form-group">
+      <label for="Name"><span class="req">* </span>Id: <small>The id should be unique:</small> </label>
+      <input type="text" class="form-control" id="idUser" required [(ngModel)]="deliverer.idUser" name="idUser" placeholder="Enter the deliverer's ID..">
+    </div>
+
+    <div class="form-group">
+      <label for="Name"><span class="req">* </span>Email: <small>Enter the valid format of th email:</small> </label>
+      <input type="text" class="form-control" id="emailAddressUser" required [(ngModel)]="deliverer.emailAddressUser" name="emailAddressUser" placeholder="Enter email adddress..">
+    </div>
+    <div class="form-group">
+      <label for="Name"><span class="req">* </span>Phone number: <small></small> </label>
+      <input type="text" class="form-control" id="phoneNumberUser" required [(ngModel)]="deliverer.phoneNumberUser" name="phoneNumberUser" placeholder="Enter phone number..">
+    </div>
+    
+    <button type="submit" class="btn btn-success"(click)="onSubmit()">Submit</button>
+    <p></p>
+    
+  </form>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <button class="btn btn-success" >Add</button> 
+</div>
