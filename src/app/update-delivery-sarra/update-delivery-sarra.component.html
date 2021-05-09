@@ -1,0 +1,45 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<h3>Update Delivery</h3>
+<div class="container">
+    <button class="btn btn-warning" (click)="backClicked()">Back</button>
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <fieldset>
+                    <legend class="text-center">Update delivery information <span class="req"><small>
+                                required *</small></span></legend>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Id:</label>
+      <input type="text" class="form-control" id="id_delivery" required [(ngModel)]="delivery.id_delivery" name="id_delivery" placeholder="Update ID..">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Place:</label>
+      <input type="text" class="form-control" id="destination_delivery" required [(ngModel)]="delivery.destination_delivery" name="destination_delivery" placeholder="Update destination..">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Price:</label>
+      <input type="text" class="form-control" id="cost_delivery" required [(ngModel)]="delivery.cost_delivery" name="cost_delivery" placeholder="Update price..">
+    </div>
+    <div class="form-group">
+        <label for="name">Date:</label>
+        <input type="date" class="form-control" id="date_delivery" required [(ngModel)]="delivery.date_delivery" name="phoneNumberUser" placeholder="Update date..">
+      </div>
+     
+
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+
+    <p></p>
+    
+  </form>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div>

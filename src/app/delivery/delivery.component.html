@@ -29,11 +29,11 @@
         
         <div id="custom-search-input"  >
             <div class="input-group col-md-12" style="text-align: center">
-                <input type="text" class="search-query form-control"  placeholder="Search With Name"  name="destination_delivery" [(ngModel)]="destination_delivery" (ngModelChange)="Searchh()"/>
+                <input type="text" class="search-query form-control"  placeholder="Search With Place"  name="destination_delivery" [(ngModel)]="destination_delivery" (ngModelChange)="Searchh()"/>
                 
                 <span class="input-group-btn">
                     
-                    <a routerLink="addDev"><button class="btn btn-danger" type="button">Add</button></a>
+                    <a routerLink="addDelivery"><button class="btn btn-danger" type="button">Add</button></a>
                 </span>
             </div>
             
@@ -75,7 +75,7 @@
             <td>{{d.Stars_service_delivery}}</td>
             <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delteDel(d.id_delivery)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
                 <p></p>
-             <a routerLink="upDev"><button class="btn btn-primary" ><span class="glyphicon glyphicon-update"></span> update</button></a></td>
+             <a routerLink="updateDelivery"><button class="btn btn-primary" ><span class="glyphicon glyphicon-update"></span> update</button></a></td>
           </tr>
     </tbody>
     </table>

@@ -27,11 +27,14 @@ export class DeliveryService {
     }   
   
     createDelivery(delivery: object): Observable<object> {  
-      return this.http.post(`${this.url3}`+'save-delivery', delivery);  
+      return this.http.post('http://localhost:8081/Delivery/add', delivery);  
     }  
     getDelivery2(id: number): Observable<Object> {  
       return this.http.get(`${this.url4}/${id}`);  
     } 
+    updateDelivery(delivery: Delivery){
+      return this.http.put('http://localhost:8081/Delivery/modiify', delivery);
+    }
   
    /** updateDelivery(id: number, value: any): Observable<Object> {  
       return this.http.post(`${this.url5}/${id}`, value);  

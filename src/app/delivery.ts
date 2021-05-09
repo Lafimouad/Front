@@ -1,4 +1,4 @@
-enum MeansOfTransport {
+export enum MeansOfTransport {
     car , bicycle , motorcycle , truck
 }
 enum DurationOfDelivering {

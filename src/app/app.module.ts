@@ -39,6 +39,8 @@ import {DataTablesModule} from 'angular-datatables';
 import { DelivererSarraComponent } from './deliverer-sarra/deliverer-sarra.component';
 import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
 import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
+import { AddDeliverySarraComponent } from './add-delivery-sarra/add-delivery-sarra.component';
+import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-delivery-sarra.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.com
     DeliveryComponent,
     DelivererSarraComponent,
     AddDelSarraComponent,
-    UpdateDelSarraComponent
+    UpdateDelSarraComponent,
+    AddDeliverySarraComponent,
+    UpdateDeliverySarraComponent
   ],
   imports: [
     BrowserModule,

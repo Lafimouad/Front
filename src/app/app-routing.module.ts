@@ -25,6 +25,8 @@ import { DeliveryComponent } from './delivery/delivery.component';
 import { DelivererSarraComponent } from './deliverer-sarra/deliverer-sarra.component';
 import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
 import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
+import { AddDeliverySarraComponent } from './add-delivery-sarra/add-delivery-sarra.component';
+import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-delivery-sarra.component';
 
 
 
@@ -32,6 +34,14 @@ import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.com
 
 
 const routes: Routes = [ 
+  {
+    path :'delivery/updateDelivery', 
+    component : UpdateDeliverySarraComponent
+  },
+  {
+    path :'delivery/addDelivery', 
+    component : AddDeliverySarraComponent
+  },
   {
     path :'deliverySarra/upDev', 
     component : UpdateDelSarraComponent
