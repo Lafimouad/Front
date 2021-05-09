@@ -12,7 +12,7 @@ export class Product{
     imagePath:string;
     category:string;
 
-    constructor(id: number, name: string, description: string,quantityProduct:number,productofthemonth:boolean=false,code:string,price: number,
+    /*constructor(id: number, name: string, description: string,quantityProduct:number,productofthemonth:boolean=false,code:string,price: number,
         image_URL: string,available:boolean,weight:number,imagePath:string,category:string) {
         this.id = id;
         this.name = name;
@@ -27,6 +27,6 @@ export class Product{
         this.imagePath = imagePath;
         this.category = category;
     
-     }
+     }*/
 
 }

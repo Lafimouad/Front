@@ -41,7 +41,7 @@ import { ShelfService } from './shelf.service';
 
 import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -87,7 +87,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
       
-    //NgbModule,
+    NgbModule,
     HttpClientModule,ReactiveFormsModule
   ],
   

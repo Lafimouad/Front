@@ -20,11 +20,9 @@
     "@angular/platform-browser": "~9.1.12",
     "@angular/platform-browser-dynamic": "~9.1.12",
     "@angular/router": "~9.1.12",
-
+    "@ng-bootstrap/ng-bootstrap": "^6.2.0",
     "angular-datatable": "^2.2.1",
     "angular-webstorage-service": "^1.0.2",
-
-    "@ng-bootstrap/ng-bootstrap": "^6.2.0",
     "bootstrap": "^4.6.0",
     "datatables.net": "^1.10.24",
     "jquery": "^3.6.0",

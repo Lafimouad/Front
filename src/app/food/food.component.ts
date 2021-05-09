@@ -13,7 +13,7 @@ export class FoodComponent implements OnInit {
    products: Product[];
    public shelfs: Shelf[];
    add1: number = -1;
-
+   add2: number = -1;
   constructor(private shelfservice: ShelfService) { }
 
   ngOnInit(): void {
@@ -70,12 +70,28 @@ export class FoodComponent implements OnInit {
  
        }
      ) 
- 
- 
- 
- 
- 
-   }
+ }
 
 
+ addQ(quantity: number){
+  let selectedproduct = this.products[this.add2]
+  let data = selectedproduct.id;
+  console.log(quantity);
+  console.log(data);
+  this.shelfservice.addquantity(data,quantity).subscribe(
+    (response: void) => {
+      console.log(response);
+      this.add2 = -1;
+      this.getFood();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+
+    }
+  ) 
+
+} 
+Quantity(index){
+  this.add2 = +index
+ }
 }
