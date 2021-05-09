@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccessoriesComponent } from './accessories/accessories.component';
 import { AccountComponent } from './account/account.component';
+import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
 import { ClientComponent } from './client/client.component';
@@ -106,6 +107,7 @@ const routes: Routes = [
   path: 'manager',
   component: ManagerComponent
 },
+{ path: 'add-product', component: AddProductComponent },
 {
   path: 'auth/login',
   component: LoginComponent

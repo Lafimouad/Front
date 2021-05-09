@@ -28,4 +28,5 @@ export class Product{
         this.category = category;
     
      }
+
 }

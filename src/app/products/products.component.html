@@ -1,9 +1,10 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-<div class="container bootdey">
+<div  class="container bootdey">
     <div class="col-md-3">
         <section class="panel">
             <div class="panel-body">
-                <input type="text" placeholder="Keyword Search" class="form-control" />
+                <input type="search" (ngModelChange)="searchProduct(key.value)" #key="ngModel" ngModel
+                placeholder="Keyword Search" class="form-control" name="key" id="searchName" />
             </div>
         </section>
         <section class="panel">
@@ -145,38 +146,83 @@
         <section class="panel">
             <div class="panel-body">
                 <div class="pull-right">
-                    <ul class="pagination pagination-sm pro-page-list">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
+                    <select id="sort-by" (change)="sort($event)">
+                        <option value="" selected disabled hidden>Sort By</option>
+                        
+                        <option value="Low">Show Low to High Price</option>
+                        <option value="High">Show High to Low Price</option>
+                    </select>
                 </div>
             </div>
         </section>
 
         <div  class="row product-list">
         <ul >
-        <li  > <!--*ngFor="let product of ListProducts ; let i = index"-->
+        <li *ngFor="let product of ListProducts ; let i = index" >
             <div class="col-md-4">
                 <section class="panel">
                     <div class="pro-img-box">
-                        <img src="product.image_URL" alt="" />
+                        <img src="{{product.image_URL}}" alt="" />
                         <a href="#" class="adtocart">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
+                        <div class="col-6">
+                            <button class="btn btn-secondary"(click)="doEdit(product)" >Edit</button>
+                    </div>
+                        <div class="col-6">
+                            <button class="btn btn-danger"
+                                    (click)="delProd(product.id)">Remove</button>
+                    </div>
                     </div>
 
                     <div class="panel-body text-center">
                         <h4>
                             <a href="#" class="pro-title">
-                                product.name
+                                {{product.name}}
                             </a>
                         </h4>
-                        <p class="price">product.price DT</p>
+                        <p class="price">{{product.price}} DT</p>
                     </div>
                 </section>
             </div>
         </li>
         </ul>
 </div>
+        <form   #editForm="ngForm"  >
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input [(ngModel)]="name" ngModel="{{fproduct?.name}}" name="name"type="text" class="form-control" data-toggle="tooltip" 
+                   data-placement="right" title="Enter Product Name" >
+            </div>
+    
+            <div class="form-group">
+                <label for="name">Product Description</label>
+                <input [(ngModel)]="description" type="text" name="desc" class="form-control" ngModel="{{fproduct?.description}}"
+                  data-toggle="tooltip" data-placement="right" title="Enter Product Description">
+            </div>
+    
+            <div class="form-group">
+                <label for="branch">Product weight</label>
+                <input type="text" name="weight" class="form-control" ngModel="{{fproduct?.weight}}" [(ngModel)]="weight"
+                  data-toggle="tooltip" data-placement="right" title="Enter Product weight">
+            </div>
+            
+            <div class="form-group">
+              <label for="branch">Product price</label>
+              <input type="text" name="price" class="form-control" ngModel="{{fproduct?.price}}" [(ngModel)]="price"
+                data-toggle="tooltip" data-placement="right" title="Enter Product Price">
+          </div>
+            <div class="form-group">
+              <label for="branch">Product Image URL</label>
+              <input type="file" name="image_URL"  class="form-control" ngModel="{{fproduct?.image_URL}}" [(ngModel)]="image_URL"
+                data-toggle="tooltip" data-placement="right" title="Enter Product Image URL" accept="image/*" (change)="addImage($event)" >
+            </div>
+            <div class="form-group">
+              <label for="branch">Product Barecode</label>
+              <input type="file" name="imagePath" class="form-control" ngModel="{{fproduct?.imagePath}}" [(ngModel)]="imagePath"
+                data-toggle="tooltip" data-placement="right" accept="image/*" (change)="addCodeBare($event)">
+                
+            </div>
+  
+            <button (click)="updateProduct(fproduct.id)" class="btn btn-success" >Save changes</button>
+        </form>

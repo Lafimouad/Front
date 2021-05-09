@@ -34,9 +34,15 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
+
 import { ShelfComponent } from './shelf/shelf.component';
 import { ListshelfsComponent } from './listshelfs/listshelfs.component';
 import { ShelfService } from './shelf.service';
+
+import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -71,14 +77,18 @@ import { ShelfService } from './shelf.service';
     DashboardComponent,
     MemeComponent,
     ShelfComponent,
-    ListshelfsComponent
+    ListshelfsComponent,
+
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
       
+    //NgbModule,
+    HttpClientModule,ReactiveFormsModule
   ],
   
   providers: [httpInterceptorProviders],
