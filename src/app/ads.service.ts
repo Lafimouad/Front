@@ -34,4 +34,17 @@ export class AdsService {
   public modifyAd(ad: Ads): any{
     return this.http.put("http://localhost:8081/Ad/modify/",ad);
   }
+
+  public show(username){
+    return this.http.get("http://localhost:8081/Ad/getCat2/"+username);
+
+  }
+
+  public getPa(){
+    return this.http.get("http://localhost:8081/product");
+  }
 }
+
+
+
+

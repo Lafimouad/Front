@@ -12,7 +12,10 @@ import { TokenStorgeService } from '../token-storage.service';
 export class LoginComponent implements OnInit {
   /*maha*/
   id:any;
+  ide:any;
   data:any;
+  ads:any;
+  pas:any;
   /*maha*/
   info : any ; 
   form: any = {};
@@ -31,15 +34,27 @@ export class LoginComponent implements OnInit {
       token: this.token.getToken(),
       username: this.token.getUsername(),
       /*maha*/
-      /*id: this.gettingid(this.token.getUsername()),*/
-
+      id: this.gettingid(this.token.getUsername()),
+      
       
       /*maha*/
       authorities: this.token.getAuthorities()};
+      console.log("aya",this.id)
+      this.service.show(this.ide);
+
+      console.log("please",this.info.id)
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
     }
+
+     this.service.getPa().subscribe((data)=>this.pas=data);
+
+    /*let resp = this.service.show(this.gettingid(this.info.username));
+      resp.subscribe((data)=>this.ads=data);*/
+
+
+
   }
 
   onSubmit() {
@@ -76,8 +91,22 @@ export class LoginComponent implements OnInit {
      this.service.wantId(username).subscribe((data)=>{console.log("lafi",data) ;
     this.id=data} );
     console.log("3ak3ek ye moufida");
-      
+  
+    
   
   /*maha*/
 }
+/*public showing(id){
+  let resp = this.service.show(id);
+      resp.subscribe((data)=>this.ads=data);}*/
+
+
+
+public please(){
+  this.ide=this.gettingid(this.info.username);
+  console.log("douda",this.ide);
+  this.service.show(this.gettingid(this.info.username));
+
+}
+
 }

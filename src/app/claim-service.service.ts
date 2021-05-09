@@ -26,6 +26,10 @@ export class ClaimServiceService {
   public findCByStatus(status){
     return this.http.get("http://localhost:8081/Claim/find2/"+status);
   }
+
+  public findCByStatus2(status){
+    return this.http.get("http://localhost:8081/Claim/find3/"+status);
+  }
   public findCBylevelAsc(){
     return this.http.get("http://localhost:8081/Claim/levelAsc");
   }

@@ -38,7 +38,9 @@ import { ClaimServiceService } from './claim-service.service';
 import { DisplayClaimComponent } from './display-claim/display-claim.component';
 import { Ad2Component } from './ad2/ad2.component';
 import { Ad3Component } from './ad3/ad3.component';
-
+import {ShareButtonsModule} from 'ngx-sharebuttons/buttons';
+import {ShareIconsModule} from 'ngx-sharebuttons/icons';
+import { TryComponent } from './try/try.component'
 
 @NgModule({
   declarations: [
@@ -74,13 +76,17 @@ import { Ad3Component } from './ad3/ad3.component';
     MemeComponent,
     DisplayClaimComponent,
     Ad2Component,
-    Ad3Component
+    Ad3Component,
+    TryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ShareButtonsModule.withConfig({debug:true, }),
+    ShareIconsModule,
+
   
   ],
   providers: [httpInterceptorProviders,ClaimServiceService],

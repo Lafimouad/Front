@@ -47,9 +47,10 @@
                             <li><a routerLink="virtualvisit">VIRTUAL VISIT</a></li>
                             <li><a routerLink="products">OUR PRODUCTS </a></li>
                             <li><a routerLink="forum">FORUM</a></li>
-                            <li><a routerLink="events">EVENTS</a></li>
+                             <li><a routerLink="events">EVENTS</a></li>
                             <li *ngIf="authoritymanager" class="nav-item" ><a routerLink="dashboard">DASHBOARD</a></li>
                             <li *ngIf="authorityadmin" class="nav-item"  ><a routerLink="displayClaim">CLAIM SECTION</a><a routerLink="ads">ADS SECTION</a></li>
+                            <li *ngIf="!authorityadmin" class="nav-item"  ><a routerLink="contact">CLAIM SECTION</a></li>
                             <li class="shop_icon">
                                 <a href="checkout.html"><img src="assets/images/menu_icon_img.png" alt="" /></a>
                                 <span>10</span>

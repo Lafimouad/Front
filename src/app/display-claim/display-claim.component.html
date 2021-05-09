@@ -2,23 +2,45 @@
 <!-----------------------------ADMIN---------------------->
 <div  *ngIf="info.token" >
     <div *ngIf="authorityadmin" class="nav-item"  >
-      <section class="search-box">
-          <input type="text" placeholder="Type to search.." name="subject" [(ngModel)]="subject">
-          <button class ="search-btn" type="button" (click)="gettingBysubject()">
-              <i class="fas fa-search"></i>
-          </button>
-         
-        </section>
 
 
+        
+      
 
+        
+
+            
+
+        <div class="row">
+            <div class="col-sm-6">
         <select class="form-control" aria-label="Default select example" name="order" [(ngModel)]="level" >
             <option value="1">Ascending</option>
               <option value="2">Descending</option>
         </select>
+        </div>
+        <div class="col-sm-3">
               <button class ="search-btn" type="button"  (click)="func()">
                 <i class="fas fa-search"></i>
             </button>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+        <select class="form-control" aria-label="Default select example" name="status" [(ngModel)]="status" >
+            <option value="1">Treated</option>
+              <option value="2">Not Treated</option>
+        </select>
+        </div>
+        <div class="col-sm-3">
+              <button class ="search-btn" type="button"  (click)="func2()">
+                <i class="fas fa-search"></i>
+            </button>
+            </div>
+        </div>
         
 
 
@@ -121,3 +143,197 @@
             </button> 
         </span>
       </form>-->
+
+
+
+
+      <div  *ngIf="info.token" >
+        <div *ngIf="authorityclient" class="nav-item"  >
+
+            <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h2 class="text-center">Landing Zero Theme</h2>
+                        <h5 class="text-center">
+                            A free, responsive landing page theme built by BootstrapZero.
+                        </h5>
+                        <p class="text-justify">
+                            This is a single-page Bootstrap template with a sleek dark/grey color scheme, accent color and smooth scrolling.
+                            There are vertical content sections with subtle animations that are activated when scrolled into view using the jQuery WOW plugin. There is also a gallery with modals
+                            that work nicely to showcase your work portfolio. Other features include a contact form, email subscribe form, multi-column footer. Uses Questrial Google Font and Ionicons.
+                        </p>
+                        <p class="text-center"><a href="http://www.bootstrapzero.com">Download at BootstrapZero</a></p>
+                        <br/>
+                        <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h2 class="text-center">Nice Job!</h2>
+                        <p class="text-center">You clicked the button, but it doesn't actually go anywhere because this is only a demo.</p>
+                        <p class="text-center"><a href="http://www.bootstrapzero.com">Learn more at BootstrapZero</a></p>
+                        <br/>
+                        <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <!-----------------------------USER---------------------->
+            
+            
+            
+            
+            
+            
+            <div class="container">
+                <div class="main-body p-0">
+                    <div class="inner-wrapper">
+                        <!-- Inner sidebar -->
+                        <div class="inner-sidebar">
+                            <!-- Inner sidebar header -->
+                            <div class="inner-sidebar-header justify-content-center">
+                                <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal" routerLink="/contact">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-2">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    NEW CLAIM
+                                </button>
+                            </div>
+                            <!-- /Inner sidebar header -->
+                
+                            <!-- Inner sidebar body -->
+                            <div class="inner-sidebar-body p-0">
+                                <div class="p-3 h-100" data-simplebar="init">
+                                    <div class="simplebar-wrapper" style="margin: -16px;">
+                                        <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                                        <div class="simplebar-mask">
+                                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                                <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                                    <div class="simplebar-content" style="padding: 16px;">
+                                                        <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
+                                                            <button class="nav-link nav-link-faded has-icon" (click)="gettingBylevelA()">Ascending order</button>
+                                                            <button class="nav-link nav-link-faded has-icon" (click)="gettingBylevelD()">Descending order</button>
+                                                            <button class="nav-link nav-link-faded has-icon">Popular all time</button>
+                                                            <button class="nav-link nav-link-faded has-icon">Solved</button>
+                                                            <button class="nav-link nav-link-faded has-icon">Unsolved</button>
+                                                            <button class="nav-link nav-link-faded has-icon">No replies yet</button>
+                                                        </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
+                                    </div>
+                                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
+                                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+                                </div>
+                            </div>
+                            <!-- /Inner sidebar body -->
+                        </div>
+                        <!-- /Inner sidebar -->
+                
+                        <!-- Inner main -->
+                        <div class="inner-main">
+                            <!-- Inner main header -->
+                            <div class="inner-main-header">
+                                <div class="col-sm-6">
+                                <section class="search-box">
+                                    <input type="text" placeholder="Type to search.." name="subject" [(ngModel)]="subject">
+                                    <button class ="search-btn" type="button" (click)="gettingBysubject()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                   
+                                  </section> </div>
+                                  
+                                
+
+                                
+                            </div>
+                            <!-- /Inner main header -->
+                
+                            <!-- Inner main body -->
+                
+                            <!-- Forum List -->
+                            <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+                              
+            
+                                <div class="card mb-2">
+                                        <td *ngFor="let claim of claims">
+                                            <tr><a href="#" data-toggle="collapse" data-target=".forum-content"><img src="assets/images/chachia.jpg" class="mr-3 rounded-circle" width="50" alt="User" /></a></tr>
+                                            <tr><strong>Claim Id </strong>{{claim.idClaim}}</tr>
+                                            <tr> <strong>Subject </strong>{{claim.subject}}</tr> 
+                                            <tr> <strong>Subject </strong>{{claim.description}}</tr> 
+                                            <tr> <strong>Subject </strong>{{claim.status}}</tr> 
+
+                                        </td>
+                                           <!--  
+                               
+
+                                    <div class="card-body p-2 p-sm-3">
+                                       
+                                       <div class="media forum-item"><a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                            <div class="media-body">
+
+                                                <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">Realtime fetching data</a></h6>
+                                                <p class="text-secondary">
+                                                
+                                                </p>
+                                                <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
+                                            </div>
+                                            <div class="text-muted small text-center align-self-center">
+                                                <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
+                                                <span><i class="far fa-comment ml-2"></i> 3</span>
+                                            </div> 
+                                            
+                                        </div>
+                                    
+                                    </div> -->
+                                       
+                                </div>  
+                      
+                            
+                                
+
+                       
+                                
+                            <!-- /Inner main body -->
+                            </div>  
+                               
+                        <!-- /Inner main -->
+                    </div>
+                
+                    
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <!--<section class="search-box">
+        <div class="row">
+            <div class="col-md-8">
+          <input type="text" placeholder="Type to search.." name="subject" [(ngModel)]="subject">
+            </div>
+          
+          <button class ="search-btn" type="button" (click)="gettingBysubject()">
+              <i class="fas fa-search"></i>
+          </button>
+            
+        </div>
+        </section> -->

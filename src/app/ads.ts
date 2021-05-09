@@ -1,6 +1,6 @@
 export class Ads{
     idAdvertisment: number;
-    idUser : number;
+    idUser: number;
     dateAdvertisment : string;
     enddate: string;
     finalviews : number ;
@@ -8,6 +8,7 @@ export class Ads{
     typeAdvertisement : string ;
     cost : number ;
     channel : string;
+   
     
     constructor (
         idAdvertisment: number,

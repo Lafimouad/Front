@@ -1,4 +1,4 @@
-<br>
+<li *ngIf="authorityadmin" class="nav-item"  > <br>
 <br>
 <br>
 <img src="assets/images/saida.jpg" alt="alternatetext">
@@ -8,3 +8,22 @@
 <br>
 <br>
 <br>
+<li>
+<li *ngIf="authorityclient" class="nav-item"  > 
+    
+        <div  *ngIf="info.token" > 
+        <tr *ngFor="let pa of pas">
+          
+           
+         {{pa.name}}
+        {{pa.categoryProduct}}
+        </tr>
+        
+    </div>
+
+
+
+
+
+    
+</li>

@@ -77,6 +77,10 @@ export class DisplayClaimComponent implements OnInit {
     let resp = this.service.findCByStatus(this.status);
       resp.subscribe((data)=>this.claims=data);
   }
+  public gettingBystatus2(){
+    let resp = this.service.findCByStatus2(this.status);
+      resp.subscribe((data)=>this.claims=data);
+  }
   public gettingBylevelA(){
     let resp = this.service.findCBylevelAsc();
       resp.subscribe((data)=>this.claims=data);
@@ -102,4 +106,19 @@ export class DisplayClaimComponent implements OnInit {
   
 
 }
+
+public func2 (){
+
+  let status=this.status
+  if (status="Treated")
+  return this.gettingBystatus();
+  else 
+
+  return this.gettingBystatus2();
+
 }
+}
+
+
+
+
