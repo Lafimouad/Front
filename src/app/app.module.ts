@@ -36,6 +36,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
 import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgbModule,
     HttpClientModule,ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders],

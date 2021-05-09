@@ -11,15 +11,19 @@ export class AddProductComponent implements OnInit {
   constructor(private productservice:ProductService) { }
   product:Product=new Product();
   submitted = false;
+  showAdd = false;
     id
     name
     description
     price
     weight
-    image_URL
+    image_URL:string
     category
     quantityProduct
     imagePath
+    event
+    imageFile
+    bareCodeFile
   ngOnInit() {
     this.submitted=false;
 
@@ -30,22 +34,47 @@ export class AddProductComponent implements OnInit {
     this.product.name=this.name;
     this.product.description=this.description;
     this.product.price=this.price;
-    this.product.image_URL=this.image_URL;
     this.product.category=this.category;
     this.product.weight=this.weight;
-    this.product.imagePath=this.imagePath;
+    console.log("cefff",this.product.id)
     this.submitted = true;
     this.save();
+    
   }
   save() {
     this.productservice.createProduct(this.product)
-      .subscribe(data => console.log(data), error => console.log(error));
-    this.product = new Product();
+      .subscribe(data => {
+        this.productservice.addImage(this.imageFile).subscribe();
+        this.productservice.addBareCode(this.bareCodeFile).subscribe(data =>console.log(data));
+       }
+       )
   }
 
   addProductForm(){
     this.submitted=!this.submitted;
 
   }
+
+  
+  addCodeBare($event:any){
+    this.bareCodeFile= $event.target.files[0];
+    console.log("mouadh");
+  }
+
+  addImage(event:any){
+    this.imageFile = event.target.files[0];
+    
+    console.log("lafi");
+  }
+
+  show() {
+    this.showAdd = true;
+  }
+  hide() {
+    this.showAdd = false;
+  }
+  refresh(): void {
+    window.location.reload();
+}
 
 }

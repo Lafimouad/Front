@@ -1,9 +1,11 @@
 
 <h3>Add Product</h3>
+
 <div class="row">
   <div class="col-sm-4"></div>
+  
   <div class="col-sm-4" >
-    <div [hidden]="submitted" style="width: 400px;">
+    <div [hidden]="submitted"  style="width: 400px;">
       <form   (ngSubmit)="saveProduct()">
           <div class="form-group">
               <label for="name">Product Name</label>
@@ -31,7 +33,7 @@
           <div class="form-group">
             <label for="branch">Product Image URL</label>
             <input type="file" name="image_URL"  class="form-control" [(ngModel)]="image_URL" 
-              data-toggle="tooltip" data-placement="right" title="Enter Product Image URL">
+              data-toggle="tooltip" data-placement="right" title="Enter Product Image URL" accept="image/*" (change)="addImage($event)" >
           </div>
           <div class="form-group">
             <label for="branch">Product Category</label>
@@ -41,10 +43,11 @@
           <div class="form-group">
             <label for="branch">Product Barecode</label>
             <input type="file" name="imagePath" class="form-control" [(ngModel)]="imagePath" 
-              data-toggle="tooltip" data-placement="right" title="Enter Product Category">
+              data-toggle="tooltip" data-placement="right" accept="image/*" (change)="addCodeBare($event)">
+              
           </div>
 
-          <button type="submit" class="btn btn-success">Add</button>
+          <button type="submit" class="btn btn-success" >Add</button>
       </form>
   </div>
   </div>
