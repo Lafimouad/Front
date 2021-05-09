@@ -11,8 +11,8 @@
                <p>{{ product.code }}</p>
                <p>{{ product.price }}</p>
                <p>{{ product.weight }}</p>
-               <a class="shop_now_btn" (click)="Quantity(i)" *ngIf="add2 !== i" >ADD QUANTITY</a>
-               <a class="shop_now_btn"  (click)="addtoshelf(i)"  *ngIf="add1 !== i" >ADD TO SHELF</a>
+               <a *ngIf="authoritymanager && add2 !== i" class="shop_now_btn" (click)="Quantity(i)"  >MODIFY QUANTITY</a>
+               <a *ngIf="authoritymanager && add1 !== i" class="shop_now_btn"  (click)="addtoshelf(i)"   >ADD TO SHELF</a>
                <div *ngIf="add1 === i">
                 <input type="number" class="form-control" placeholder="enter shelf id" #idshelf>
                 <button class="btn btn-outline-success" (click)="add(idshelf.value)">ADD</button>
@@ -20,8 +20,9 @@
             <div *ngIf="add2 === i"> 
             <input type="number" class="form-control" placeholder="enter quantity" #quantity>
             <button type="button" class="btn btn-outline-dark " (click)="addQ(quantity.value)" >ADD QUANTITY</button>
+            <button (click)="resetQ()" type="button" class="btn btn-outline-danger">RESET QUANTITY</button>
             </div>
-            <div><button type="button" class="btn btn-outline-danger">RESET QUANTITY</button></div>
+            <!--div><button *ngIf="authoritymanager"  (click)="resetQ()" type="button" class="btn btn-outline-danger">RESET QUANTITY</button></div-->
            </div>
        </div>
        </div>

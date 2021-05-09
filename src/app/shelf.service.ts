@@ -54,5 +54,8 @@ export class ShelfService {
   public addquantity(id: number,nb:number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/products/ProductQuantityadd/${id}/${nb}`);
   }
+  public resetQuantity(id:number): Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/products/resetProduct/${id}`);
+  }
   
   }

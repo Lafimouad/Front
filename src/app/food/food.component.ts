@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { ShelfService } from '../shelf.service';
 import { Shelf } from '../shelfstock/Shelf';
+import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
   selector: 'app-food',
@@ -10,27 +11,51 @@ import { Shelf } from '../shelfstock/Shelf';
   styleUrls: ['./food.component.css']
 })
 export class FoodComponent implements OnInit {
+  private roles: string[];
+  public authority: string;
+  public authoritymanager : boolean = false ;
+  public authorityadmin : boolean = false ;
+  public authorityclient : boolean = false ;
+  public authoritydeliverer : boolean = false ;
+  info : any ; 
+  //////////////////////////////////////////////////////////////
    products: Product[];
    public shelfs: Shelf[];
    add1: number = -1;
    add2: number = -1;
-  constructor(private shelfservice: ShelfService) { }
+   //////////////////////////////////////////
+  constructor(private shelfservice: ShelfService,private tokenStorage: TokenStorgeService , private token:TokenStorgeService) { }
 
   ngOnInit(): void {
 
-   /* this.shelfservice.getShelfs().subscribe(
-      (response: Shelf[] ) => {
-        this.shelfs = response; });
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities()};
 
-        console.log(this.shelfs)
-       
-        for (const shelf of this.shelfs)
-          { 
-            if (shelf.typeShelf.toLowerCase() === "food"){
-            
-              this.idshelf = shelf.idShelf ; 
-            }
-            }*/
+      if (this.tokenStorage.getToken()) {
+        this.roles = this.tokenStorage.getAuthorities();
+        this.roles.every(role => {
+          if (role === 'ROLE_ADMIN') {
+            this.authority = 'admin';
+            this.authorityadmin = true;
+            return false;
+          } else if (role === 'ROLE_CLIENT') {
+            this.authority = 'client';
+            this.authorityclient = true;
+            return false;
+          }else if (role === 'ROLE_DELIVERER') {
+            this.authority = 'deliverer';
+            this.authoritydeliverer = true;
+            return false;
+          }else if (role === 'ROLE_MANAGER') {
+            this.authority = 'manager';
+            this.authoritymanager = true;
+            return false;
+          }
+          this.authority = 'user';
+          return true;
+        }); }
    
     this.getFood();
   }
@@ -93,5 +118,21 @@ export class FoodComponent implements OnInit {
 } 
 Quantity(index){
   this.add2 = +index
+ }
+
+resetQ(){
+  let selectedproduct = this.products[this.add2]
+  let data = selectedproduct.id;
+  console.log(data);
+  this.shelfservice.resetQuantity(data).subscribe(
+    (response: void) => {
+      console.log(response);
+      this.add2 = -1;
+      this.getFood();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message); }
+  )
+
  }
 }
