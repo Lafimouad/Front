@@ -26,7 +26,9 @@ export class AccountsDashboardComponent implements OnInit {
   nbAClaims : number;
   nbADeleveries: number;
   nbAEvents: number;
-
+  nbCCos : number ; 
+  nbCEdu : number;
+  nbCF : number;
   constructor(private service : UserService) { }
 
   ngOnInit(): void {
@@ -44,6 +46,9 @@ export class AccountsDashboardComponent implements OnInit {
     this.getNbAEvents();
     this.getNbAProducts();
     this.getNbAClaims();
+    this.getNBCF();
+    this.getNbCCos();
+    this.getNbCEdu();
   }
 
 
@@ -64,6 +69,38 @@ export class AccountsDashboardComponent implements OnInit {
     this.infodeliverer=false;
   }
 
+  public getNbCCos(): void {
+    this.service.getCCos().subscribe(
+      (response: number) => {
+        this.nbCCos = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public getNbCEdu(): void {
+    this.service.getCEdu().subscribe(
+      (response: number) => {
+        this.nbCEdu = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public getNBCF(): void {
+    this.service.getCF().subscribe(
+      (response: number) => {
+        this.nbCF = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
   public getNbAAccounts(): void {
     this.service.getAAccounts().subscribe(

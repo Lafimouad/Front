@@ -28,7 +28,7 @@ export class AuthService {
     return this.http.post(this.signupUrl, info, httpOptions);
   }
 
-    updatedPassword(username : string) : any {
-    return this.http.get(`http://localhost:8081/isitupdated/${username}`)}
+  updatedPassword(username : string) : any {
+  return this.http.get(`http://localhost:8081/isitupdated/${username}`)}
 
   }

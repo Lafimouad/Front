@@ -78,11 +78,37 @@
   </div> </div>
 </div>
 <div *ngIf="infoclient" class="container">
-    <h2 class="p-3 mb-2 btn-warning"> CLIENTS STATISTICS </h2>
+   <div> <h2 class="p-3 mb-2 btn-warning"> CLIENTS STATISTICS </h2>
     <h2 class="col-md-5">Client of the month : </h2><h2 class="text-danger">{{clientMonth}}</h2>
+    <br>
+    <h2 class="col-md-12 color-default"> ~~Clients Statistics by Workfield~~ </h2></div>
+      <div class="progress">
+          <div  class="color-orange1 progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+          </div>
+          <span class="progress-type">COSMETICS</span>
+          <span class="progress-completed">60%</span>
+      </div>
+      <div class="progress">
+        <div id="div1" class="color-orange1 progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+        </div>
+        <span class="progress-type">EDUCATION</span>
+        <span class="progress-completed">{{nbCEdu}}</span>
+    </div>
+    <div class="progress">
+      <div class="color-orange2 progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+      </div>
+      <span class="progress-type">FARMING_FISHING_FORESTRY</span>
+      <span class="progress-completed">{{nbCF}}</span>
+  </div>
+  <div class="progress">
+    <div class="color-orange3 progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+    </div>
+    <span class="progress-type">COSMETICS</span>
+    <span class="progress-completed">{{nbCCos}}</span>
+</div>
 </div> 
 <div *ngIf="infoadmin" class="container">
-    <h2 class="p-3 mb-2 btn-success"> ADMIN STATISTICS </h2>
+    <h2 class="p-3 mb-2 btn-success"> ADMINS STATISTICS </h2>
     <table class="table">
         <thead>
           <tr>

@@ -60,9 +60,22 @@ export class UserService {
     return this.http.get<number>(`http://localhost:8081/ressources/user/nbAProducts`);
   }
 
+  public getCEdu(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbCEdu`);
+  }
+
+  public getCCos(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbCCos`);
+  }
+
+  public getCF(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbCF`);
+  }
+
   public getAEvents(): Observable<number> {
     return this.http.get<number>(`http://localhost:8081/ressources/user/nbAEvents`);
   }
+
 
   public getClientOfMonth(): Observable<any> {
     return this.http.get(`http://localhost:8081/ressources/user/clientOftheMonth`,{responseType: 

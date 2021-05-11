@@ -38,7 +38,6 @@ import { AccountsManagementComponent } from './accounts-management/accounts-mana
 import { MyaccountadminComponent } from './myaccountadmin/myaccountadmin.component';
 import { MyaccountdelivererComponent } from './myaccountdeliverer/myaccountdeliverer.component';
 import { AccountsDashboardComponent } from './accounts-dashboard/accounts-dashboard.component';
-import { ChartAccountsClientsComponent } from './chart-accounts-clients/chart-accounts-clients.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +75,7 @@ import { ChartAccountsClientsComponent } from './chart-accounts-clients/chart-ac
     MyaccountadminComponent,
     MyaccountdelivererComponent,
     AccountsDashboardComponent,
-    ChartAccountsClientsComponent
+    
   ],
   imports: [
     BrowserModule,
