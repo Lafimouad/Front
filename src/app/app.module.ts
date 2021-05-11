@@ -41,7 +41,7 @@ import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
 import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
 import { AddDeliverySarraComponent } from './add-delivery-sarra/add-delivery-sarra.component';
 import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-delivery-sarra.component';
-
+import { MapsSarraComponent } from './maps-sarra/maps-sarra.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +80,9 @@ import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-del
     AddDelSarraComponent,
     UpdateDelSarraComponent,
     AddDeliverySarraComponent,
-    UpdateDeliverySarraComponent
+    UpdateDeliverySarraComponent,
+    MapsSarraComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,7 @@ import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-del
     FormsModule,
     HttpClientModule,
     DataTablesModule
+    
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

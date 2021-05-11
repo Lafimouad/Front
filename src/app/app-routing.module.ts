@@ -27,6 +27,8 @@ import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
 import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
 import { AddDeliverySarraComponent } from './add-delivery-sarra/add-delivery-sarra.component';
 import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-delivery-sarra.component';
+import { MapsSarraComponent } from './maps-sarra/maps-sarra.component';
+
 
 
 
@@ -34,6 +36,11 @@ import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-del
 
 
 const routes: Routes = [ 
+
+  {
+    path :'SarraMaps', 
+    component : MapsSarraComponent
+  },
   {
     path :'delivery/updateDelivery', 
     component : UpdateDeliverySarraComponent
