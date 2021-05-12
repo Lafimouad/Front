@@ -38,6 +38,7 @@ import { AccountsManagementComponent } from './accounts-management/accounts-mana
 import { MyaccountadminComponent } from './myaccountadmin/myaccountadmin.component';
 import { MyaccountdelivererComponent } from './myaccountdeliverer/myaccountdeliverer.component';
 import { AccountsDashboardComponent } from './accounts-dashboard/accounts-dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { AccountsDashboardComponent } from './accounts-dashboard/accounts-dashbo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

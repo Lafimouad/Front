@@ -48,7 +48,7 @@ export class AccountsDashboardComponent implements OnInit {
     this.getNbAClaims();
     this.getNBCF();
     this.getNbCCos();
-    this.getNbCEdu();
+    this.getNbCEdu();    
   }
 
 
@@ -56,6 +56,8 @@ export class AccountsDashboardComponent implements OnInit {
     this.infoadmin=false;
     this.infoclient=true;
     this.infodeliverer=false;
+    const prog1 = document.getElementById("prog1");
+    prog1.style.width="50%";
   }
 
   public onInfoDeliverer() : void {
