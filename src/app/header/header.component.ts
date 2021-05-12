@@ -18,8 +18,6 @@ export class HeaderComponent implements OnInit {
   
     info : any ; 
     constructor(private route : Router , private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
-
-    
     
   ngOnInit() {
     this.info = {
