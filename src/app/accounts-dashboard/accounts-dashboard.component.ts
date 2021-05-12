@@ -29,6 +29,7 @@ export class AccountsDashboardComponent implements OnInit {
   nbCCos : number ; 
   nbCEdu : number;
   nbCF : number;
+  stat : boolean=false;
   constructor(private service : UserService) { }
 
   ngOnInit(): void {
@@ -52,12 +53,29 @@ export class AccountsDashboardComponent implements OnInit {
   }
 
 
+  public statistics() {
+    this.stat=true;
+    var weightCos = Math.floor((this.nbCCos*100)/this.nbClients);
+    this.nbCCos=weightCos;
+    const prog1 = document.getElementById("prog1");
+    prog1.style.width=String(weightCos)+"%";
+
+    var weightEdu = Math.floor((this.nbCEdu*100)/this.nbClients);
+    this.nbCEdu=weightEdu;
+    const prog2 = document.getElementById("prog2");
+    prog2.style.width=String(weightEdu)+"%";
+
+    var weightF = Math.floor((this.nbCF*100)/this.nbClients);
+    this.nbCF=weightF;
+    const prog3 = document.getElementById("prog3");
+    prog3.style.width=String(weightF)+"%";
+
+  }
+
   public onInfoClient() : void {
     this.infoadmin=false;
     this.infoclient=true;
     this.infodeliverer=false;
-    const prog1 = document.getElementById("prog1");
-    prog1.style.width="50%";
   }
 
   public onInfoDeliverer() : void {

@@ -82,29 +82,24 @@
     <h2 class="col-md-5">Client of the month : </h2><h2 class="text-danger">{{clientMonth}}</h2>
     <br>
     <h2 class="col-md-12 color-default"> ~~Clients Statistics by Workfield~~ </h2></div>
+    <a (click)="statistics()"> show percentage </a>
       <div class="progress">
-          <div  class="color-orange1 progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" >
-          </div>
-          <span class="progress-type">COSMETICS</span>
-          <span class="progress-completed">60%</span>
-      </div>
-      <div class="progress">
-        <div id="prog1" class="color-orange1 progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"style="width: 12%">
+        <div id="prog2" class="color-orange1 progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"style="width: 12%">
         </div>
         <span class="progress-type">EDUCATION</span>
-        <span class="progress-completed">{{nbCEdu}}</span>
+        <span *ngIf="stat" class="progress-completed">{{nbCEdu}} % </span>
     </div>
     <div class="progress">
-      <div class="color-orange2 progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+      <div id="prog3" class="color-orange2 progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
       </div>
       <span class="progress-type">FARMING_FISHING_FORESTRY</span>
-      <span class="progress-completed">{{nbCF}}</span>
+      <span *ngIf="stat" class="progress-completed">{{nbCF}} % </span>
   </div>
   <div class="progress">
-    <div class="color-orange3 progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 12%">
+    <div id="prog1" class="color-orange3 progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 12%">
     </div>
     <span class="progress-type">COSMETICS</span>
-    <span class="progress-completed">{{nbCCos}}</span>
+    <span *ngIf="stat"class="progress-completed">{{nbCCos}} % </span>
 </div>
 <h2 class="col-md-12 color-default"> ~~Subscription Statistics~~ </h2>
 <app-navbar-authorities></app-navbar-authorities>

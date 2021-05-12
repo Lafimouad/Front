@@ -41,7 +41,6 @@ export class NavbarAuthoritiesComponent implements OnInit {
     this.onCreate();
   }
 
-
   public onButton() : void {
     this.show=true;
     this.dataCases.chart1.push(this.JAN,this.FEB,this.MAR, this.APR , this.MAY , this.JUN)
