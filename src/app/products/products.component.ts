@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Order } from '../models/order';
 import { Product } from '../models/product';
+import { OrderService } from '../MouadhServices/order.service';
 import { ProductService } from '../MouadhServices/products.service';
 
 @Component({
@@ -12,50 +14,54 @@ import { ProductService } from '../MouadhServices/products.service';
 export class ProductsComponent implements OnInit {
 
 
-  constructor(private productservice:ProductService,private modalService: NgbModal,private fb: FormBuilder) { }
+  constructor(private productservice:ProductService,private modalService: NgbModal,private orderservice:OrderService) { }
   ListProducts:Product[];
   product:Product=new Product();
   productUpdated:Product=new Product();
-  editProfileForm:FormGroup;
-  title = 'modal2';
   fproduct :Product= new Product();
   hid:boolean=true;
+  order:Order=new Order();
+  List:Product[]=[];
+  OrderUpdated:Order=new Order();
 
   id
-    name
-    description
-    price
-    weight
-    image_URL:string
-    category
-    quantityProduct
-    imagePath
-    event
-    imageFile
-    bareCodeFile
+  name
+  description
+  price
+  weight
+  image_URL:string
+  category
+  quantityProduct
+  imagePath
+  event
+  imageFile
+  bareCodeFile
+
   ngOnInit() {
-  
-    
-    
+    this.orderservice.getProductList(2).subscribe(
+      res=>{
+        this.order.products=res.products;
+       
+      }
+
+    )
   
     this.productservice.getProductList().subscribe(res=>{console.log(res);
-
       this.ListProducts=res.products
       console.log("prod",this.ListProducts);})
-
 
   }
  
 
 // delete product  
   delProd(id:number){
-    this.productservice.deleteProduct(id).subscribe(data=>console.log(data))
-
-  }
+    this.productservice.deleteProduct(id).subscribe(data=>console.log(data))}
   //search
   searchProduct(key:string):void{
     const result : Product[]=[];
+    console.log("kukou",key);
     for(const Product of this.ListProducts){
+      console.log("moumou",Product.name)
       if(Product.name.toLocaleLowerCase().indexOf(key.toLocaleLowerCase())!== -1){
         result.push(Product);
       }
@@ -87,11 +93,6 @@ export class ProductsComponent implements OnInit {
     this.edit();
      }
 
-    
-
-  
-
-
   // update zone 
   addCodeBare($event:any){
     this.bareCodeFile= $event.target.files[0];
@@ -103,15 +104,7 @@ export class ProductsComponent implements OnInit {
     
     console.log("lafi");
   }
-  editproduct(){
-    this.productUpdated=new Product(); 
-    this.product.name=this.name;
-    this.product.description=this.description;
-    this.product.price=this.price;
-    this.product.weight=this.weight;
-    this.edit();
-    
-  }
+  
   edit() {
     this.productservice.updateProduct(this.productUpdated)
       .subscribe(data => {
@@ -121,8 +114,6 @@ export class ProductsComponent implements OnInit {
        )
   }
   
-  
-
   //update end here
 
   sort(event: any) {
@@ -149,4 +140,24 @@ export class ProductsComponent implements OnInit {
 
   }
 
+  // add To cart khorm
+  
+  addToCart(product:Product) { 
+
+    let List: Product[] =this.order.products;
+
+    List.push(product);
+    console.log("zahhh",product);
+    console.log("ggg",List);
+    this.OrderUpdated.products=List;
+    console.log("fffff",this.OrderUpdated);
+    this.orderservice.addProducttoCart(List,1).subscribe();
+   
+  }
+
+
 }
+function prod(prod: any) {
+  throw new Error('Function not implemented.');
+}
+
