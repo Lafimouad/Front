@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClaimServiceService } from '../claim-service.service';
 import { TokenStorgeService } from '../token-storage.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-display-claim',
@@ -8,7 +9,8 @@ import { TokenStorgeService } from '../token-storage.service';
   styleUrls: ['./display-claim.component.css']
 })
 export class DisplayClaimComponent implements OnInit {
-  claims:any;
+  claim:any;
+  user: User;
   subject : string;
   status: string;
   level: number;
@@ -29,7 +31,7 @@ export class DisplayClaimComponent implements OnInit {
       
 
       let resp = this.service.getClaims();
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
 
 
       this.info = {
@@ -66,33 +68,33 @@ export class DisplayClaimComponent implements OnInit {
 
   public gettingBysubject(){
     let resp = this.service.findCBySubject(this.subject);
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
   }
   public gettingByid(){
     let resp = this.service.findCById(this.idClaim);
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
   }
 
   public gettingBystatus(){
     let resp = this.service.findCByStatus(this.status);
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
   }
   public gettingBystatus2(){
     let resp = this.service.findCByStatus2(this.status);
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
   }
   public gettingBylevelA(){
     let resp = this.service.findCBylevelAsc();
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
   }
   public gettingBylevelD(){
     let resp = this.service.findCBylevelDesc();
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
   }
 
   public deletingClaim(idClaim:number){
     let resp = this.service.deleteClaim(idClaim);
-      resp.subscribe((data)=>this.claims=data);
+      resp.subscribe((data)=>this.claim=data);
   }
 
   public func (){

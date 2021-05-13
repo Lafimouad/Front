@@ -92,21 +92,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let claim of claims">
+        <tr *ngFor="let c of claim">
             
-            <th>{{claim.idClaim}}</th>
-            <td>{{claim.idUser}}</td>
-            <td>{{claim.subject}}</td>
-            <td>{{claim.systemProblem}}</td>
-            <td>{{claim.deliveryProblem}}</td>
-            <td>{{claim.productProblem}}</td>
-            <td>{{claim.productWithProb}}</td>
-            <td>{{claim.date}}</td>
-            <td>{{claim.description}}</td>
-            <td>{{claim.level}}</td>
-            <td>{{claim.decision}}</td>
-            <td>{{claim.status}}</td>
-            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingClaim(claim.idClaim)"> Delete</button></td>
+            <th>{{c.idClaim}}</th>
+            <td>{{c.user.idUser}}</td>
+            <td>{{c.subject}}</td>
+            <td>{{c.systemProblem}}</td>
+            <td>{{c.deliveryProblem}}</td>
+            <td>{{c.productProblem}}</td>
+            <td>{{c.productWithProb}}</td>
+            <td>{{c.date}}</td>
+            <td>{{c.description}}</td>
+            <td>{{c.level}}</td>
+            <td>{{c.decision}}</td>
+            <td>{{c.status}}</td>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingClaim(c.idClaim)"> Delete</button></td>
         
           </tr>
     </tbody>
@@ -266,12 +266,12 @@
                               
             
                                 <div class="card mb-2">
-                                        <td *ngFor="let claim of claims">
+                                        <td *ngFor="let c of claim">
                                             <tr><a href="#" data-toggle="collapse" data-target=".forum-content"><img src="assets/images/chachia.jpg" class="mr-3 rounded-circle" width="50" alt="User" /></a></tr>
-                                            <tr><strong>Claim Id </strong>{{claim.idClaim}}</tr>
-                                            <tr> <strong>Subject </strong>{{claim.subject}}</tr> 
-                                            <tr> <strong>Subject </strong>{{claim.description}}</tr> 
-                                            <tr> <strong>Subject </strong>{{claim.status}}</tr> 
+                                            <tr><strong>Claim Id </strong>{{c.idClaim}}</tr>
+                                            <tr> <strong>Subject </strong>{{c.subject}}</tr> 
+                                            <tr> <strong>Subject </strong>{{c.description}}</tr> 
+                                            <tr> <strong>Subject </strong>{{c.status}}</tr> 
 
                                         </td>
                                            <!--  

@@ -1,4 +1,4 @@
-export class Client {
+export class User {
     idUser : number;
     phoneNumberUser : string ;
     lastNameUser: string;
@@ -6,10 +6,14 @@ export class Client {
     usernameUser: string;
     emailAddressUser: string;
     passwordUser: string;
-    addressUser: string;
-    genderClient: string;
-    workfieldClient : string;
+    addressUser: string; 
+    roleUser : string; 
+    updatedPassword : boolean;
+    nbaccessUser : number ;
+    salary : number ;
+    enabled :boolean;
+    locked : boolean;
     dateBirthUser : string;
-
+    
 
 }

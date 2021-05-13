@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ads } from '../Ads';
 import { AdsService } from '../ads.service';
+import { Client } from '../auth/ClientInfo';
 
 @Component({
   selector: 'app-ad3',
@@ -9,6 +10,7 @@ import { AdsService } from '../ads.service';
 })
 export class Ad3Component implements OnInit {
   ads:any;
+  client:Client;
 
   constructor(private service : AdsService) { }
 

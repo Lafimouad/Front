@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ads } from '../Ads';
 import { AdsService } from '../ads.service';
+import { Client } from '../auth/ClientInfo';
 
 @Component({
   selector: 'app-ad2',
@@ -9,14 +10,37 @@ import { AdsService } from '../ads.service';
 })
 export class Ad2Component implements OnInit {
   message:any;
-  ads: Ads = new Ads(0,0,"","",0,0,"",0,"") ;
+  ads: Ads = new Ads() ;
+  client:Client;
+  idUser: number;
+  idAdvertisment:number;
+  channel:string;
+  cost:number;
+  dateAdvertisment:string;
+  targetviews:number;
+  enddate:string;
+  typeAdvertisement: string;
   constructor(private service : AdsService) { }
 
   ngOnInit(): void {
   }
     addingAd(){
-    let resp = this.service.addAd(this.ads)
-    resp.subscribe((data)=>this.message=data);
+      this.client=new Client();
+      this.client.idUser = this.idUser;
+      console.log("gimme client", this.client)
+      this.ads=new Ads();
+      this.ads.channel=this.channel;
+      this.ads.cost= this.cost;
+      this.ads.dateAdvertisment=this.dateAdvertisment;
+      this.ads.targetviews=this.targetviews;
+      this.ads.enddate=this.enddate;
+      this.ads.typeAdvertisement=this.typeAdvertisement;
+      console.log("gimme ad", this.ads)
+      this.ads.client=this.client;
+      console.log("gimme ad again", this.ads)
+
+    
+      this.service.addAd(this.ads).subscribe((data)=>this.message=data);
     }
 
     public updatingAd(ad: Ads){

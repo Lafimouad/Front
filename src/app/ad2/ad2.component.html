@@ -2,14 +2,14 @@
        
     <label for="Name"><span class="req">* </span> end date: <small> Please respect this format yyyy-mm-ddThh:mm
        </small></label>
-    <input required type="text" [(ngModel)]="ads.idAdvertisment" name="idAdvertisment" id="idAdvertisment"
+    <input required type="text" [(ngModel)]="idAdvertisment" name="idAdvertisment" id="idAdvertisment"
         class="form-control phone" maxlength="28" placeholder="Enter the in case you wanna update" />
         </div>
         <div class="form-group">
        
     <label for="Name"><span class="req">* </span> end date: <small> Please respect this format yyyy-mm-ddThh:mm
        </small></label>
-    <input required type="text" [(ngModel)]="ads.enddate" name="enddate" id="enddate"
+    <input required type="datetime-local" [(ngModel)]="enddate" name="enddate" id="enddate"
         class="form-control phone" maxlength="28" placeholder="Enter the end date" />
         </div>
 
@@ -17,7 +17,7 @@
 <div class="form-group">
    
     <label for="firstname"> target view </label>
-    <input class="form-control" type="text" [(ngModel)]="ads.targetviews" name="targetviews" id="txt" 
+    <input class="form-control" type="text" [(ngModel)]="targetviews" name="targetviews" id="txt" 
         placeholder="Enter the target number of views" />
     <div id="errFirst"></div>
     </div>
@@ -27,7 +27,7 @@
    
         <label for="firstname"> date of posting <small> Please respect this format yyyy-mm-ddThh:mm
         </small></label>
-        <input class="form-control" type="text" [(ngModel)]="ads.dateAdvertisment" name="dateAdvertisment" id="txt" 
+        <input class="form-control" type="date" [(ngModel)]="dateAdvertisment" name="dateAdvertisment" id="txt" 
             placeholder="Enter the date" />
         <div id="errFirst"></div>
         </div>
@@ -36,7 +36,7 @@
 <div class="form-group">
     
     <label for="lastname"> type of advertisement: </label>
-    <div><select class="form-control" aria-label="Default select example" name="type" [(ngModel)]="ads.typeAdvertisement">
+    <div><select class="form-control" aria-label="Default select example" name="type" [(ngModel)]="typeAdvertisement">
         <option disabled selected >Select the type</option>
         <option value="photo">photo</option>
         <option value="video">video</option> </select>
@@ -46,7 +46,7 @@
 <div class="form-group">
    
     <label for="email"> cost </label>
-    <input class="form-control" type="text" [(ngModel)]="ads.cost" name="cost"
+    <input class="form-control" type="text" [(ngModel)]="cost" name="cost"
         id="cost" placeholder="fullstack/backend/developer" />
     <div class="status" id="status"></div>
     </div>
@@ -54,7 +54,7 @@
 <div class="form-group">
    
     <label for="email"> channel: </label>
-    <input class="form-control"  type="text" [(ngModel)]="ads.channel" name="channel"
+    <input class="form-control"  type="text" [(ngModel)]="channel" name="channel"
         id="channel" placeholder="which channel ?" />
     <div class="status" id="txt"></div>
 </div>
@@ -62,7 +62,7 @@
 <div class="form-group">
        
     <label for="Name"> User Id </label>
-    <input required type="text" [(ngModel)]="ads.idUser" name="idUser" id="idUser"
+    <input required type="text" [(ngModel)]="idUser" name="idUser" id="idUser"
         class="form-control phone" maxlength="28" placeholder="Enter the target">
         </div>
 
