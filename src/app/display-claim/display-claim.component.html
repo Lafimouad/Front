@@ -1,65 +1,41 @@
 
 <!-----------------------------ADMIN---------------------->
-<div  *ngIf="info.token" >
-    <div *ngIf="authorityadmin" class="nav-item"  >
+<div class="container" id="main-container">   
 
-
-        
-      
-
-        
-
-            
-
-        <div class="row">
-            <div class="col-sm-6">
+             <div class="row">
+                <div class="col-sm-6">
         <select class="form-control" aria-label="Default select example" name="order" [(ngModel)]="level" >
             <option value="1">Ascending</option>
-              <option value="2">Descending</option>
+            <option value="2">Descending</option>
         </select>
-        </div>
-        <div class="col-sm-3">
-              <button class ="search-btn" type="button"  (click)="func()">
-                <i class="fas fa-search"></i>
-            </button>
-            </div>
-        </div>
+                </div>
+                <div class="col-sm-3">
+                     <button class ="search-btn" type="button"  (click)="func()">
+                     <i class="fas fa-search"></i>
+                     </button>
+                </div>
+             </div>
 
         <br>
         <br>
         <br>
+
         <div class="row">
             <div class="col-sm-6">
-        <select class="form-control" aria-label="Default select example" name="status" [(ngModel)]="status" >
-            <option value="1">Treated</option>
-              <option value="2">Not Treated</option>
-        </select>
-        </div>
-        <div class="col-sm-3">
+                 <select class="form-control" aria-label="Default select example" name="status" [(ngModel)]="status" >
+                    <option value="1">Treated</option>
+                    <option value="2">Not Treated</option>
+                 </select>
+            </div>
+            <div class="col-sm-3">
               <button class ="search-btn" type="button"  (click)="func2()">
                 <i class="fas fa-search"></i>
-            </button>
+              </button>
             </div>
         </div>
         
 
 
-              
-       
-
-      <!--<div>
-        <div class="row">
-            <div class="col-">
-        <span>By which level you want to order ?</span>
-    </div>
-        <div class="col-sm">
-        <button class ="search-btn" type = "button" (click)="gettingBylevelA()"></button> <p>    Asending<p>
-        </div>
-        <div class="col-sm">
-        <button class ="search-btn" type = "button" (click)="gettingBylevelD()"> </button> <p>    Descending</p>
-        </div>
-    </div>
-      </div>-->
 
 
     
@@ -69,13 +45,13 @@
       <br>
       
 
-<section class="container-fluid">
+    <div class="batta">
     <div class="table-responsive">
-    <table class="table table-sm ">
+    <table class="table" >
     <thead>
-        <tr>
+        <tr >
             
-            <th scope="col"  >Claim Id</th>
+            <th scope="col" >Claim Id</th>
             <th scope="col">Client Id</th>
             <th scope="col">Subject</th>
             <th scope="col">System Problem </th>
@@ -85,14 +61,15 @@
             <th scope="col">Date</th>
             <th scope="col">Description</th>
             <th scope="col">level </th>
-            <th scope="col">Answer</th>
+            <th  >Answer</th>
             <th scope="col">State</th>
             <th scope="col">Action</th>
+            <th scope="col">Action2</th>
             
-        </tr>
+        </tr >
     </thead>
     <tbody>
-        <tr *ngFor="let c of claim">
+        <tr *ngFor="let c of claims" >
             
             <th>{{c.idClaim}}</th>
             <td>{{c.user.idUser}}</td>
@@ -107,15 +84,93 @@
             <td>{{c.decision}}</td>
             <td>{{c.status}}</td>
             <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingClaim(c.idClaim)"> Delete</button></td>
+            <td> <a (click)="onOpenModal(c,'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a></td>
         
           </tr>
     </tbody>
     </table>
    </div>
-</section>
-
-    </div>
 </div>
+
+        
+    
+    <!-- Edit Modal -->
+  <div class="modal fade" id="updateClaimModal" tabindex="-1" role="dialog" aria-labelledby="claimEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="claimEditModalLabel">Answering the claim {{editClaim?.idClaim}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+
+                <label for="idClaim">Claim N° </label>
+                <input type="text" ngModel="{{editClaim?.idClaim}}" name="idClaim" class="form-control" id="idClaim" placeholder="idClaim">
+                   </div>
+
+                   <div class="form-group">
+                    <label for="typeShelf">Client</label>
+                    <input type="text" ngModel="{{editClaim?.user.idUser}}" name="idUser" class="form-control" id="idUser" placeholder="idUser"> 
+                 </div>
+                <div class="form-group">
+                   <label for="typeShelf">Subject</label>
+                   <input type="text" ngModel="{{editClaim?.subject}}" name="subject" class="form-control" id="subject" placeholder="subject"> 
+                </div>
+                <div class="form-group">
+                    <label for="lastNameUser">System Problem</label>
+                    <input type="text" ngModel="{{editClaim?.systemProblem}}" name="systemProblem" class="form-control" id="systemProblem" placeholder="systemProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">Product Problem</label>
+                    <input type="text" ngModel="{{editClaim?.productProblem}}" name="productProblem" class="form-control" id="productProblem" placeholder="productProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">Delivery Problem</label>
+                    <input type="text" ngModel="{{editClaim?.deliveryProblem}}" name="deliveryProblem" class="form-control" id="deliveryProblem" placeholder="deliveryProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">description</label>
+                    <input type="text" ngModel="{{editClaim?.description}}" name="description" class="form-control" id="description" placeholder="description"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">Our Answer </label>
+                    <input type="text" ngModel="{{editClaim?.decision}}" name="decision" class="form-control" id="decision" placeholder="decision"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">level</label>
+                    <input type="text" ngModel="{{editClaim?.level}}" name="level" class="form-control" id="level" placeholder="level"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">Status</label>
+                    <input type="text" ngModel="{{editClaim?.status}}" name="status" class="form-control" id="status" placeholder="status"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">Date Of Posting</label>
+                    <input type="text" ngModel="{{editClaim?.date}}" name="date" class="form-control" id="date" placeholder="date"> 
+                 </div>
+
+                 <div class="form-group">
+                    <label for="lastNameUser">Product with issue</label>
+                    <input type="text" ngModel="{{editClaim?.productWithProb}}" name="productWithProb" class="form-control" id="productWithProb" placeholder="productWithProb"> 
+                 </div>
+
+                <div class="modal-footer">
+                   <button type="button" id="update-claim-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button (click)="answeringClaim(editForm.value)"  data-dismiss="modal" class="btn btn-primary" >Save changes</button> 
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
 <!-----------------------------ADMIN---------------------->
 
 <!--<script>
@@ -266,7 +321,7 @@
                               
             
                                 <div class="card mb-2">
-                                        <td *ngFor="let c of claim">
+                                        <td *ngFor="let c of claims">
                                             <tr><a href="#" data-toggle="collapse" data-target=".forum-content"><img src="assets/images/chachia.jpg" class="mr-3 rounded-circle" width="50" alt="User" /></a></tr>
                                             <tr><strong>Claim Id </strong>{{c.idClaim}}</tr>
                                             <tr> <strong>Subject </strong>{{c.subject}}</tr> 
@@ -274,28 +329,7 @@
                                             <tr> <strong>Subject </strong>{{c.status}}</tr> 
 
                                         </td>
-                                           <!--  
-                               
-
-                                    <div class="card-body p-2 p-sm-3">
-                                       
-                                       <div class="media forum-item"><a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                            <div class="media-body">
-
-                                                <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">Realtime fetching data</a></h6>
-                                                <p class="text-secondary">
-                                                
-                                                </p>
-                                                <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
-                                            </div>
-                                            <div class="text-muted small text-center align-self-center">
-                                                <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                                                <span><i class="far fa-comment ml-2"></i> 3</span>
-                                            </div> 
-                                            
-                                        </div>
-                                    
-                                    </div> -->
+                                         
                                        
                                 </div>  
                       

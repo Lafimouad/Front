@@ -12,7 +12,7 @@ export class ClaimServiceService {
       return this.http.post("http://localhost:8081/Claim/add",claim);
     }
 
-    public findCById(idClaim){
+    public findCById(idClaim): any{
       return this.http.get("http://localhost:8081/Claim/Find/"+idClaim);
     }
 
@@ -20,23 +20,23 @@ export class ClaimServiceService {
     return this.http.get("http://localhost:8081/Claim/getC");
   }
 
-  public findCBySubject(subject){
+  public findCBySubject(subject): any{
     return this.http.get("http://localhost:8081/Claim/find/"+subject);
   }
-  public findCByStatus(status){
+  public findCByStatus(status): any{
     return this.http.get("http://localhost:8081/Claim/find2/"+status);
   }
 
-  public findCByStatus2(status){
+  public findCByStatus2(status): any{
     return this.http.get("http://localhost:8081/Claim/find3/"+status);
   }
-  public findCBylevelAsc(){
+  public findCBylevelAsc(): any{
     return this.http.get("http://localhost:8081/Claim/levelAsc");
   }
-  public findCBylevelDesc(){
+  public findCBylevelDesc(): any{
     return this.http.get("http://localhost:8081/Claim/levelDesc");
   }
-  public getProduct10Claims(){
+  public getProduct10Claims(): any{
     return this.http.get("http://localhost:8081/Product/feedback");
   }
 
@@ -44,7 +44,10 @@ export class ClaimServiceService {
     return this.http.delete("http://localhost:8081/Claim/remove/"+idClaim);
   }
 
+  public answerClaim(claim){
+    return this.http.put("http://localhost:8081/Claim/decision",claim)
 
+  }
 
    }
 

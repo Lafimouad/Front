@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Claim } from '../claim';
 import { ClaimServiceService } from '../claim-service.service';
 import { TokenStorgeService } from '../token-storage.service';
 import { User } from '../user';
@@ -9,12 +11,13 @@ import { User } from '../user';
   styleUrls: ['./display-claim.component.css']
 })
 export class DisplayClaimComponent implements OnInit {
-  claim:any;
+  claims:Claim[];
   user: User;
   subject : string;
   status: string;
   level: number;
   idClaim: number;
+  claim:Claim;
   private roles: string[];
   public authority: string;
   public authoritymanager : boolean = false ;
@@ -23,15 +26,14 @@ export class DisplayClaimComponent implements OnInit {
   public authoritydeliverer : boolean = false ;
   info : any ; 
   boo: boolean;
+  editClaim: Claim;
   
 
   constructor(private service:ClaimServiceService, private tokenStorage: TokenStorgeService , private token:TokenStorgeService) { }
 
   ngOnInit() {
       
-
-      let resp = this.service.getClaims();
-      resp.subscribe((data)=>this.claim=data);
+    this.getAllClaims();
 
 
       this.info = {
@@ -64,6 +66,19 @@ export class DisplayClaimComponent implements OnInit {
       }
       
 
+  }
+
+
+  public getAllClaims(): void {
+    this.service.getClaims().subscribe(
+      (response: Claim[]) => {
+        this.claims = response;
+        console.log(this.claims);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public gettingBysubject(){
@@ -119,6 +134,43 @@ public func2 (){
   return this.gettingBystatus2();
 
 }
+
+
+
+
+public answeringClaim(claim: Claim): void{
+  this.service.answerClaim(claim).subscribe(
+    (response: Claim) => {
+      console.log(response);
+      this.service.getClaims();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  )  }
+
+
+
+
+  public onOpenModal(claim: Claim,mode: string): void{
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type='button';
+    button.style.display='none';
+    button.setAttribute('data-toggle','modal');
+    if (mode == 'edit') {
+      this.editClaim = claim;
+      console.log("el claimouta",this.editClaim);
+      console.log("el user",this.editClaim.user);
+      button.setAttribute('data-target','#updateClaimModal');
+    }  
+    
+    container.appendChild(button);
+    console.log("el decision",this.editClaim.decision);
+    button.click();   
+}
+
+
 }
 
 
