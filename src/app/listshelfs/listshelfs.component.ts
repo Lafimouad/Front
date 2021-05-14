@@ -26,6 +26,9 @@ export class ListshelfsComponent implements OnInit {
   public shelfs: Shelf[];
   public editShelf: Shelf;
   public deleteshelf: Shelf;
+  ///////////////////////////////////////////////////////////////
+  imageFile
+  image_URL:string
   
   constructor(private shelfservice: ShelfService,private tokenStorage: TokenStorgeService , private token:TokenStorgeService ){}
   ngOnInit() {
@@ -83,6 +86,7 @@ export class ListshelfsComponent implements OnInit {
         console.log(response);
         this.getShelves();
         addForm.reset();
+        this.shelfservice.addImage(this.imageFile).subscribe();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -151,6 +155,12 @@ export class ListshelfsComponent implements OnInit {
     if (results.length == 0 || !key ){
       this.getShelves();
     }
+  }
+
+  addImage(event:any){
+    this.imageFile = event.target.files[0];
+    
+    console.log("mayssa");
   }
 
   

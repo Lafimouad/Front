@@ -61,5 +61,15 @@ export class ShelfService {
   public decrementProductQuantity(id: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/products/ProductQuantitydec/${id}`)
   }
+
+
+  addImage(L: File): Observable<any>{
+        
+    const file = new FormData();
+    
+     file.append('file', L);
+    return this.http.put('http://localhost:8081/imageshelf/uploadshelf',file)
+}
+
   
   }

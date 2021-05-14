@@ -25,7 +25,7 @@ border: 2px solid #3a4b60;
 
   .centrage {text-align: center;}
 
-  #global {
+#global {
     margin-left: auto;
     margin-right: auto;
     width: auto; /* largeur obligatoire pour être centré */
