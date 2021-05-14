@@ -17,7 +17,7 @@
                 <div class="header_top_right text-right">
                     <ul>
                         <li *ngIf="info.token" ><p class="p-4 text-failure"> Logged in as {{info.username}}  </p></li>
-                        <li><a routerLink="SarraMaps">My order</a></li>
+                        <li><a routerLink="SarraOrder">My order</a></li>
                         <li><a routerLink="account">Account</a></li>
                         <li *ngIf="!authority" class="nav-item">
                             <a class="nav-link" routerLink="auth/login">Register / Login</a>
