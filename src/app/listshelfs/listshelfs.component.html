@@ -1,13 +1,18 @@
 
- <div class="container" id="main-container">
+ <div class="container" id="main-container" > <!--id="global2"-->
  <div class="row">
+   
+ <div id="global">
+ <a *ngIf="authoritymanager || authorityadmin" class="shop_now_btn" (click)="onOpenModal(null,'add')">ADD MORE CATEGORIES</a>
+
+ </div>
  <div>
- <a *ngIf="authoritymanager" class="shop_now_btn" (click)="onOpenModal(null,'add')">ADD MORE CATEGORIES</a>
- <li class="searchbox">
-    <input type="search" (ngModelChange)="searchShelfs(key.value)" #key="ngModel" ngModel name="search"  placeholder="Search......" class="searchbox-input" onkeyup="buttonUp();" required>
+ <li class="searchbox" >
+    <input type="search" (ngModelChange)="searchShelfs(key.value)" #key="ngModel"  ngModel name="search"  placeholder="Search......" class="searchbox-input" onkeyup="buttonUp();" required>
         <!--input type="submit" class="searchbox-submit" value=""-->
          <span class="searchbox-icon"><i class="fa fa-search"></i></span>
         </li>
+
  </div>
  <!--div>
 <li class="searchbox">
@@ -17,7 +22,7 @@
      </li>
 </div-->
    
-<div *ngFor="let shelf of shelfs">
+<div id="global1" *ngFor="let shelf of shelfs">
     
     <div class="padding_right main_single_product">
         <div class="single_product">
@@ -39,9 +44,9 @@
             
             <h1>{{shelf.typeShelf}}</h1>
             <p>{{shelf.description}}</p>
-            <p *ngIf="authoritymanager" >{{shelf.idShelf}}</p>
-            <a *ngIf="authoritymanager" class="shop_now_btn" (click)="onOpenModal(shelf,'delete')">DELETE</a>
-            <a *ngIf="authoritymanager" class="shop_now_btn" (click)="onOpenModal(shelf,'edit')">UPDATE</a>
+            <p *ngIf="authoritymanager || authorityadmin" >{{shelf.idShelf}}</p>
+            <a *ngIf="authoritymanager || authorityadmin" class="shop_now_btn" (click)="onOpenModal(shelf,'delete')">DELETE</a>
+            <a *ngIf="authoritymanager || authorityadmin" class="shop_now_btn" (click)="onOpenModal(shelf,'edit')">UPDATE</a>
         </div>
     </div>
 </div>
@@ -64,15 +69,15 @@
             <form #addForm="ngForm" (ngSubmit)="onAddShelves(addForm)">  <!--(ngSubmit)="onAddEmloyee(addForm)"-->
             <div class="form-group">
                <label for="typeShelf">Type Shelf</label>
-               <input type="text" ngModel name="typeShelf" class="form-control" id="typeShelf" placeholder="Type Shelf" required>
+               <input type="text" ngModel name="typeShelf" class="form-control" id="typeShelf" placeholder="Type Shelf"  required>
             </div>
             <div class="form-group">
                 <label for="lastNameUser">description</label>
-                <input type="text" ngModel name="description" class="form-control" id="lastNameUser" placeholder="Last Name" required>
+                <input type="text" ngModel name="description" class="form-control" id="lastNameUser" placeholder="Last Name"  required>
             </div>
             <div class="modal-footer">
-               <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+               <button type="button" id="add-employee-form" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-outline-primary btn-lg" >Save changes</button>
             </div>
             </form>
          </div>
@@ -105,8 +110,8 @@
                  </div>
 
                 <div class="modal-footer">
-                   <button type="button" id="update-shelf-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="onUpdateShelves(editForm.value)"  data-dismiss="modal" class="btn btn-primary" >Save changes</button> <!--(click)="onUpdateEmloyee(editForm.value)"-->
+                   <button type="button" id="update-shelf-form" data-dismiss="modal" class="btn btn-outline-secondary btn-lg">Close</button>
+                   <button (click)="onUpdateShelves(editForm.value)"  data-dismiss="modal" class="btn btn-outline-primary btn-lg" >Save changes</button> <!--(click)="onUpdateEmloyee(editForm.value)"-->
                 </div>
              </form>
           </div>
@@ -128,8 +133,8 @@
           <div class="modal-body">
              <p>Are you sure you want to delete the shelf {{deleteshelf?.typeShelf}} </p> <!--{{deleteEmployee?.firstNameUser}} {{deleteEmployee?.lastNameUser}}?-->
              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button (click)="onDeleteShelves(deleteshelf?.idShelf)"class="btn btn-danger" data-dismiss="modal">Yes</button> <!--(click)="onDeleteEmloyee(deleteEmployee?.idUser)" -->
+                <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">No</button>
+                <button (click)="onDeleteShelves(deleteshelf?.idShelf)"class="btn btn-outline-danger btn-lg" data-dismiss="modal">Yes</button> <!--(click)="onDeleteEmloyee(deleteEmployee?.idUser)" -->
              </div>
           </div>
        </div>

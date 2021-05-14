@@ -12,16 +12,25 @@
             <p>{{ product.code }}</p>
             <p>{{ product.price }}</p>
             <p>{{ product.weight }}</p>
-            <a class="shop_now_btn" >SHOP NOW</a>
-            <a class="shop_now_btn"  (click)="addtoshelf(i)"  *ngIf="add1 !== i" >ADD TO SHELF</a>   
+            <a *ngIf="authoritymanager || authorityadmin && add2 !== i " class="shop_now_btn" (click)="Quantity(i)" >MODIFY QUANTITY</a>
+            <a *ngIf="authoritymanager || authorityadmin && add1 !== i" class="shop_now_btn"  (click)="addtoshelf(i)"  >ADD TO SHELF</a>   
             <div *ngIf="add1 === i">
                 <input type="number" class="form-control" placeholder="enter shelf id" #idshelf>
                 <button class="btn btn-primary" (click)="add(idshelf.value)">ADD</button>
             </div>
+        
+        <div *ngIf="add2 === i"> 
+        <input type="number" class="form-control"  placeholder="enter quantity" #quantity>
+        <button type="button" class="btn btn-outline-dark btn-lg " (click)="addQ(quantity.value)" >ADD QUANTITY</button>
+        <button (click)="resetQ()" type="button" class="btn btn-outline-danger btn-lg">RESET QUANTITY</button>
+        <button (click)="decQuantity()" class="btn btn-outline-secondary btn-lg"><i class="fa fa-minus"></i>Decrement the quantity</button>
+        
+        </div>
         </div>
     </div>
 </div>
 </div>
+
 
 
 

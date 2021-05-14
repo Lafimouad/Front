@@ -135,4 +135,18 @@ resetQ(){
   )
 
  }
+
+ decQuantity(){
+  let selectedproduct = this.products[this.add2]
+  let data = selectedproduct.id;
+  console.log(data);
+  this.shelfservice.decrementProductQuantity(data).subscribe((response: void) => {
+    console.log(response);
+    this.add2 = -1;
+    this.getFood();
+  },
+  (error: HttpErrorResponse) => {
+    alert(error.message); })
+ }
+
 }

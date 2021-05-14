@@ -57,5 +57,9 @@ export class ShelfService {
   public resetQuantity(id:number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/products/resetProduct/${id}`);
   }
+
+  public decrementProductQuantity(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/products/ProductQuantitydec/${id}`)
+  }
   
   }

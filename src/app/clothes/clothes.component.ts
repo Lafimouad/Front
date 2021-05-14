@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Product } from '../models/product';
 import { ShelfService } from '../shelf.service';
 import { Shelf } from '../shelfstock/Shelf';
+import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
   selector: 'app-clothes',
@@ -11,15 +12,53 @@ import { Shelf } from '../shelfstock/Shelf';
   styleUrls: ['./clothes.component.css']
 })
 export class ClothesComponent implements OnInit {
+  private roles: string[];
+  public authority: string;
+  public authoritymanager : boolean = false ;
+  public authorityadmin : boolean = false ;
+  public authorityclient : boolean = false ;
+  public authoritydeliverer : boolean = false ;
+  info : any ; 
+  ///////////////////////////////////////////
   products: Product[];
    public shelfs: Shelf[];
    public idshelf: number = 1;
 
    add1: number = -1;
+   add2: number = -1;
+   ////////////////////////////////////////////
 
-  constructor(private shelfservice: ShelfService) { }
+  constructor(private shelfservice: ShelfService,private tokenStorage: TokenStorgeService , private token:TokenStorgeService) { }
 
   ngOnInit(): void {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities()};
+
+      if (this.tokenStorage.getToken()) {
+        this.roles = this.tokenStorage.getAuthorities();
+        this.roles.every(role => {
+          if (role === 'ROLE_ADMIN') {
+            this.authority = 'admin';
+            this.authorityadmin = true;
+            return false;
+          } else if (role === 'ROLE_CLIENT') {
+            this.authority = 'client';
+            this.authorityclient = true;
+            return false;
+          }else if (role === 'ROLE_DELIVERER') {
+            this.authority = 'deliverer';
+            this.authoritydeliverer = true;
+            return false;
+          }else if (role === 'ROLE_MANAGER') {
+            this.authority = 'manager';
+            this.authoritymanager = true;
+            return false;
+          }
+          this.authority = 'user';
+          return true;
+        }); }
     this.getClothes();
   }
 
@@ -65,5 +104,56 @@ export class ClothesComponent implements OnInit {
 
 
   }
+
+  addQ(quantity: number){
+    let selectedproduct = this.products[this.add2]
+    let data = selectedproduct.id;
+    console.log(quantity);
+    console.log(data);
+    this.shelfservice.addquantity(data,quantity).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.add2 = -1;
+        this.getClothes();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+  
+      }
+    ) 
+  
+  } 
+  Quantity(index){
+    this.add2 = +index
+   }
+  
+  resetQ(){
+    let selectedproduct = this.products[this.add2]
+    let data = selectedproduct.id;
+    console.log(data);
+    this.shelfservice.resetQuantity(data).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.add2 = -1;
+        this.getClothes();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message); }
+    )
+  
+   }
+  
+   decQuantity(){
+    let selectedproduct = this.products[this.add2]
+    let data = selectedproduct.id;
+    console.log(data);
+    this.shelfservice.decrementProductQuantity(data).subscribe((response: void) => {
+      console.log(response);
+      this.add2 = -1;
+      this.getClothes();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message); })
+   }
 
 }
