@@ -21,7 +21,7 @@ export class AdsService {
     return this.http.post("http://localhost:8081/Ad/add",ads);
   }
   public findAById(idAdvertisment){
-    return this.http.get("http://localhost:8081/Ad/Find/"+idAdvertisment);
+    return this.http.get("http://localhost:8081/Ad/findAd/"+idAdvertisment);
   }
 
   public getAds(){
@@ -42,6 +42,12 @@ export class AdsService {
 
   public getPa(){
     return this.http.get("http://localhost:8081/product");
+  }
+
+
+
+  public views(id : number){
+    return this.http.delete("http://localhost:8081/Ad/fronViews/"+id);
   }
 }
 

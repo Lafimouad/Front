@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Ads } from '../Ads';
 import { AdsService } from '../ads.service';
+import { Client } from '../auth/ClientInfo';
 import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
@@ -16,27 +18,41 @@ export class HomeComponent implements OnInit {
   public authoritydeliverer : boolean = false ;
   info:any;
   id:any;
+  ad: any;
   ads: any;
   idAdvertisement:any;
   pas:any;
   isLoggedIn:any;
-
+  see : number;
+  jdida : Ads;
+  finalviews: number;
+  message : any;
+  client:Client;
+  idUser: number;
+  idAdvertisment:number;
+  channel:string;
+  cost:number;
+  dateAdvertisment:string;
+  targetviews:number;
+  enddate:string;
+  typeAdvertisement: string;
   constructor(private token:TokenStorgeService,private tokenStorage: TokenStorgeService,private service: AdsService) { }
 
   ngOnInit() {
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
-      id: this.gettingid(this.token.getUsername()),
       
+
+      /*maha*/
+      authorities: this.token.getAuthorities()};
+
 
       
       
-      /*maha*/
-      authorities: this.token.getAuthorities()};
-      console.log("hedha", this.id);
     
-    
+     
+
 
     /* this.service.getPa().subscribe((data)=>this.pas=data);
 
@@ -72,9 +88,39 @@ export class HomeComponent implements OnInit {
 
 }
 public gettingid(username: string){
-  this.service.wantId(username).subscribe((data)=>{console.log("lafi",data) ;
+  this.service.wantId(username).subscribe((data)=>{console.log("lafi est belle",data) ;
  this.id=data} );
  console.log("3ak3ek ye moufida");}
+
+public target(){
+this.service.wantId(this.info.username).subscribe((data)=>{console.log("get id",data) ;
+      this.id=data;
+      console.log("hedha id", this.id);
+      // this.service.views(3).subscribe((res)=>{console.log("lafi2",res) ;
+      this.service.findAById(2).subscribe((res)=>{console.log("get pub",res) ;
+      this.ad=res;
+      this.ad.finalviews++;
+     /*console.log("hedhi pub", this.ad);
+     
+     console.log("hedhi number", this.ad.finalviews);
+     console.log("pub again", this.ad);*/
+
+     this.jdida = new Ads();
+     this.jdida.idAdvertisment=this.ad.idAdvertisment;
+     this.jdida.channel=this.ad.channel;
+      this.jdida.cost= this.ad.cost;
+      this.jdida.dateAdvertisment=this.ad.dateAdvertisment;
+      this.jdida.targetviews=this.ad.targetviews;
+      this.jdida.enddate=this.ad.enddate;
+      this.jdida.typeAdvertisement=this.ad.typeAdvertisement;
+      this.jdida.client=this.ad.client;
+     console.log(" jdida", this.jdida);
+     this.jdida.finalviews=this.ad.finalviews;
+     this.service.addAd(this.jdida).subscribe((data)=>this.message=data);
+
+
+    } );   });}
+
 /*
 public gettingid(username: string){
   let resp = this.service.wantId(username);
@@ -85,14 +131,9 @@ public gettingid(username: string){
       resp.subscribe((data)=>this.ads=data);}
 
 
-     /* public please(){
+     /*public please(){
         this.service.show(this.gettingid(this.info.username));
         console.log("shsar",this.service.show(this.gettingid(this.info.username)))
       
       }*/
-      public please(){ 
-        let b = {
-          idina: this.gettingid(this.info.username)
-        }
-}
-}
+    }
