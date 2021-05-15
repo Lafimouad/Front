@@ -8,20 +8,65 @@
 <br>
 <br>
 <br>
-<li>
+</li>
+
 <li *ngIf="authorityclient" class="nav-item"  > 
-    
-        <div  *ngIf="info.token" > 
-        <tr *ngFor="let pa of pas">
-          
-           
-         {{pa.name}}
-        {{pa.categoryProduct}}
-        </tr>
+    <div  *ngIf="info.token" > 
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2300">
+        <ol class="carousel-indicators"> 
+        <li data-target="#myCarousel" data-slide-to="0" class="active"> </li>
+        <li data-target="#myCarousel" data-slide-to="1" > </li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image:url(./assets/images/twensa.jpg);">
+            <div class="container-item">
+                <h1 class="maha"> Product You May Like</h1>
+            </div>
+
+            </div>
+            
+        <div class="carousel-item">
+            <div class="container-item">
+            <div class="container">
+            <div class="row">
+             <tr *ngFor="let pa of pas">
+             
+                <div class="col-sm">
         
-    </div>
+        <img src="assets/images/{{pa.id}}.jpg" height="90" width="150">
+           </div>
+           <div class="col-sm">
+           <h2 class="maha">{{pa.name}} </h2>
+           </div>
+           <div class="col-sm">
+            for only {{pa.price }} DT 
+           </div>
 
+           </tr>
+        </div>
+        </div>
+          
+        
+        
+            </div>
+            </div>
 
+        
+    </div><!--inner-->
+
+    
+</div> <!--my carousel-->
+    
+        
+        
+        
+    </div> <!--info token-->
+
+<br>
+<br>
+<br>
+<br>
 
 
 

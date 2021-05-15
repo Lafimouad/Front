@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   public authorityadmin : boolean = false ;
   public authorityclient : boolean = false ;
   public authoritydeliverer : boolean = false ;
+  username: string;
   info:any;
   id:any;
   ad: any;
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit {
   targetviews:number;
   enddate:string;
   typeAdvertisement: string;
+  show: boolean = false;
   constructor(private token:TokenStorgeService,private tokenStorage: TokenStorgeService,private service: AdsService) { }
 
   ngOnInit() {
@@ -46,6 +48,9 @@ export class HomeComponent implements OnInit {
 
       /*maha*/
       authorities: this.token.getAuthorities()};
+
+      let resp = this.service.show(this.info.username);
+      resp.subscribe((data)=>this.pas=data);
 
 
       
@@ -93,7 +98,7 @@ public gettingid(username: string){
  console.log("3ak3ek ye moufida");}
 
 public target(){
-this.service.wantId(this.info.username).subscribe((data)=>{console.log("get id",data) ;
+  this.service.wantId(this.info.username).subscribe((data)=>{console.log("get id",data) ;
       this.id=data;
       console.log("hedha id", this.id);
       // this.service.views(3).subscribe((res)=>{console.log("lafi2",res) ;
@@ -117,9 +122,18 @@ this.service.wantId(this.info.username).subscribe((data)=>{console.log("get id",
      console.log(" jdida", this.jdida);
      this.jdida.finalviews=this.ad.finalviews;
      this.service.addAd(this.jdida).subscribe((data)=>this.message=data);
-
+    
 
     } );   });}
+
+
+    showMe(){
+      this.show=true;
+      this.service.show(this.info.username).subscribe((data)=>this.pas=data);
+      console.log("esmou", this.info.username)
+      this.target();
+
+    }
 
 /*
 public gettingid(username: string){

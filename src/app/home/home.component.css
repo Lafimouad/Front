@@ -5,3 +5,26 @@
     padding: 10px 30px;
     border: 2px solid #3a4b60;
     }
+.carousel-item{
+    height: 40rem;
+    background: #000;
+    color: #FFFFFF;
+    position: relative;
+    background-position:center;
+    background-size:cover;
+    background-image: url("/assets/images/back.jpg")
+  }
+
+  .container-item {
+    position: absolute;
+    bottom:0 ;
+    left:0 ;
+    right:0 ;
+    padding-bottom: 15px;
+
+  }
+  .maha{
+    color:#d9534f;
+  }
+
+  

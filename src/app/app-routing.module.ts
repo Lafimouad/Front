@@ -117,7 +117,7 @@ const routes: Routes = [
 },
 {
   path: 'ads',
-  component: DisplayClaimComponent
+  component: AdvertisementsComponent
 },
 {
   path: 'ad2',
