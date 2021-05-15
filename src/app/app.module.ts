@@ -44,6 +44,7 @@ import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-del
 import { MapsSarraComponent } from './maps-sarra/maps-sarra.component';
 import { OrderSarraComponent } from './order-sarra/order-sarra.component';
 import { FormSarraComponent } from './form-sarra/form-sarra.component';
+import { PromotionComponent } from './promotion/promotion.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { FormSarraComponent } from './form-sarra/form-sarra.component';
     UpdateDeliverySarraComponent,
     MapsSarraComponent,
     OrderSarraComponent,
-    FormSarraComponent
+    FormSarraComponent,
+    PromotionComponent
     
   ],
   imports: [

@@ -18,7 +18,7 @@ export class Delivery {
     duration_delivery: DurationOfDelivering;
     scoreDelivery: number;
     distance: number;
-    Stars_service_delivery: ServiceDelivering;
+    service_delivery: ServiceDelivering;
 
     constructor(){}
 

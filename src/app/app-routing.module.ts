@@ -30,6 +30,7 @@ import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-del
 import { MapsSarraComponent } from './maps-sarra/maps-sarra.component';
 import { OrderSarraComponent } from './order-sarra/order-sarra.component';
 import { FormSarraComponent } from './form-sarra/form-sarra.component';
+import { PromotionComponent } from './promotion/promotion.component';
 
 
 
@@ -38,7 +39,11 @@ import { FormSarraComponent } from './form-sarra/form-sarra.component';
 
 
 const routes: Routes = [ 
-   
+  {
+    path :'promotion', 
+    component : PromotionComponent
+  },
+
   {
     path :'SarraOrder/formSarra', 
     component : FormSarraComponent
