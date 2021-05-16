@@ -1,4 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+             <a  (click)="onOpenModal(null, 'add')"><button class="btn btn-danger" type="button">Submit delivery </button></a>
+             <a routerLink="SarraMaps"><button class="btn btn-danger" type="button">Maps</button></a>
+                                        <a routerLink="formSarra"><button class="btn btn-danger" type="button">Forms</button></a>
 
+          </li>
+       </ul>
+    </div>
+  </nav>
+  <div class="container " id="main-container">
+  <div class="row">
+    <div *ngFor="let delivery of deliveries" class="col-md-6 col-xl-3">
+       <div class="card m-b-30">
+          <div class="card-body row">
+             
+          </div>
+          
+         </div>
+          </div>
+       </div>
+    
+  </div>
+ 
+  <!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addEmployeeModalLabel">Submit delivery</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddPromotion(addForm)">
+            <div class="form-group">
+               <label for="name">Your location</label>
+               <input type="text" ngModel name="destination_delivery" class="form-control" id="destination_delivery" placeholder="Enter your location" required>
+            </div>
+           
+            
+           
+            <div class="modal-footer">
+               <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
 
 <div class="contentbar">                
 	<!-- Start row -->
@@ -19,14 +76,14 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">Action</th>                                               
+                                                                                                    
                                                         <th scope="col">Photo</th>
 														<th scope="col">Date</th>
                                                         <th scope="col">Product</th>
                                                         <th scope="col">Shipping price</th>
                                                         <th scope="col">Price</th>
                                                         <th scope="col" class="text-right">Total</th>
-														<th scope="col">Submit</th>
+														
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -34,14 +91,14 @@
                                                     
                                                     <tr>
                                                         <th scope="row">1</th>
-                                                        <td><a href="#" class="text-danger"><i class="ri-delete-bin-3-line"></i></a></td>
+                                                        
                                                         <td><img src="https://themesbox.in/admin-templates/olian/html/light-vertical/assets/images/ecommerce/product_03.svg" class="img-fluid" width="35" alt="product"></td>
 														<td>2021-05-14</td>
                                                         <td>Clothes</td>
                                                         <td>$10</td>
                                                         <td>$30</td>
                                                         <td class="text-right">$40</td>
-														<td><a href="#" class="text-danger"><i class="ri-truck-line"></i></a></td>
+														
 														
                                                     </tr>
                                                 </tbody>
@@ -50,8 +107,7 @@
                                     </div>
                                     
                                     <div class="cart-footer text-right">
-                                        <a routerLink="SarraMaps"><button class="btn btn-danger" type="button">Maps</button></a>
-                                        <a routerLink="formSarra"><button class="btn btn-danger" type="button">Forms</button></a>
+                                        
 
                                     </div>
                                 </div>
@@ -71,3 +127,39 @@
 	<img class="image box-img" src="https://learndesigntutorial.com/wp-content/uploads/2021/03/box.png" alt="">
 	<img class="image box-img box-img2" src="https://learndesigntutorial.com/wp-content/uploads/2021/03/box.png" alt="">
 </div>
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addEmployeeModalLabel">Add Promotions</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddPromotion(addForm)">
+            <div class="form-group">
+               <label for="name">Type</label>
+               <input type="text" ngModel name="type_promotion" class="form-control" id="type_promotion" placeholder="Type" required>
+            </div>
+            <div class="form-group">
+               <label for="email">Date </label>
+               <input type="date" ngModel name="date_promotion_fin" class="form-control" id="date_promotion_fin" placeholder="Date" required>
+            </div>
+            <div class="form-group">
+               <label for="phone">Reduction</label>
+               <input type="text" ngModel name="valeur_promotion" class="form-control" id="valeur_promotion" placeholder="Sale %" required>
+            </div>
+            
+           
+            <div class="modal-footer">
+               <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+
+    
