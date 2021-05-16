@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../events.service';
+import { Donation } from '../shelfstock/Donation';
 import { Pool } from '../shelfstock/Pool';
 import { TokenStorgeService } from '../token-storage.service';
 
@@ -13,17 +14,54 @@ import { TokenStorgeService } from '../token-storage.service';
 })
 export class EventsComponent implements OnInit {
 
+  private roles: string[];
+  public authority: string;
+  public authoritymanager : boolean = false ;
+  public authorityadmin : boolean = false ;
+  public authorityclient : boolean = false ;
+  public authoritydeliverer : boolean = false ;
+
   // We load  Stripe
   stripePromise = loadStripe(environment.stripe);
 
   public pools: Pool[];
+  public donations: Donation[];
   info : any ; 
   usernameclient : String;
  
   constructor(private eventsservice: EventsService,private http: HttpClient, private tokenStorage: TokenStorgeService ,private token: TokenStorgeService) { }
 
   ngOnInit(): void{
+    /*this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities()};*/
+
+      if (this.tokenStorage.getToken()) {
+        this.roles = this.tokenStorage.getAuthorities();
+        this.roles.every(role => {
+          if (role === 'ROLE_ADMIN') {
+            this.authority = 'admin';
+            this.authorityadmin = true;
+            return false;
+          } else if (role === 'ROLE_CLIENT') {
+            this.authority = 'client';
+            this.authorityclient = true;
+            return false;
+          }else if (role === 'ROLE_DELIVERER') {
+            this.authority = 'deliverer';
+            this.authoritydeliverer = true;
+            return false;
+          }else if (role === 'ROLE_MANAGER') {
+            this.authority = 'manager';
+            this.authoritymanager = true;
+            return false;
+          }
+          this.authority = 'user';
+          return true;
+        }); }
     this.getPool();
+    this.getDonation();
   } 
 
   public getPool(): void  {
@@ -41,6 +79,9 @@ export class EventsComponent implements OnInit {
           token: this.token.getToken(),
           username: this.token.getUsername(),
           authorities: this.token.getAuthorities()
+
+          
+          
         };
 
         this.usernameclient=this.info.username;
@@ -76,6 +117,18 @@ export class EventsComponent implements OnInit {
         });
       });
   }
+
+  public getDonation(): void  {
+    this.eventsservice.getDonation().subscribe(
+      (response: Donation[] ) => {
+        this.donations = response;
+        console.log(this.donations); },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        } 
+        
+        ); }
+
   
   
 }

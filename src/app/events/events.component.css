@@ -263,3 +263,18 @@ body{
     margin-right: auto;
     width: 145px;; /* largeur obligatoire pour être centré */
   }
+
+
+  /*////////////////////*/
+  
+ #aman {
+    list-style-type: none;
+    background: #99ebff;
+    padding: 20px;
+  }
+
+#belehy {
+    background: #e5fcff;
+    padding: 10px;
+    margin-left: 35px;
+  }

@@ -149,11 +149,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div *ngIf="authoritymanager || authorityadmin" class="card">
                     <div class="header">
-                        <h2>Instagram Post</h2>
+                        <h1 style="color:rgb(240, 86, 137);  font-family: cursive; text-align: center;">Donor List</h1>
                     </div>
-                    <div class="body widget">
+                    <!--div class="body widget">
                         <ul class="list-unstyled instagram-plugin m-b-0">
                             <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
                             <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
@@ -165,9 +165,23 @@
                             <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
                             <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
                         </ul>
+                    </div-->
+
+                    <div  *ngFor="let donation of donations">
+                        <ul  id="aman">
+                            <li id="belehy">
+                              Username: {{donation.username}}
+                            </li>
+                            <li id="belehy"> Date: {{donation.date}}</li>
+                            <li id="belehy"> Amount: {{donation.amount_donation}} DT </li>
+                        </ul>
+
                     </div>
+                    
+                   
+                    
                 </div>
-                <div class="card">
+                <!--div class="card">
                     <div class="header">
                         <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
                     </div>
@@ -179,7 +193,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div-->
             </div>
         </div>
 
