@@ -42,6 +42,12 @@ import { ShelfService } from './shelf.service';
 import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CancelComponent } from './cancel/cancel.component';
+import { SucessComponent } from './sucess/sucess.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -79,7 +85,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ShelfComponent,
     ListshelfsComponent,
 
-    AddProductComponent
+    AddProductComponent,
+
+    CancelComponent,
+
+    SucessComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +98,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
       
     NgbModule,
-    HttpClientModule,ReactiveFormsModule
+    HttpClientModule,ReactiveFormsModule,
+    // add these modules
+    MatCardModule,
+    MatButtonModule,
+    NoopAnimationsModule,
+  
   ],
   
   providers: [httpInterceptorProviders],

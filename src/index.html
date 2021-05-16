@@ -25,8 +25,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!--event-->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+
+  <script src="https://js.stripe.com/v3/"></script>
+  
 </head>
-<body>
+<body class="mat-typography">
   <app-root></app-root>
   <script src="assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap js -->
@@ -66,5 +72,13 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+	
+ <!--new--> 
+ <script type="text/javascript">
+	const stripe   = Stripe('pk_test_51IYg5mIdCoFRZnwKEkLlHcifBqdWU0ijXcRxkIGM21HvDTUa49stTI8RdU0u373wP4KitpB1QhM5Z75ii8mpNdTz00pQM2REHo');
+	const elements = stripe.elements();
+  </script>
+	
 </body>
 </html>

@@ -5,6 +5,7 @@ import { AccountComponent } from './account/account.component';
 import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
+import { CancelComponent } from './cancel/cancel.component';
 import { ClientComponent } from './client/client.component';
 import { ClothesComponent } from './clothes/clothes.component';
 import { ContactComponent } from './contact/contact.component';
@@ -23,6 +24,9 @@ import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
 import { ToolsComponent } from './tools/tools.component';
 import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
+import { SucessComponent } from './sucess/sucess.component';
+
+
 
 
 const routes: Routes = [ 
@@ -107,6 +111,8 @@ const routes: Routes = [
   path: 'manager',
   component: ManagerComponent
 },
+{ path: 'cancel', component: CancelComponent },
+{ path: 'success', component: SucessComponent },
 { path: 'add-product', component: AddProductComponent },
 {
   path: 'auth/login',
