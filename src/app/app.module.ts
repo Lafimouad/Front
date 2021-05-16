@@ -103,7 +103,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatButtonModule,
     NoopAnimationsModule,
-  
   ],
   
   providers: [httpInterceptorProviders],

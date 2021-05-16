@@ -18,32 +18,25 @@ export class DonationsComponent implements OnInit {
   
   // We load  Stripe
   stripePromise = loadStripe(environment.stripe);
-  ////////////////////
-
-  /*@ViewChild('cardInfo') cardInfo: ElementRef;
-  _totalAmount: number;
-      card: any;
-      cardHandler = this.onChange.bind(this);
-      cardError: string;*/
-  /////////////////////////
-
+  
  
   
   constructor(private http: HttpClient) { }
   
 
-  ngOnInit(){ } 
+  ngOnInit(){} 
 
   async pay(): Promise<void> {
     // here we create a payment object
     const payment = {
+      name: 'Your Donation',
       //name: 'Iphone',
       currency: 'usd',
       // amount on cents *10 => to be on dollar
-      amount: 99900,
-      //quantity: '1',
-      cancelUrl: 'http://localhost:4202/cancel',
-      successUrl: 'http://localhost:4202/success',
+      amount: 100,
+      quantity: '1',
+      cancelUrl: 'http://localhost:4200/cancel',
+      successUrl: 'http://localhost:4200/success',
     };
 
     const stripe = await this.stripePromise;
@@ -61,6 +54,6 @@ export class DonationsComponent implements OnInit {
 
   /////////////////////////////
 
- 
+  
  
 }
