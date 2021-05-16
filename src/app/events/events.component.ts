@@ -4,6 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../events.service';
 import { Pool } from '../shelfstock/Pool';
+import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
   selector: 'app-events',
@@ -16,8 +17,10 @@ export class EventsComponent implements OnInit {
   stripePromise = loadStripe(environment.stripe);
 
   public pools: Pool[];
+  info : any ; 
+  usernameclient : String;
  
-  constructor(private eventsservice: EventsService,private http: HttpClient) { }
+  constructor(private eventsservice: EventsService,private http: HttpClient, private tokenStorage: TokenStorgeService ,private token: TokenStorgeService) { }
 
   ngOnInit(): void{
     this.getPool();
@@ -34,7 +37,15 @@ export class EventsComponent implements OnInit {
         
         );
 
-       
+        this.info = {
+          token: this.token.getToken(),
+          username: this.token.getUsername(),
+          authorities: this.token.getAuthorities()
+        };
+
+        this.usernameclient=this.info.username;
+
+      
     
   }
 
@@ -49,6 +60,8 @@ export class EventsComponent implements OnInit {
       quantity: '1',
       cancelUrl: 'http://localhost:4200/cancel',
       successUrl: 'http://localhost:4200/success',
+      username: this.usernameclient,
+      
     };
 
     const stripe = await this.stripePromise;
