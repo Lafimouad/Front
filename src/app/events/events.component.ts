@@ -21,6 +21,9 @@ export class EventsComponent implements OnInit {
   public deleteEvent: Events;
   image_URL:string
   imageFile
+  add2: number = -1;
+  add1: number = -1;
+
 ////////////////////////////////////////////////////////////////////////
   private roles: string[];
   public authority: string;
@@ -36,6 +39,7 @@ export class EventsComponent implements OnInit {
   public donations: Donation[];
   info : any ; 
   usernameclient : String;
+  idClient: number;
  
   constructor(private eventsservice: EventsService,private http: HttpClient, private tokenStorage: TokenStorgeService ,private token: TokenStorgeService) { }
 
@@ -257,5 +261,48 @@ public searchShelfs(key : string): void{
   }
 }
 
-  
+///////////////////////////////////////////
+Quantity(index){
+  this.add2 = +index
+  this.AffectClientToEvent();
+ }
+
+ Quantity1(index){
+  this.add1 = +index
+  this.ReloveClientfromEvent();
+ }
+
+
+AffectClientToEvent(): void {
+ 
+  let selectedproduct = this.events[this.add2]
+  let data = selectedproduct.idEvent;
+  console.log(data);
+  this.eventsservice.AddEventToClient(7,data).subscribe(
+    (response: void) => {
+      console.log(response);
+      this.add2 = -1;
+      this.getEvents();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message); });
+ 
+}  
+
+ReloveClientfromEvent(): void {
+ 
+  let selectedproduct = this.events[this.add1]
+  let data = selectedproduct.idEvent;
+  console.log(data);
+  this.eventsservice.removeFromEvent(7,data).subscribe(
+    (response: void) => {
+      console.log(response);
+      this.add1 = -1;
+      this.getEvents();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message); });
+ 
+} 
+
 }

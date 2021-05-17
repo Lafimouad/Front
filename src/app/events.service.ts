@@ -64,5 +64,20 @@ export class EventsService {
   public DeleteAllEventsAfterYear(): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/event/removealleventafteryear`);
   }
+////////////////////////////////////
+
+public retrieveIdClientByUsername(username: String): Observable<any>
+{return this.http.get<any>(`${this.apiServerUrl}/event/iduser/${username}`);}
+
+///////////////////////////////////////////
+
+public AddEventToClient(Idc: number,Ide: number): Observable<void> {
+  return this.http.delete<void>(`${this.apiServerUrl}/event/AddClienttoevent/${Idc}/${Ide}`);
+}
+
+///////////////////
+public removeFromEvent(Idc: number,Ide: number): Observable<void> {
+  return this.http.delete<void>(`${this.apiServerUrl}/event/RemoveClientFromEvent/${Idc}/${Ide}`);
+}
 
 }

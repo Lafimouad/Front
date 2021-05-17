@@ -11,7 +11,7 @@
                <p>{{ product.code }}</p>
                <p>{{ product.price }}</p>
                <p>{{ product.weight }}</p>
-               <a *ngIf="authoritymanager || authorityadmin && add2 !== i " class="shop_now_btn" (click)="Quantity(i)" >MODIFY QUANTITY</a>
+               <a *ngIf="authoritymanager || authorityadmin && add2 !== i " class="shop_now_btn" (click)="Quantity(i)"  >MODIFY QUANTITY</a>
                <a *ngIf="authoritymanager || authorityadmin && add1 !== i" class="shop_now_btn"  (click)="addtoshelf(i)"   >ADD TO SHELF</a>
                <div *ngIf="add1 === i">
                 <input type="number" class="form-control" placeholder="enter shelf id" #idshelf>
