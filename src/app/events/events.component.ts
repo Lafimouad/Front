@@ -71,6 +71,7 @@ export class EventsComponent implements OnInit {
     this.getPool();
     this.getDonation();
     this.getEvents();
+    this.DeleteEventsAfterYear();
   } 
 
   public getPool(): void  {
@@ -229,5 +230,15 @@ public onUpdateShelves(events: Events): void{
       alert(error.message);
     }
   )  }
+
+  ///////////////////////////////////////////////////
+  DeleteEventsAfterYear():void{
+    this.eventsservice.DeleteAllEventsAfterYear().subscribe(
+      (response: void) => {
+        console.log(response);
+       
+        this.getEvents();}
+    )
+  }
   
 }

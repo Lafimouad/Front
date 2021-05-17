@@ -59,4 +59,10 @@ export class EventsService {
     return this.http.put<Events>(`${this.apiServerUrl}/event/update`,events);
   }
 
+  ////////////////////////
+
+  public DeleteAllEventsAfterYear(): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/event/removealleventafteryear`);
+  }
+
 }
