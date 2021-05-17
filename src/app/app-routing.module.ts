@@ -4,8 +4,12 @@ import { AccessoriesComponent } from './accessories/accessories.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { AccountComponent } from './account/account.component';
 import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
+import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
+import { CancelComponent } from './cancel/cancel.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { ClientComponent } from './client/client.component';
 import { ClothesComponent } from './clothes/clothes.component';
 import { ContactComponent } from './contact/contact.component';
@@ -21,6 +25,7 @@ import { ManagerComponent } from './manager/manager.component';
 import { MemeComponent } from './meme/meme.component';
 import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
+import { SucessComponent } from './sucess/sucess.component';
 import { ToolsComponent } from './tools/tools.component';
 import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
 
@@ -29,6 +34,14 @@ const routes: Routes = [
   {
     path :'accountsmanag', 
     component : AccountsManagementComponent
+    path :'cart', 
+    component : CartComponent
+  },
+  { path: 'cancel', component: CancelComponent },
+  { path: 'success', component: SucessComponent },
+  {
+    path :'checkout', 
+    component : CheckoutComponent
   },
   {
     path :'meme', 
@@ -106,6 +119,7 @@ const routes: Routes = [
   path: 'accountsmanag/manager',
   component: ManagerComponent
 },
+{ path: 'add-product', component: AddProductComponent },
 {
   path: 'auth/login',
   component: LoginComponent

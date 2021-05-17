@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { AuthLoginInfo } from '../auth/login-info';
+import { Order } from '../models/order';
+import { OrderService } from '../MouadhServices/order.service';
 import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
@@ -18,8 +20,11 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
+  order:Order=new Order();
+  
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorgeService ,private token: TokenStorgeService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorgeService ,private token: TokenStorgeService,
+    private orderservice:OrderService) { }
 
   ngOnInit() {
     this.info = {
@@ -69,6 +74,9 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
+    this.order.idUser=1;
+    this.orderservice.createOrder(this.order).subscribe();
     window.location.reload();
+    
   }
 }
