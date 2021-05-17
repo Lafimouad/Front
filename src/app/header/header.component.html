@@ -49,6 +49,7 @@
                             <li><a routerLink="products">OUR PRODUCTS </a></li>
                             <li><a routerLink="forum">FORUM</a></li>
                             <li><a routerLink="events">EVENTS</a></li>
+                            <li *ngIf="authoritymanager || authorityadmin" class="nav-item" ><a routerLink="add-product">ADD PRODUCT</a></li>
                             <li *ngIf="authoritymanager" class="nav-item" ><a routerLink="dashboard">DASHBOARD</a></li>
                             <li><a routerLink="contact">CONTACT US</a></li>
                             <li class="shop_icon">

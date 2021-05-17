@@ -156,7 +156,7 @@
             </div>
         </section>
 
-        <div  class="row product-list">
+        <div *ngIf="!hid" class="row product-list">
         <ul >
         <li *ngFor="let product of ListProducts ; let i = index" >
             <div class="col-md-4">
@@ -167,10 +167,10 @@
                         <button class="adtocart" (click)="addToCart(product)">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
-                        <div class="col-6">
+                        <div *ngIf="authoritymanager || authorityadmin" class="col-6">
                             <button class="btn btn-secondary"(click)="doEdit(product)" >Edit</button>
                     </div>
-                        <div class="col-6">
+                        <div *ngIf="authoritymanager || authorityadmin"  class="col-6">
                             <button class="btn btn-danger"
                                     (click)="delProd(product.id)">Remove</button>
                     </div>
@@ -189,7 +189,7 @@
         </li>
         </ul>
 </div>
-        <form   #editForm="ngForm"  >
+        <form  *ngIf="hid" #editForm="ngForm"  >
             <div class="form-group">
                 <label for="name">Product Name</label>
                 <input [(ngModel)]="name" ngModel="{{fproduct?.name}}" name="name"type="text" class="form-control" data-toggle="tooltip" 

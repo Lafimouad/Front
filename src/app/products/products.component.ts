@@ -5,6 +5,7 @@ import { Order } from '../models/order';
 import { Product } from '../models/product';
 import { OrderService } from '../MouadhServices/order.service';
 import { ProductService } from '../MouadhServices/products.service';
+import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
   selector: 'app-products',
@@ -12,14 +13,22 @@ import { ProductService } from '../MouadhServices/products.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  private roles: string[];
+  public authority: string;
+  public authoritymanager : boolean = false ;
+  public authorityadmin : boolean = false ;
+  public authorityclient : boolean = false ;
+  public authoritydeliverer : boolean = false ;
+  
+    info : any ; 
 
-
-  constructor(private productservice:ProductService,private modalService: NgbModal,private orderservice:OrderService) { }
+  constructor(private productservice:ProductService,private modalService: NgbModal,private orderservice:OrderService ,
+    private tokenStorage:TokenStorgeService ) { }
   ListProducts:Product[];
   product:Product=new Product();
   productUpdated:Product=new Product();
   fproduct :Product= new Product();
-  hid:boolean=true;
+  hid:boolean=false;
   order:Order=new Order();
   List:Product[]=[];
   OrderUpdated:Order=new Order();
@@ -38,6 +47,34 @@ export class ProductsComponent implements OnInit {
   bareCodeFile
 
   ngOnInit() {
+    this.info = {
+      token: this.tokenStorage.getToken(),
+      username: this.tokenStorage.getUsername(),
+      authorities: this.tokenStorage.getAuthorities()};
+    if (this.tokenStorage.getToken()) {
+      this.roles = this.tokenStorage.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_ADMIN') {
+          this.authority = 'admin';
+          this.authorityadmin = true;
+          return false;
+        } else if (role === 'ROLE_CLIENT') {
+          this.authority = 'client';
+          this.authorityclient = true;
+          return false;
+        }else if (role === 'ROLE_DELIVERER') {
+          this.authority = 'deliverer';
+          this.authoritydeliverer = true;
+          return false;
+        }else if (role === 'ROLE_MANAGER') {
+          this.authority = 'manager';
+          this.authoritymanager = true;
+          return false;
+        }
+        this.authority = 'user';
+        return true;
+      });
+    }
     this.orderservice.getProductList(2).subscribe(
       res=>{
         this.order.products=res.products;
@@ -55,7 +92,9 @@ export class ProductsComponent implements OnInit {
 
 // delete product  
   delProd(id:number){
-    this.productservice.deleteProduct(id).subscribe(data=>console.log(data))}
+    this.productservice.deleteProduct(id).subscribe(data=>console.log(data))
+    location.reload();}
+    
   //search
   searchProduct(key:string):void{
     const result : Product[]=[];
@@ -78,10 +117,11 @@ export class ProductsComponent implements OnInit {
   //update 1.2
   doEdit(p:Product){
       this.fproduct=p;
-      this.hid=false;
+      this.hid=true;
 
   }
   public updateProduct(id:number){
+    this.hid=false;
     console.log("ccccc",id);
     this.productUpdated=new Product(); 
     this.productUpdated.name=this.name;
@@ -112,6 +152,7 @@ export class ProductsComponent implements OnInit {
         this.productservice.addBareCode(this.bareCodeFile).subscribe(data =>console.log(data));
        }
        )
+       location.reload();
   }
   
   //update end here

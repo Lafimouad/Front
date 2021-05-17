@@ -33,8 +33,9 @@ import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
 const routes: Routes = [ 
   {
     path :'accountsmanag', 
-    component : AccountsManagementComponent
-    path :'cart', 
+    component : AccountsManagementComponent},
+    
+  {path :'cart', 
     component : CartComponent
   },
   { path: 'cancel', component: CancelComponent },

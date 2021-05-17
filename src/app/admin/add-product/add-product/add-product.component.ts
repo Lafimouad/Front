@@ -45,7 +45,7 @@ export class AddProductComponent implements OnInit {
     this.productservice.createProduct(this.product)
       .subscribe(data => {
         this.productservice.addImage(this.imageFile).subscribe();
-        this.productservice.addBareCode(this.bareCodeFile).subscribe(data =>console.log(data));
+        //this.productservice.addBareCode(this.bareCodeFile).subscribe(data =>console.log(data));
        }
        )
   }
