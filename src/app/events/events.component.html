@@ -1,18 +1,31 @@
+
 <div id="main-content" class="blog-page">
     <div class="container">
         <div class="row clearfix">
-            <div class="col-lg-8 col-md-12 left-box">
-                <div class="card single_post">
+            
+            <div id="main-container" class="col-lg-8 col-md-12 left-box">
+                <div>
+                    <a *ngIf="authoritymanager || authorityadmin" class="btn btn-outline-secondary" (click)="onOpenModal(null,'add')">ADD EVENT</a>
+                   
+                    </div>
+                
+                <div class="card single_post" *ngFor="let event of events" >
                     <div class="body">
                         <div class="img-post">
-                            <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt="First slide">
+                            <img class="d-block img-fluid" src="{{event.image_URL}}" alt="First slide">
                         </div>
-                        <h3><a href="blog-details.html">All photographs are accurate</a></h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal</p>
+                        <h3><a href="blog-details.html">{{event.eventName}}</a></h3>
+                        <p>{{event.description}}</p>
+                        <p>{{event.raisedAmount_event}}</p>
+                        <p>{{event.date_event}}</p>
+                        <p>{{event.duration}}</p>
+                        <p>{{event.nombredeplaceinitiale}}</p>
+                        <p>{{event.nombreplace}}</p>
                     </div>
                     <div class="footer">
                         <div class="actions">
-                            <a href="javascript:void(0);" class="btn btn-outline-secondary">Continue Reading</a>
+                            <a *ngIf="authoritymanager || authorityadmin" href="javascript:void(0);" class="btn btn-outline-secondary" (click)="onOpenModal(event,'delete')">DELETE</a>
+                            <a *ngIf="authoritymanager || authorityadmin" href="javascript:void(0);" class="btn btn-outline-secondary" (click)="onOpenModal(event,'edit')">UPDATE</a>
                         </div>
                         <ul class="stats">
                             <li><a href="javascript:void(0);">General</a></li>
@@ -22,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="card single_post">
+                <!--div class="card single_post">
                     <div class="body">
                         <div class="img-post">
                             <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt="">
@@ -80,15 +93,15 @@
                             <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
                         </ul>
                     </div>
-                </div>
+                </div-->
                                         
-                <ul class="pagination pagination-primary">
+                <!--ul class="pagination pagination-primary">
                     <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
                     <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
                     <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
                     <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
                     <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
-                </ul>                
+                </ul-->                
             </div>
             <div class="col-lg-4 col-md-12 right-box">
                 <div class="card">
@@ -199,3 +212,126 @@
 
     </div>
 </div>
+
+
+
+<!-- Add Shelf Modal -->
+<div class="modal fade" id="addShelfModal" tabindex="-1" role="dialog" aria-labelledby="addShelfModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addShelfModalLabel">Add Event</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddShelves(addForm)">  <!--(ngSubmit)="onAddEmloyee(addForm)"-->
+            <div class="form-group">
+               <label for="typeShelf">Event Name</label>
+               <input type="text" ngModel name="eventName" class="form-control" id="typeShelf" placeholder="name"  required>
+            </div>
+            <div class="form-group">
+                <label for="lastNameUser">Event Amount</label>
+                <input type="number" ngModel name="raisedAmount_event" class="form-control" id="lastNameUser" placeholder="amount"  required>
+            </div>
+            <div class="form-group">
+                <label for="lastNameUser">Duration</label>
+                <input type="number" ngModel name="duration" class="form-control" id="lastNameUser" placeholder="Duration"  required>
+            </div>
+            <div class="form-group">
+                <label for="lastNameUser">Seat's Number</label>
+                <input type="number" ngModel name="nombreplace" class="form-control" id="lastNameUser" placeholder="places"  required>
+            </div>
+            <div class="form-group">
+                <label for="lastNameUser">Description</label>
+                <input type="text" ngModel name="description" class="form-control" id="lastNameUser" placeholder="description"  required>
+            </div>
+            <div class="form-group">
+               <label for="branch">Event Image URL</label>
+               <input type="file" name="image_URL"  class="form-control" [(ngModel)]="image_URL" 
+                 data-toggle="tooltip" data-placement="right" title="Enter Product Image URL" accept="image/*" (change)="addImage($event)" >
+             </div>
+            <div class="modal-footer">
+               <button type="button" id="add-employee-form" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-outline-primary btn-lg" >Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+
+    <!--delete modal-->
+
+    <!-- Delete Modal -->
+  <div class="modal fade" id="deleteShelfModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Event</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete the event {{deleteEvent?.eventName}} </p> <!--{{deleteEmployee?.firstNameUser}} {{deleteEmployee?.lastNameUser}}?-->
+             <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">No</button>
+                <button (click)="onDeleteShelves(deleteEvent?.idEvent)"class="btn btn-outline-danger btn-lg" data-dismiss="modal">Yes</button> <!--(click)="onDeleteEmloyee(deleteEmployee?.idUser)" -->
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="updateShelfModal" tabindex="-1" role="dialog" aria-labelledby="shelfEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateShelfModalLabel">Edit Shelf {{editEvent?.eventName}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <input type="hidden" ngModel="{{editEvent?.idEvent}}" name="idEvent" class="form-control" id="idEvent" placeholder="idEvent">
+                <input type="hidden" ngModel="{{editEvent?.raisedAmount_event}}" name="raisedAmount_event" class="form-control" id="raisedAmount_event" placeholder="raisedAmount_event">
+                <input type="hidden" ngModel="{{editEvent?.date_event}}" name="date_event" class="form-control" id="date_event" placeholder="date_event">
+                <input type="hidden" ngModel="{{editEvent?.nombredeplaceinitiale}}" name="nombredeplaceinitiale" class="form-control" id="nombredeplaceinitiale" placeholder="image_URL">
+                <input type="hidden" ngModel="{{editEvent?.image_URL}}" name="image_URL" class="form-control" id="image_URL" placeholder="image_URL">
+
+                <div class="form-group">
+                   <label for="typeShelf">Event Name</label>
+                   <input type="text" ngModel="{{editEvent?.eventName}}" name="eventName" class="form-control" id="typeShelf" placeholder="typeShelf"> <!--ngModel="{{editEmployee?.firstNameUser}}"-->
+                </div>
+                <div class="form-group">
+                    <label for="lastNameUser">Description</label>
+                    <input type="text" ngModel="{{editEvent?.description}}" name="description" class="form-control" id="description" placeholder="description"> <!-- ngModel="{{editEmployee?.lastNameUser}}" name="lastNameUser"-->
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">Duration</label>
+                    <input type="number" ngModel="{{editEvent?.duration}}" name="duration" class="form-control" id="duration" placeholder="duration"> <!-- ngModel="{{editEmployee?.lastNameUser}}" name="lastNameUser"-->
+                 </div>
+                 <div class="form-group">
+                    <label for="lastNameUser">seat's number</label>
+                    <input type="number" ngModel="{{editEvent?.nombreplace}}" name="nombreplace" class="form-control" id="nombreplace" placeholder="nombreplace"> <!-- ngModel="{{editEmployee?.lastNameUser}}" name="lastNameUser"-->
+                 </div>
+
+                <div class="modal-footer">
+                   <button type="button" id="update-shelf-form" data-dismiss="modal" class="btn btn-outline-secondary btn-lg">Close</button>
+                   <button (click)="onUpdateShelves(editForm.value)"  data-dismiss="modal" class="btn btn-outline-primary btn-lg" >Save changes</button> <!--(click)="onUpdateEmloyee(editForm.value)"-->
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+
+
+
+  

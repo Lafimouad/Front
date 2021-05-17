@@ -1,9 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../events.service';
 import { Donation } from '../shelfstock/Donation';
+import { Events } from '../shelfstock/Events';
 import { Pool } from '../shelfstock/Pool';
 import { TokenStorgeService } from '../token-storage.service';
 
@@ -14,6 +16,12 @@ import { TokenStorgeService } from '../token-storage.service';
 })
 export class EventsComponent implements OnInit {
 
+  public events: Events[];
+  public editEvent: Events;
+  public deleteEvent: Events;
+  image_URL:string
+  imageFile
+////////////////////////////////////////////////////////////////////////
   private roles: string[];
   public authority: string;
   public authoritymanager : boolean = false ;
@@ -62,6 +70,7 @@ export class EventsComponent implements OnInit {
         }); }
     this.getPool();
     this.getDonation();
+    this.getEvents();
   } 
 
   public getPool(): void  {
@@ -128,7 +137,97 @@ export class EventsComponent implements OnInit {
         } 
         
         ); }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+public onOpenModal(events: Events,mode: string): void{
+  const container = document.getElementById('main-container');
+  const button = document.createElement('button')
+  button.type='button';
+  button.style.display='none';
+  button.setAttribute('data-toggle','modal')
+  if (mode == 'add') {
+    button.setAttribute('data-target','#addShelfModal')
+  }  
+  if (mode == 'edit') {
+    this.editEvent = events;
+    button.setAttribute('data-target','#updateShelfModal')
+  }  
+  if (mode == 'delete') {
+    this.deleteEvent = events;
+    button.setAttribute('data-target','#deleteShelfModal')
+  }  
+  container.appendChild(button);
+  button.click();   
+}
+////////////////////////////////////////////////////////////////////
+
+public onAddShelves(addForm: NgForm): void{
+  document.getElementById('add-employee-form').click();
+  this.eventsservice.addShelfs(addForm.value).subscribe(
+    (response: Events) => {
+      console.log(response);
+      this.getEvents();
+      addForm.reset();
+      this.eventsservice.addImage(this.imageFile).subscribe();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+      addForm.reset();
+
+    }
+  )  }
+
+  /////////////////////////////////////////////////////
+
+  public getEvents(): void  {
+    this.eventsservice.getEvents().subscribe(
+      (response: Events[] ) => {
+        this.events = response;
+        console.log(this.events); },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        } 
+        
+        );
+
+       
+    
+  }
+
+//////////////////////////////////////////////////////
+
+addImage(event:any){
+  this.imageFile = event.target.files[0];
   
+  console.log("mayssa");
+
+}
+//////////////////////////////////////////////////
+
+public onDeleteShelves(idEvent: number): void{
+  this.eventsservice.deleteEvents(idEvent).subscribe(
+    (response: void) => {
+      console.log(response);
+      this.getEvents();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+
+    }
+  )  }
+
+/////////////////////////////////////////////////////////////////
+
+
+public onUpdateShelves(events: Events): void{
+  this.eventsservice.updateEvents(events).subscribe(
+    (response: Events) => {
+      console.log(response);
+      this.getEvents();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  )  }
   
 }

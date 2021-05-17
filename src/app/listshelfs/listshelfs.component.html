@@ -5,7 +5,7 @@
  <a *ngIf="authoritymanager || authorityadmin" class="shop_now_btn" (click)="onOpenModal(null,'add')">ADD MORE CATEGORIES</a>
 
  </div>
- <div  id="global">
+ <div >
  <li class="searchbox" >
     <input type="search" (ngModelChange)="searchShelfs(key.value)" #key="ngModel"  ngModel name="search"  placeholder="Search......" class="searchbox-input" onkeyup="buttonUp();" required>
         <!--input type="submit" class="searchbox-submit" value=""-->
@@ -109,6 +109,7 @@
           <div class="modal-body">
              <form #editForm="ngForm">
                 <input type="hidden" ngModel="{{editShelf?.idShelf}}" name="idShelf" class="form-control" id="idShelf" placeholder="idShelf">
+                <input type="hidden" ngModel="{{editShelf?.image_URL}}" name="image_URL" class="form-control" id="image_URL" placeholder="image_URL">
 
                 <div class="form-group">
                    <label for="typeShelf">Type Shelf</label>
@@ -135,7 +136,7 @@
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
-             <h5 class="modal-title" id="deleteModelLabel">Delete Deliverer</h5>
+             <h5 class="modal-title" id="deleteModelLabel">Delete Shelf</h5>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
              </button>
