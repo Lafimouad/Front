@@ -240,5 +240,22 @@ public onUpdateShelves(events: Events): void{
         this.getEvents();}
     )
   }
+
+///////////////////////////////////////////////////
+
+public searchShelfs(key : string): void{
+  const results: Events[] = [];
+  for (const shelf of this.events){
+    if (shelf.eventName.toLowerCase().indexOf(key.toLowerCase()) !== -1 
+    || shelf.description.toLowerCase().indexOf(key.toLowerCase()) !== -1 ) {
+      results.push(shelf);
+    }
+  } 
+  this.events = results;
+  if (results.length == 0 || !key ){
+    this.getEvents();
+  }
+}
+
   
 }

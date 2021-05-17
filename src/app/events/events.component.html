@@ -110,7 +110,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Search...">                                    
+                            <input type="search" (ngModelChange)="searchShelfs(key.value)" #key="ngModel" ngModel class="form-control" placeholder="Search...">                                    
                         </div>
                     </div>
                 </div>
