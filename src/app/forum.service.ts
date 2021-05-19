@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Subject} from './subject';
 import {Comment} from './comment';
+import {Dictionary} from './dictionary';
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +86,18 @@ export class ForumService {
 
   public getAllSubjects(): Observable<Subject[]> {
     return this.http.get<Subject[]>(`http://localhost:8081/Forum/Subject/retrieve-all`);
+  }
+
+  public getDictionary(): Observable<Dictionary[]> {
+    return this.http.get<Dictionary[]>(`http://localhost:8081/Forum/Dictionary/retrieve-all`);
+  }
+
+  public addBadWord(dictionary: Dictionary): Observable<Dictionary> {
+    return this.http.post<Dictionary>(`http://localhost:8081/Forum/Dictionary/add`, dictionary);
+  }
+
+  public deleteBadWord(idDictionaryWord: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8081/Forum/Dictionary/remove-id/${idDictionaryWord}`);
   }
 
 

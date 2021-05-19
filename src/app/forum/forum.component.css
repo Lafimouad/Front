@@ -24,6 +24,14 @@ mat-slider {
   /*background-color: #DDB3B3;*/
 }
 
+.prohibited{
+  background-color: #4cae4c;
+  width:40%;
+  margin-left:30%;
+  margin-right:30%;
+  margin-top: 5%;
+}
+
 :host ::ng-deep .min .mat-slider-track-background{
   background-color: #D9C6C6;
 }

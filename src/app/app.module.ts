@@ -39,6 +39,7 @@ import { GlobalComponent } from './global/global.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -75,15 +76,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FeaturedComponent,
     GlobalComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatGridListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatGridListModule,
+        MatButtonModule
+    ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

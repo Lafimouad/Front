@@ -7,6 +7,7 @@ import {Comment} from '../comment';
 import {HttpErrorResponse} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {TokenStorgeService} from '../token-storage.service';
+import {Dictionary} from '../dictionary';
 
 
 @Component({
@@ -18,6 +19,7 @@ import {TokenStorgeService} from '../token-storage.service';
 export class ForumComponent implements OnInit {
   comments: Comment[];
   commentSubjectId: number;
+  dictionary: Dictionary[];
   subjects: Subject[];
   featuredSubjects: Subject[];
   filteredByLikesSubjects: Subject[];
@@ -29,6 +31,7 @@ export class ForumComponent implements OnInit {
   featured = false;
   global = true;
   showComments = false;
+  prohibition = false;
   subj: Subject;
   private roles: string[];
   public authority: string;
@@ -343,11 +346,15 @@ export class ForumComponent implements OnInit {
   onFeaturedClick() {
     this.featured = true;
     this.global = false;
+    this.prohibition = false;
+
   }
 
   onGlobalClick() {
     this.featured = false;
     this.global = true;
+    this.prohibition = false;
+
   }
 
   formatLabel(value: number) {
@@ -370,7 +377,51 @@ export class ForumComponent implements OnInit {
       }
     );
     this.showComments = true;
-    this.global= false;
+    this.global = false;
+  }
+
+  public getDictionary(): void {
+    this.service.getDictionary().subscribe(
+      (response: Dictionary[]) => {
+        this.dictionary = response;
+        console.log(this.dictionary);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onProhibition(): void {
+    this.getDictionary();
+    this.prohibition = true;
+    this.global = false;
+  }
+
+  onDeleteBadWord(idDictionary: number): void{
+    this.service.deleteBadWord(idDictionary).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getDictionary();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onAddWord(addFormC: NgForm): void {
+    this.service.addBadWord(addFormC.value).subscribe(
+      (response: Dictionary) => {
+        console.log(response);
+        this.getDictionary();
+        addFormC.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addFormC.reset();
+      }
+    );
   }
 }
 

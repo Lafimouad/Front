@@ -205,10 +205,14 @@
                   </div>
                 </form>
               </div>
+            <hr>
+            <button class="prohibited" (click)="onProhibition()" mat-raised-button>Prohibition Control</button>
+
 
           </div>
         </div>
       </div>
+
       <div *ngIf="showComments">
         <div class="row">
           <div class="col-md-7">
@@ -318,6 +322,70 @@
                   <!--            <label for="descriptionSubject">Last Name</label>-->
                   <input type="text-area" ngModel name="textComment" class="form-control" id="textComment" placeholder="Add Comment here.." required>
                   <input type="hidden" ngModel="{{info.username}}" name="author" class="form-control" id="author" placeholder="Add Subject here.." required>
+                </div>
+                <div>
+                  <button [disabled]="addFormC.invalid" type="submit" class="btn btn-primary" >Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="prohibition">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="container" id="main-container">
+              <div class="col-md-12">
+                <div *ngFor="let w of dictionary" >
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-text">{{w.badWord}}</h5>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="float-right btn-group btn-group-sm">
+
+
+                          <a (click)="onDeleteBadWord(w.idDictionaryWord)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+
+
+
+                      </div>
+                    </div>
+
+<!--                    <div *ngIf="editC&&comment.author === info.username && comment.idComment == editIdC" class="card-body">-->
+<!--                      <form #editFormC="ngForm">-->
+<!--                        <div class="form-group">-->
+<!--                          <input type="text" ngModel="{{editComment?.textComment}}" name="textComment" class="form-control" id="textComment" placeholder="Name">-->
+<!--                        </div>-->
+
+<!--                        <input type="hidden" ngModel="{{editComment?.author}}" name="author" class="form-control" id="author">-->
+<!--                        <input type="hidden" ngModel="{{editComment?.likesComment}}" name="likesComment" class="form-control" id="likesComment">-->
+<!--                        <input type="hidden" ngModel="{{editComment?.mostPertinentComment}}" name="mostPertinentComment" class="form-control" id="mostPertinentComment">-->
+<!--                        <input type="hidden" ngModel="{{editComment?.idComment}}" name="idComment" class="form-control" id="idComment">-->
+<!--                        <input type="hidden" ngModel="{{editComment?.subject}}" name="subject" class="form-control" id="subject">-->
+
+
+<!--                        <div class="modal-footer">-->
+<!--                          <button (click)="onUpdateComment(editFormC.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>-->
+<!--                        </div>-->
+<!--                      </form>-->
+<!--                    </div>-->
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+            <h3>ADD ANOTHER WORD</h3>
+            <div class="container">
+              <form #addFormC="ngForm" (ngSubmit)="onAddWord(addFormC)">
+                <div class="form-group">
+                  <input type="text-area" ngModel name="badWord" class="form-control" id="badWord" placeholder="Add Word here.." required>
                 </div>
                 <div>
                   <button [disabled]="addFormC.invalid" type="submit" class="btn btn-primary" >Add</button>

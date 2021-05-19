@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Dictionary} from '../dictionary';
+import {HttpErrorResponse} from '@angular/common/http';
+import {ForumService} from '../forum.service';
 
 @Component({
   selector: 'app-global',
@@ -6,16 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./global.component.css']
 })
 export class GlobalComponent implements OnInit {
+  dictionary: Dictionary[];
 
-  constructor() { }
+  constructor(
+    private service: ForumService,
+  ) {}
 
   ngOnInit(): void {
-  }
-  formatLabel(value: number) {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
-    }
+    this.getDictionary();
 
-    return value;
   }
+  public getDictionary(): void {
+    this.service.getDictionary().subscribe(
+      (response: Dictionary[]) => {
+        this.dictionary = response;
+        console.log('test', this.dictionary);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+
+    );
+    console.log('test2', this.dictionary);
+  }
+
 }
