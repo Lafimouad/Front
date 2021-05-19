@@ -21,31 +21,33 @@ import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
 import { ToolsComponent } from './tools/tools.component';
 import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
+import {GlobalComponent} from './global/global.component';
+import {FeaturedComponent} from './featured/featured.component';
 
 
-const routes: Routes = [ 
+const routes: Routes = [
   {
-    path :'meme', 
+    path :'meme',
     component : MemeComponent
   },
   {
-    path :'dashboard', 
+    path :'dashboard',
     component : DashboardComponent
   },
   {
-    path :'products', 
+    path :'products',
     component : ProductsComponent
   },
   {
-    path :'account', 
+    path :'account',
     component : AccountComponent
   },
   {
-    path :'ads', 
+    path :'ads',
     component : AdvertisementsComponent
   },
   {
-    path :'contact', 
+    path :'contact',
     component : ContactComponent
   },
   {
@@ -79,7 +81,7 @@ const routes: Routes = [
 {
     path: 'forum',
     component: ForumComponent
-},  
+},
 {
   path: 'home',
   component: HomeComponent
@@ -113,6 +115,17 @@ const routes: Routes = [
   redirectTo: 'home',
   pathMatch: 'full'
 },
+
+{
+  path : 'forum/global',
+  component : GlobalComponent
+},
+
+{
+  path : 'forum/featured',
+  component : FeaturedComponent
+},
+
 {path: '**', component: MemeComponent}
 ];
 

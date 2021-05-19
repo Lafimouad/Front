@@ -1,1 +1,452 @@
-<p>forum works!</p>
+<!--<div class="banner" *appShowAuthed="false">-->
+<div class="banner" >
+  <div class="container">
+    <p class="logo-font">forum</p>
+    <p class="text-font">A place to share your <i>Opinion</i>.</p>
+  </div>
+</div>
+<hr>
+<div class="container page">
+  <div class="row">
+
+    <div class="col">
+      <div class="feed-toggle">
+
+        <ul class="nav nav-pills outline-active">
+            <li class="nav-item active">
+
+              <!--            <a class="nav-link" routerLink="/forum/global">-->
+              <a class="nav-link" data-toggle="tab" (click)="onGlobalClick()">
+                Global Feed
+              </a>
+            </li>
+            <li class="nav-item">
+              <!--            <a class="nav-link" routerLink="/forum/featured">-->
+              <a class="nav-link" data-toggle="tab" (click)="onFeaturedClick()">
+                Featured Feed
+              </a>
+            </li>
+
+            <li *ngIf="showComments" class="nav-item">
+              <a class="nav-link" data-toggle="tab" >
+                #Subject
+              </a>
+            </li>
+
+
+        </ul>
+        <hr>
+
+
+      </div>
+
+
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+
+
+
+      <div *ngIf="global">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="container" id="main-container">
+              <div *ngIf="minLikes==0&&maxLikes==100" class="col-md-12">
+                <div *ngFor="let subject of subjects" >
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{subject?.author}}</h5>
+                      <h5 class="card-title">{{subject?.likesSubject}} likes</h5>
+                      <!--                  <p class="m-0" class="text-info">{{subject?.roleAdmin}}</p>-->
+                      <p class="card-text">{{subject?.descriptionSubject}}</p>
+                    </div>
+                    <!--              <ul class="list-group list-group-flush">-->
+                    <!--                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><strong>Email : </strong>{{subject?.emailAddressUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong>Phone : </strong> {{subject?.phoneNumberUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong class="text-info">{{subject?.nbabsenceAdmin}} day(s) absent this month.</strong></li>-->
+                    <!--              </ul>-->
+                    <div class="card-body">
+                      <div class="float-right btn-group btn-group-sm">
+                        <!--                  <a (click)="onOpenModal(employee,'absence')"class="btn btn-muted tooltips" data-placement="top" data-original-title="Absence"><p class="text-danger">Mark absent</p></a>-->
+                        <!--                  <a (click)="onOpenModal(employee, 'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>-->
+                        <div *ngIf="authority">
+                          <a *ngIf="subject.author === info.username" (click)="onDeleteEmloyee(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                          <a *ngIf="subject.author === info.username" (click)="onEdit(subject,subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">edit</a>
+                          <a  (click)="onLike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Like</a>
+                          <a  (click)="onDislike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Dislike</a>
+                          <a (click)="getCommentsBySubject(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Comment</a>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div *ngIf="edit&&subject.author === info.username && subject.idSubject == editId" class="card-body">
+                      <form #editForm="ngForm">
+                        <div class="form-group">
+                          <input type="text" ngModel="{{editSubject?.descriptionSubject}}" name="descriptionSubject" class="form-control" id="descriptionSubject" placeholder="Name">
+                        </div>
+
+                        <input type="hidden" ngModel="{{editSubject?.author}}" name="author" class="form-control" id="author">
+                        <input type="hidden" ngModel="{{editSubject?.likesSubject}}" name="likesSubject" class="form-control" id="likesSubject">
+                        <input type="hidden" ngModel="{{editSubject?.featuredSubject}}" name="featuredSubject" class="form-control" id="featuredSubject">
+                        <input type="hidden" ngModel="{{editSubject?.idSubject}}" name="idSubject" class="form-control" id="idSubject">
+
+
+                        <div class="modal-footer">
+                          <button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="minLikes!=0||maxLikes!=100" class="col-md-12">
+                <div *ngFor="let subject of filteredByLikesSubjects" >
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{subject?.author}}</h5>
+                      <h5 class="card-title">{{subject?.likesSubject}} likes</h5>
+                      <!--                  <p class="m-0" class="text-info">{{subject?.roleAdmin}}</p>-->
+                      <p class="card-text">{{subject?.descriptionSubject}}</p>
+                    </div>
+                    <!--              <ul class="list-group list-group-flush">-->
+                    <!--                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><strong>Email : </strong>{{subject?.emailAddressUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong>Phone : </strong> {{subject?.phoneNumberUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong class="text-info">{{subject?.nbabsenceAdmin}} day(s) absent this month.</strong></li>-->
+                    <!--              </ul>-->
+                    <div class="card-body">
+                      <div class="float-right btn-group btn-group-sm">
+                        <!--                  <a (click)="onOpenModal(employee,'absence')"class="btn btn-muted tooltips" data-placement="top" data-original-title="Absence"><p class="text-danger">Mark absent</p></a>-->
+                        <!--                  <a (click)="onOpenModal(employee, 'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>-->
+                        <div *ngIf="authority">
+                          <a *ngIf="subject.author === info.username" (click)="onDeleteEmloyee(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                          <a *ngIf="subject.author === info.username" (click)="onEdit(subject,subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">edit</a>
+                          <a  (click)="onLike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Like</a>
+                          <a  (click)="onDislike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">like</a>
+
+
+                        </div>
+
+                      </div>
+                    </div>
+                    <div *ngIf="edit&&subject.author === info.username && subject.idSubject == editId" class="card-body">
+                      <form #editForm="ngForm">
+                        <div class="form-group">
+                          <input type="text" ngModel="{{editSubject?.descriptionSubject}}" name="descriptionSubject" class="form-control" id="descriptionSubject" placeholder="Name">
+                        </div>
+
+                        <input type="hidden" ngModel="{{editSubject?.author}}" name="author" class="form-control" id="author">
+                        <input type="hidden" ngModel="{{editSubject?.likesSubject}}" name="likesSubject" class="form-control" id="likesSubject">
+                        <input type="hidden" ngModel="{{editSubject?.featuredSubject}}" name="featuredSubject" class="form-control" id="featuredSubject">
+                        <input type="hidden" ngModel="{{editSubject?.idSubject}}" name="idSubject" class="form-control" id="idSubject">
+
+
+                        <div class="modal-footer">
+                          <button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h3>SEARCH SUBJECTS:</h3>
+            <form class="form-inline my-2 my-lg-0">
+              <input type="text-area" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel
+                     name="key" id="searchName" class="form-control" placeholder="Search subjects..." required>
+            </form>
+            <hr>
+            <h3>FILTER BY LIKES:</h3>
+            <div class="row">
+                Min likes
+                <mat-slider class="min"
+                            thumbLabel
+                            [displayWith]="formatLabel"
+                            color="accent"
+                            step="1"
+                            min="0"
+                            max="100"
+                            aria-label="units"
+                            (change)="getFilteredByLikesSubjects()"
+                            [(ngModel)]="minLikes">
+                </mat-slider>
+                {{minLikes}}
+              </div>
+            <div class="row">
+                Max likes
+                <mat-slider class="max"
+                            thumbLabel
+                            [displayWith]="formatLabel"
+                            color="accent"
+                            step="1"
+                            min="0"
+                            max="100"
+                            aria-label="units"
+                            [invert]="false"
+                            (change)="getFilteredByLikesSubjects()"
+                            [(ngModel)]="maxLikes">
+                </mat-slider>
+                {{maxLikes}}
+              </div>
+            <hr>
+            <h3>ADD SUBJECT</h3>
+            <div class="container">
+                <form #addForm="ngForm" (ngSubmit)="onAddEmloyee(addForm)">
+                  <div class="form-group">
+                    <!--            <label for="descriptionSubject">Last Name</label>-->
+                    <input type="text-area" ngModel name="descriptionSubject" class="form-control" id="descriptionSubject" placeholder="Add Subject here.." required>
+                    <input type="hidden" ngModel="{{info.username}}" name="author" class="form-control" id="author" placeholder="Add Subject here.." required>
+                  </div>
+                  <div>
+                    <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Add</button>
+                  </div>
+                </form>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showComments">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="container" id="main-container">
+              <div class="col-md-12">
+                <div *ngFor="let comment of comments" >
+                  <div class="card">
+                    <div class="card-body">
+                      <i *ngIf="comment.mostPertinentComment" class="fa fa-star float-right"></i>
+                      <h5 class="card-title">{{comment?.author}}</h5>
+                      <h5 class="card-title">{{comment?.likesComment}} likes</h5>
+                      <p class="card-text">{{comment?.textComment}}</p>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="float-right btn-group btn-group-sm">
+
+                        <div *ngIf="authority">
+                          <a *ngIf="comment.author === info.username" (click)="onDeleteComment(comment.idComment)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                          <a *ngIf="comment.author === info.username" (click)="onEditComment(comment,comment.idComment)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">edit</a>
+                          <a  (click)="onLikeComment(comment.idComment)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Like</a>
+                          <a  (click)="onDislikeComment(comment.idComment)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Dislike</a>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div *ngIf="editC&&comment.author === info.username && comment.idComment == editIdC" class="card-body">
+                      <form #editFormC="ngForm">
+                        <div class="form-group">
+                          <input type="text" ngModel="{{editComment?.textComment}}" name="textComment" class="form-control" id="textComment" placeholder="Name">
+                        </div>
+
+                        <input type="hidden" ngModel="{{editComment?.author}}" name="author" class="form-control" id="author">
+                        <input type="hidden" ngModel="{{editComment?.likesComment}}" name="likesComment" class="form-control" id="likesComment">
+                        <input type="hidden" ngModel="{{editComment?.mostPertinentComment}}" name="mostPertinentComment" class="form-control" id="mostPertinentComment">
+                        <input type="hidden" ngModel="{{editComment?.idComment}}" name="idComment" class="form-control" id="idComment">
+                        <input type="hidden" ngModel="{{editComment?.subject}}" name="subject" class="form-control" id="subject">
+
+
+                        <div class="modal-footer">
+                          <button (click)="onUpdateComment(editFormC.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="minLikes!=0||maxLikes!=100" class="col-md-12">
+                <div *ngFor="let subject of filteredByLikesSubjects" >
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{subject?.author}}</h5>
+                      <h5 class="card-title">{{subject?.likesSubject}} likes</h5>
+                      <!--                  <p class="m-0" class="text-info">{{subject?.roleAdmin}}</p>-->
+                      <p class="card-text">{{subject?.descriptionSubject}}</p>
+                    </div>
+                    <!--              <ul class="list-group list-group-flush">-->
+                    <!--                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><strong>Email : </strong>{{subject?.emailAddressUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong>Phone : </strong> {{subject?.phoneNumberUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong class="text-info">{{subject?.nbabsenceAdmin}} day(s) absent this month.</strong></li>-->
+                    <!--              </ul>-->
+                    <div class="card-body">
+                      <div class="float-right btn-group btn-group-sm">
+                        <!--                  <a (click)="onOpenModal(employee,'absence')"class="btn btn-muted tooltips" data-placement="top" data-original-title="Absence"><p class="text-danger">Mark absent</p></a>-->
+                        <!--                  <a (click)="onOpenModal(employee, 'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>-->
+                        <div *ngIf="authority">
+                          <a *ngIf="subject.author === info.username" (click)="onDeleteEmloyee(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                          <a *ngIf="subject.author === info.username" (click)="onEdit(subject,subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">edit</a>
+                          <a  (click)="onLike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Like</a>
+                          <a  (click)="onDislike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">like</a>
+
+
+                        </div>
+
+                      </div>
+                    </div>
+                    <div *ngIf="edit&&subject.author === info.username && subject.idSubject == editId" class="card-body">
+                      <form #editForm="ngForm">
+                        <div class="form-group">
+                          <input type="text" ngModel="{{editSubject?.descriptionSubject}}" name="descriptionSubject" class="form-control" id="descriptionSubject" placeholder="Name">
+                        </div>
+
+                        <input type="hidden" ngModel="{{editSubject?.author}}" name="author" class="form-control" id="author">
+                        <input type="hidden" ngModel="{{editSubject?.likesSubject}}" name="likesSubject" class="form-control" id="likesSubject">
+                        <input type="hidden" ngModel="{{editSubject?.featuredSubject}}" name="featuredSubject" class="form-control" id="featuredSubject">
+                        <input type="hidden" ngModel="{{editSubject?.idSubject}}" name="idSubject" class="form-control" id="idSubject">
+
+
+                        <div class="modal-footer">
+                          <button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h3>ADD COMMENT</h3>
+            <div class="container">
+              <form #addFormC="ngForm" (ngSubmit)="onAddComment(addFormC)">
+                <div class="form-group">
+                  <!--            <label for="descriptionSubject">Last Name</label>-->
+                  <input type="text-area" ngModel name="textComment" class="form-control" id="textComment" placeholder="Add Comment here.." required>
+                  <input type="hidden" ngModel="{{info.username}}" name="author" class="form-control" id="author" placeholder="Add Subject here.." required>
+                </div>
+                <div>
+                  <button [disabled]="addFormC.invalid" type="submit" class="btn btn-primary" >Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="featured">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="container" id="main-container">
+              <div class="col-md-12">
+                <div *ngFor="let subject of featuredSubjects" >
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{subject?.author}}</h5>
+                      <h5 class="card-title">{{subject?.likesSubject}} likes</h5>
+                      <!--                  <p class="m-0" class="text-info">{{subject?.roleAdmin}}</p>-->
+                      <p class="card-text">{{subject?.descriptionSubject}}</p>
+                    </div>
+                    <!--              <ul class="list-group list-group-flush">-->
+                    <!--                <li class="list-group-item"><i class="fa fa-envelope float-right"></i><strong>Email : </strong>{{subject?.emailAddressUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong>Phone : </strong> {{subject?.phoneNumberUser}}</li>-->
+                    <!--                <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong class="text-info">{{subject?.nbabsenceAdmin}} day(s) absent this month.</strong></li>-->
+                    <!--              </ul>-->
+                    <div class="card-body">
+                      <div class="float-right btn-group btn-group-sm">
+                        <!--                  <a (click)="onOpenModal(employee,'absence')"class="btn btn-muted tooltips" data-placement="top" data-original-title="Absence"><p class="text-danger">Mark absent</p></a>-->
+                        <!--                  <a (click)="onOpenModal(employee, 'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>-->
+                        <div *ngIf="authority">
+                          <a *ngIf="subject.author === info.username" (click)="onDeleteEmloyee(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                          <a *ngIf="subject.author === info.username" (click)="onEdit(subject,subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">edit</a>
+                          <a  (click)="onLike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Like</a>
+                          <a  (click)="onDislike(subject.idSubject)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Dislike</a>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div *ngIf="edit&&subject.author === info.username && subject.idSubject == editId" class="card-body">
+                      <form #editForm="ngForm">
+                        <div class="form-group">
+                          <input type="text" ngModel="{{editSubject?.descriptionSubject}}" name="descriptionSubject" class="form-control" id="descriptionSubject" placeholder="Name">
+                        </div>
+
+                        <input type="hidden" ngModel="{{editSubject?.author}}" name="author" class="form-control" id="author">
+                        <input type="hidden" ngModel="{{editSubject?.likesSubject}}" name="likesSubject" class="form-control" id="likesSubject">
+                        <input type="hidden" ngModel="{{editSubject?.featuredSubject}}" name="featuredSubject" class="form-control" id="featuredSubject">
+                        <input type="hidden" ngModel="{{editSubject?.idSubject}}" name="idSubject" class="form-control" id="idSubject">
+
+
+                        <div class="modal-footer">
+                          <button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<!--          <div class="col">-->
+<!--            <form class="form-inline my-2 my-lg-0">-->
+<!--              <input type="search" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel-->
+<!--                     name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search subjects..." required>-->
+<!--            </form>-->
+<!--            <hr>-->
+<!--&lt;!&ndash;            <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              Min likes&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              <mat-slider class="min"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                          thumbLabel&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                          [displayWith]="formatLabel"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                          color="accent"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                          step="1"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                          min="0"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                          max="100"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                          aria-label="units"&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                          [(ngModel)]="minLikes">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              </mat-slider>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              {{minLikes}}&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div class="row">-->
+<!--              Max likes-->
+<!--              <mat-slider class="max"-->
+<!--                          thumbLabel-->
+<!--                          [displayWith]="formatLabel"-->
+<!--                          color="accent"-->
+<!--                          step="1"-->
+<!--                          min="0"-->
+<!--                          max="100"-->
+<!--                          aria-label="units"-->
+<!--                          [invert]="false"-->
+<!--                          [(ngModel)]="maxLikes">-->
+<!--              </mat-slider>-->
+<!--              {{maxLikes}}-->
+<!--            </div>-->
+
+<!--            <div class="container">-->
+<!--              <form #addForm="ngForm" (ngSubmit)="onAddEmloyee(addForm)">-->
+<!--                <div class="form-group">-->
+<!--                  &lt;!&ndash;            <label for="descriptionSubject">Last Name</label>&ndash;&gt;-->
+<!--                  <input type="text-area" ngModel name="descriptionSubject" class="form-control" id="descriptionSubject" placeholder="Add Subject here.." required>-->
+<!--                  <input type="hidden" ngModel="{{info.username}}" name="author" class="form-control" id="author" placeholder="Add Subject here.." required>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                  <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Add</button>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+  </div>
+
+

@@ -1,0 +1,42 @@
+<p>global works!</p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<div class="row">
+  <div class="col-md-9">
+    <div class="tab-content">
+      <div id="states" class="tab-pane fade in active">
+        <h3>States</h3>
+        <p>States tab</p>
+      </div>
+      <div id="subs" class="tab-pane fade">
+        <h3>Subscriptions</h3>
+        <p>Subscriptions tab</p>
+      </div>
+      <div id="comments" class="tab-pane fade">
+        <h3>Comments</h3>
+        <p>Comments tab</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <ul class="nav nav-pills nav-stacked" id="myTabs">
+      <li class="active">
+        <a href="#states" data-toggle="tab">
+          States
+        </a>
+      </li>
+      <li>
+        <a href="#subs" data-toggle="tab">
+          Subscriptions
+        </a>
+      </li>
+      <li>
+        <a href="#comments" data-toggle="tab">
+          Comments
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
