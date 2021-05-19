@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ads } from './Ads';
+import { Advertisement } from './Ads';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +31,8 @@ export class AdsService {
     return this.http.delete("http://localhost:8081/Ad/remove/"+idAdvertisment);
   }
 
-  public modifyAd(ad: Ads): any{
-    return this.http.put("http://localhost:8081/Ad/modify/",ad);
+  public modifyAd(advertisement): any{
+    return this.http.put("http://localhost:8081/Ad/modify/",advertisement);
   }
 
   public show(username){

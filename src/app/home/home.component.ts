@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ads } from '../Ads';
+import { Advertisement } from '../Ads';
 import { AdsService } from '../ads.service';
 import { Client } from '../auth/ClientInfo';
 import { TokenStorgeService } from '../token-storage.service';
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   pas:any;
   isLoggedIn:any;
   see : number;
-  jdida : Ads;
+  jdida : Advertisement;
   finalviews: number;
   message : any;
   client:Client;
@@ -110,7 +110,7 @@ public target(){
      console.log("hedhi number", this.ad.finalviews);
      console.log("pub again", this.ad);*/
 
-     this.jdida = new Ads();
+     this.jdida = new Advertisement();
      this.jdida.idAdvertisment=this.ad.idAdvertisment;
      this.jdida.channel=this.ad.channel;
       this.jdida.cost= this.ad.cost;

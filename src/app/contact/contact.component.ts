@@ -13,6 +13,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  submitted:boolean;
   claim: Claim = new Claim() ;
   message:any;
   errorMessage = '';
@@ -75,6 +76,7 @@ export class ContactComponent implements OnInit {
     }
 
     public addingClaim(){
+    this.submitted = true
     this.user= new User();
     //this.idouda=this.usernameUser;
     //console.log("idouda",this.idouda);

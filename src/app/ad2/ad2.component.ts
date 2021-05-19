@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ads } from '../Ads';
+import { Advertisement } from '../Ads';
 import { AdsService } from '../ads.service';
 import { Client } from '../auth/ClientInfo';
 
@@ -10,7 +10,7 @@ import { Client } from '../auth/ClientInfo';
 })
 export class Ad2Component implements OnInit {
   message:any;
-  ads: Ads = new Ads() ;
+  ads: Advertisement = new Advertisement() ;
   client:Client;
   idUser: number;
   idAdvertisment:number;
@@ -28,7 +28,7 @@ export class Ad2Component implements OnInit {
       this.client=new Client();
       this.client.idUser = this.idUser;
       console.log("gimme client", this.client)
-      this.ads=new Ads();
+      this.ads=new Advertisement();
       this.ads.channel=this.channel;
       this.ads.cost= this.cost;
       this.ads.dateAdvertisment=this.dateAdvertisment;
@@ -43,9 +43,9 @@ export class Ad2Component implements OnInit {
       this.service.addAd(this.ads).subscribe((data)=>this.message=data);
     }
 
-    public updatingAd(ad: Ads){
+    public updatingAd(ad: Advertisement){
       this.service.modifyAd(ad).subscribe(
-        (response: Ads) => {
+        (response: Advertisement) => {
           console.log(response);
           this.service.getAds();
         })

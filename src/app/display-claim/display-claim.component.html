@@ -1,249 +1,9 @@
 
-<!-----------------------------ADMIN---------------------->
-<div class="container" id="main-container">   
 
-             <div class="row">
-                <div class="col-sm-6">
-        <select class="form-control" aria-label="Default select example" name="order" [(ngModel)]="level" >
-            <option value="1">Ascending</option>
-            <option value="2">Descending</option>
-        </select>
-                </div>
-                <div class="col-sm-3">
-                     <button class ="search-btn" type="button"  (click)="func()">
-                     <i class="fas fa-search"></i>
-                     </button>
-                </div>
-             </div>
-
-        <br>
-        <br>
-        <br>
-
-        <div class="row">
-            <div class="col-sm-6">
-                 <select class="form-control" aria-label="Default select example" name="status" [(ngModel)]="status" >
-                    <option value="1">Treated</option>
-                    <option value="2">Not Treated</option>
-                 </select>
-            </div>
-            <div class="col-sm-3">
-              <button class ="search-btn" type="button"  (click)="func2()">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-        </div>
+ <!-----------------------------USER---------------------->
+ <div  *ngIf="info.token" >
+    <div *ngIf="authorityclient" class="nav-item"  >
         
-
-
-
-
-    
-        <br>
-        <br>
-        <br>
-      <br>
-      
-
-    <div class="batta">
-    <div class="table-responsive">
-    <table class="table" >
-    <thead>
-        <tr >
-            
-            <th scope="col" >Claim Id</th>
-            <th scope="col">Client Id</th>
-            <th scope="col">Subject</th>
-            <th scope="col">System Problem </th>
-            <th scope="col">Delivery Problem</th>
-            <th scope="col">Product Problem</th>
-            <th scope="col">Claimed Product Id</th>
-            <th scope="col">Date</th>
-            <th scope="col">Description</th>
-            <th scope="col">level </th>
-            <th  >Answer</th>
-            <th scope="col">State</th>
-            <th scope="col">Action</th>
-            <th scope="col">Action2</th>
-            
-        </tr >
-    </thead>
-    <tbody>
-        <tr *ngFor="let c of claims" >
-            
-            <th>{{c.idClaim}}</th>
-            <td>{{c.user.idUser}}</td>
-            <td>{{c.subject}}</td>
-            <td>{{c.systemProblem}}</td>
-            <td>{{c.deliveryProblem}}</td>
-            <td>{{c.productProblem}}</td>
-            <td>{{c.productWithProb}}</td>
-            <td>{{c.date}}</td>
-            <td>{{c.description}}</td>
-            <td>{{c.level}}</td>
-            <td>{{c.decision}}</td>
-            <td>{{c.status}}</td>
-            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingClaim(c.idClaim)"> Delete</button></td>
-            <td> <a (click)="onOpenModal(c,'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a></td>
-        
-          </tr>
-    </tbody>
-    </table>
-   </div>
-</div>
-
-        
-    
-    <!-- Edit Modal -->
-  <div class="modal fade" id="updateClaimModal" tabindex="-1" role="dialog" aria-labelledby="claimEditModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-          <div class="modal-header">
-             <h5 class="modal-title" id="claimEditModalLabel">Answering the claim {{editClaim?.idClaim}}</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
-          </div>
-          <div class="modal-body">
-             <form #editForm="ngForm">
-                <div class="form-group">
-
-                <label for="idClaim">Claim N° </label>
-                <input type="text" ngModel="{{editClaim?.idClaim}}" name="idClaim" class="form-control" id="idClaim" placeholder="idClaim">
-                   </div>
-
-                   <div class="form-group">
-                    <label for="typeShelf">Client</label>
-                    <input type="text" ngModel="{{editClaim?.user.idUser}}" name="idUser" class="form-control" id="idUser" placeholder="idUser"> 
-                 </div>
-                <div class="form-group">
-                   <label for="typeShelf">Subject</label>
-                   <input type="text" ngModel="{{editClaim?.subject}}" name="subject" class="form-control" id="subject" placeholder="subject"> 
-                </div>
-                <div class="form-group">
-                    <label for="lastNameUser">System Problem</label>
-                    <input type="text" ngModel="{{editClaim?.systemProblem}}" name="systemProblem" class="form-control" id="systemProblem" placeholder="systemProblem"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="lastNameUser">Product Problem</label>
-                    <input type="text" ngModel="{{editClaim?.productProblem}}" name="productProblem" class="form-control" id="productProblem" placeholder="productProblem"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="lastNameUser">Delivery Problem</label>
-                    <input type="text" ngModel="{{editClaim?.deliveryProblem}}" name="deliveryProblem" class="form-control" id="deliveryProblem" placeholder="deliveryProblem"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="lastNameUser">description</label>
-                    <input type="text" ngModel="{{editClaim?.description}}" name="description" class="form-control" id="description" placeholder="description"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="lastNameUser">Our Answer </label>
-                    <input type="text" ngModel="{{editClaim?.decision}}" name="decision" class="form-control" id="decision" placeholder="decision"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="lastNameUser">level</label>
-                    <input type="text" ngModel="{{editClaim?.level}}" name="level" class="form-control" id="level" placeholder="level"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="lastNameUser">Status</label>
-                    <input type="text" ngModel="{{editClaim?.status}}" name="status" class="form-control" id="status" placeholder="status"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="lastNameUser">Date Of Posting</label>
-                    <input type="text" ngModel="{{editClaim?.date}}" name="date" class="form-control" id="date" placeholder="date"> 
-                 </div>
-
-                 <div class="form-group">
-                    <label for="lastNameUser">Product with issue</label>
-                    <input type="text" ngModel="{{editClaim?.productWithProb}}" name="productWithProb" class="form-control" id="productWithProb" placeholder="productWithProb"> 
-                 </div>
-
-                <div class="modal-footer">
-                   <button type="button" id="update-claim-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="answeringClaim(editForm.value)"  data-dismiss="modal" class="btn btn-primary" >Save changes</button> 
-                </div>
-             </form>
-          </div>
-       </div>
-    </div>
-  </div>
-</div>
-
-
-
-<!-----------------------------ADMIN---------------------->
-
-<!--<script>
-    const searchBtn = document.querySelector(".search-btn");
-    const cancelBtn = document.querySelector(".cancel-btn");
-    const searchBox = document.querySelector(".search-box");
-    searchBtn.onClick = () => {
-        searchBox.classList.add("active");
-    }
-
-</script>-->
-
-
-
-
-
-
-    <!--<form class="form-inline waves-light" mdbWavesEffect>
-        <div class="md-form mt-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search with subject"name="subject" [(ngModel)]="subject">
-        </div>
-        <span class="input-group-btn">
-            <button class="btn btn-danger" type="button" (click)="gettingBysubject()">
-                
-            </button> 
-        </span>
-      </form>-->
-
-
-
-
-      <div  *ngIf="info.token" >
-        <div *ngIf="authorityclient" class="nav-item"  >
-
-            <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h2 class="text-center">Landing Zero Theme</h2>
-                        <h5 class="text-center">
-                            A free, responsive landing page theme built by BootstrapZero.
-                        </h5>
-                        <p class="text-justify">
-                            This is a single-page Bootstrap template with a sleek dark/grey color scheme, accent color and smooth scrolling.
-                            There are vertical content sections with subtle animations that are activated when scrolled into view using the jQuery WOW plugin. There is also a gallery with modals
-                            that work nicely to showcase your work portfolio. Other features include a contact form, email subscribe form, multi-column footer. Uses Questrial Google Font and Ionicons.
-                        </p>
-                        <p class="text-center"><a href="http://www.bootstrapzero.com">Download at BootstrapZero</a></p>
-                        <br/>
-                        <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h2 class="text-center">Nice Job!</h2>
-                        <p class="text-center">You clicked the button, but it doesn't actually go anywhere because this is only a demo.</p>
-                        <p class="text-center"><a href="http://www.bootstrapzero.com">Learn more at BootstrapZero</a></p>
-                        <br/>
-                        <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            
-            <!-----------------------------USER---------------------->
-            
-            
-            
-            
             
             
             <div class="container">
@@ -273,13 +33,10 @@
                                                 <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                                     <div class="simplebar-content" style="padding: 16px;">
                                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
-                                                            <button class="nav-link nav-link-faded has-icon" (click)="gettingBylevelA()">Ascending order</button>
-                                                            <button class="nav-link nav-link-faded has-icon" (click)="gettingBylevelD()">Descending order</button>
-                                                            <button class="nav-link nav-link-faded has-icon">Popular all time</button>
-                                                            <button class="nav-link nav-link-faded has-icon">Solved</button>
-                                                            <button class="nav-link nav-link-faded has-icon">Unsolved</button>
-                                                            <button class="nav-link nav-link-faded has-icon">No replies yet</button>
+                                                            <button  class="nav-link nav-link-faded has-icon active" (click)="getAllClaims()">All Claims</button>
+                                                            <button class="nav-link nav-link-faded has-icon" (click)="gettingBystatus()"> Answered Claim </button>
+                                                            <button class="nav-link nav-link-faded has-icon"(click)="gettingBystatus2()"> No replies yet</button>
+                                                           
                                                         </nav>
                                                     </div>
                                                 </div>
@@ -306,7 +63,8 @@
                                         <i class="fas fa-search"></i>
                                     </button>
                                    
-                                  </section> </div>
+                                  </section>
+                                 </div>
                                   
                                 
 
@@ -326,7 +84,7 @@
                                             <tr><strong>Claim Id </strong>{{c.idClaim}}</tr>
                                             <tr> <strong>Subject </strong>{{c.subject}}</tr> 
                                             <tr> <strong>Subject </strong>{{c.description}}</tr> 
-                                            <tr> <strong>Subject </strong>{{c.status}}</tr> 
+                                            <tr> <strong>Status </strong>{{c.status}}</tr> 
 
                                         </td>
                                          
@@ -348,6 +106,10 @@
 
         </div>
       </div>
+    </div>
+           
+    </div>
+    
 
 
 
@@ -371,3 +133,233 @@
             
         </div>
         </section> -->
+
+
+
+        <div  *ngIf="info.token" >
+            <div *ngIf="authorityadmin" class="nav-item"  >
+                
+                <div class= "container" id="main-container">
+           
+                    <div class="main-body p-0">
+                        <div class="inner-wrapper">
+                            <!-- Inner sidebar -->
+                            <div class="inner-sidebar">
+                                <!-- Inner sidebar header -->
+                                <div class="inner-sidebar-header justify-content-center">
+                                    
+                                </div>
+                                <!-- /Inner sidebar header -->
+                    
+                                <!-- Inner sidebar body -->
+                                <div class="inner-sidebar-body p-0">
+                                    <div class="p-3 h-100" data-simplebar="init">
+                                        <div class="simplebar-wrapper" style="margin: -16px;">
+                                            <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                                            <div class="simplebar-mask">
+                                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                                    <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                                        <div class="simplebar-content" style="padding: 16px;">
+                                                            <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                                                <button  class="nav-link nav-link-faded has-icon active" (click)="getAllClaims()">All Claims</button>
+                                                                <button class="nav-link nav-link-faded has-icon" (click)="gettingBylevelA()">Ascending order</button>
+                                                                <button class="nav-link nav-link-faded has-icon" (click)="gettingBylevelD()">Descending order</button>
+                                                                <button class="nav-link nav-link-faded has-icon" (click)="gettingBystatus()"> Answered Claim </button>
+                                                                <button class="nav-link nav-link-faded has-icon"(click)="gettingBystatus2()"> No replies yet</button>
+                                                               
+                                                            </nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
+                                        </div>
+                                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
+                                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+                                    </div>
+                                </div>
+                                <!-- /Inner sidebar body -->
+                            </div>
+                            <!-- /Inner sidebar -->
+                    
+                            <!-- Inner main -->
+                            <div class="inner-main">
+                                <!-- Inner main header -->
+                                <div class="inner-main-header">
+                                    <div class="col-sm-6">
+                                    <section class="search-box">
+                                        <input type="text" placeholder="Type to search.." name="subject" [(ngModel)]="subject">
+                                        <button class ="search-btn" type="button" (click)="gettingBysubject()">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                       
+                                      </section>
+                                     </div>
+                                      
+                                    
+        
+                                    
+                                </div>
+                                <!-- /Inner main header -->
+                    
+                                <!-- Inner main body -->
+                    
+                                <!-- Forum List -->
+                                <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+                                  
+                                    
+                                    <div class="card mb-2">
+                                        
+                                        <table class="table" >
+                                            <thead>
+                                                <tr >
+                                                    
+                                                    <th scope="col" >Claim Id</th>
+                                                    <th scope="col">Client Id</th>
+                                                    <th scope="col">Subject</th>
+                                                    <th scope="col">System Problem </th>
+                                                    <th scope="col">Delivery Problem</th>
+                                                    <th scope="col">Product Problem</th>
+                                                    <th scope="col">Claimed Product Id</th>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Description</th>
+                                                    <th scope="col">level </th>
+                                                    
+                                                    <th scope="col">State</th>
+                                                    <th scope="col">Action</th>
+                                                    
+                                                    <th scope="col" >Answer</th>
+                                                    
+                                                </tr >
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let c of claims" >
+                                                    
+                                                    <th>{{c.idClaim}}</th>
+                                                    <td>{{c.user.idUser}}</td>
+                                                    <td>{{c.subject}}</td>
+                                                    <td>{{c.systemProblem}}</td>
+                                                    <td>{{c.deliveryProblem}}</td>
+                                                    <td>{{c.productProblem}}</td>
+                                                    <td>{{c.productWithProb}}</td>
+                                                    <td>{{c.date}}</td>
+                                                    <td>{{c.description}}</td>
+                                                    <td>{{c.level}}</td>
+                                                    
+                                                    <td>{{c.status}}</td>
+                                                    <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingClaim(c.idClaim)"> Delete</button> 
+                                                    <a (click)="onOpenModal(c,'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a></td>
+                                                    <td>{{c.decision}}</td>
+                                                
+                                                  </tr>
+                                            </tbody>
+                                            </table>
+                                                <!-- Edit Modal -->
+  <div class="modal fade" id="updateClaimModal" tabindex="-1" role="dialog" aria-labelledby="claimEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="claimEditModalLabel">Answering the claim {{editClaim?.idClaim}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+
+                <label for="idClaim">Claim N° </label>
+                <input type="text" ngModel="{{editClaim?.idClaim}}" name="idClaim" class="form-control" id="idClaim" placeholder="idClaim">
+                   </div>
+
+                   <div class="form-group">
+                    <label for="idUser">Client</label>
+                    <input type="text" ngModel="{{editClaim?.user.idUser}}" name="idUser" class="form-control" id="idUser" placeholder="idUser"> 
+                 </div>
+                <div class="form-group">
+                   <label for="subject">Subject</label>
+                   <input type="text" ngModel="{{editClaim?.subject}}" name="subject" class="form-control" id="subject" placeholder="subject"> 
+                </div>
+                <div class="form-group">
+                    <label for="systemProblem">System Problem</label>
+                    <input type="text" ngModel="{{editClaim?.systemProblem}}" name="systemProblem" class="form-control" id="systemProblem" placeholder="systemProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="productProblem">Product Problem</label>
+                    <input type="text" ngModel="{{editClaim?.productProblem}}" name="productProblem" class="form-control" id="productProblem" placeholder="productProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="deliveryProblem">Delivery Problem</label>
+                    <input type="text" ngModel="{{editClaim?.deliveryProblem}}" name="deliveryProblem" class="form-control" id="deliveryProblem" placeholder="deliveryProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="description">description</label>
+                    <input type="text" ngModel="{{editClaim?.description}}" name="description" class="form-control" id="description" placeholder="description"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="decision">Our Answer </label>
+                    <input type="text" ngModel="{{editClaim?.decision}}" name="decision" class="form-control" id="decision" placeholder="decision"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="level">level</label>
+                    <input type="text" ngModel="{{editClaim?.level}}" name="level" class="form-control" id="level" placeholder="level"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" ngModel="{{editClaim?.status}}" name="status" class="form-control" id="status" placeholder="status"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="date">Date Of Posting</label>
+                    <input type="text" ngModel="{{editClaim?.date}}" name="date" class="form-control" id="date" placeholder="date"> 
+                 </div>
+
+                 <div class="form-group">
+                    <label for="productWithProb">Product with issue</label>
+                    <input type="text" ngModel="{{editClaim?.productWithProb}}" name="productWithProb" class="form-control" id="productWithProb" placeholder="productWithProb"> 
+                 </div>
+
+                <div class="modal-footer">
+                   <button type="button" id="update-claim-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button (click)="answeringClaim(editForm.value)"  data-dismiss="modal" class="btn btn-primary" >Save changes</button> 
+                </div>
+             </form>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+                                             
+                                           
+                                    </div>  
+                          
+                                
+                                    
+        
+                           
+                                    
+                                <!-- /Inner main body -->
+                                </div>  
+                                   
+                            <!-- /Inner main -->
+                        </div>
+                    
+                        
+        
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+          <div  *ngIf="info.token" >
+            <div *ngIf="!authority" class="nav-item"  >
+
+
+            </div>
+          </div>

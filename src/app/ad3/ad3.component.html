@@ -1,4 +1,5 @@
-<section class="container-fluid">
+<section class="container-fluid" id="main-container">
+    
     <div class="table-responsive">
     <table class="table table-sm ">
     <thead>
@@ -30,11 +31,118 @@
             <td>{{thead.cost}}</td>
             <td>{{thead.channel}}</td>
             <td>{{thead.typeAdvertisement}}</td>
-            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingAd(thead.idAdvertisment)"> Delete</button></td>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingAd(thead.idAdvertisment)"> Delete</button>
+                <button class="btn btn-warning" (click)="deletingAd(thead.idAdvertisment)"> Check</button>
+                <a (click)="onOpenModal(thead,'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a></td>
            
         
           </tr>
     </tbody>
     </table>
-   </div>
+    </div>
+
+            <!-- Edit Modal -->
+  <div class="modal fade" id="updateAdsModal" tabindex="-1" role="dialog" aria-labelledby="adsEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="adsEditModalLabel">Updating the ad {{editAds?.idAdvertisment}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+                    
+       
+                        <label for="Name"><span class="req">* </span> end date: <small> Please respect this format yyyy-mm-ddThh:mm
+                           </small></label>
+                        <input required type="text" ngModel="{{editAds?.idAdvertisment}}" name="idAdvertisment" id="idAdvertisment"
+                            class="form-control phone" maxlength="28" placeholder="Enter the in case you wanna update" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="idUser"> User Id </label>
+                                <input  type="text" ngModel="{{idUser}}" name="idUser" id="client.idUser"
+                                    class="form-control phone" maxlength="28" placeholder="Enter the target">
+                                    </div>
+
+
+                            <div class="form-group">
+                           
+                        <label for="Name"><span class="req">* </span> end date: <small> Please respect this format yyyy-mm-ddThh:mm
+                           </small></label>
+                        <input required type="datetime-local"  ngModel="{{editAds?.enddate}}" name="enddate" id="enddate"
+                            class="form-control phone" maxlength="28" placeholder="Enter the end date" />
+                            </div>
+                    
+                    
+                    <div class="form-group">
+                       
+                        <label for="firstname"> target view </label>
+                        <input class="form-control" type="text" ngModel="{{editAds?.targetviews}}"  name="targetviews" id="txt" 
+                            placeholder="Enter the target number of views" />
+                        <div id="errFirst"></div>
+                        </div>
+                    
+                    
+                        <div class="form-group">
+                       
+                            <label for="firstname"> date of posting <small> Please respect this format yyyy-mm-ddThh:mm
+                            </small></label>
+                            <input class="form-control" type="date" ngModel="{{editAds?.dateAdvertisment}}"  name="dateAdvertisment" id="txt" 
+                                placeholder="Enter the date" />
+                            <div id="errFirst"></div>
+                            </div>
+                    
+                    
+                    <div class="form-group">
+                        
+                        <label for="lastname"> type of advertisement: </label>
+                        <div><select class="form-control" aria-label="Default select example" name="typeAdvertisement" ngModel="{{editAds?.typeAdvertisement}}" >
+                            <option disabled selected >Select the type</option>
+                            <option value="photo">photo</option>
+                            <option value="video">video</option> </select>
+                    </div>
+                    </div>
+                    
+                    <div class="form-group">
+                       
+                        <label for="email"> cost </label>
+                        <input class="form-control" type="text" ngModel="{{editAds?.cost}}"  name="cost"
+                            id="cost" placeholder="cost" />
+                        <div class="status" id="status"></div>
+                        </div>
+                    
+                    <div class="form-group">
+                       
+                        <label for="email"> channel: </label>
+                        <select class="form-control phone" aria-label="Default select example" name="channel" ngModel="{{editAds?.channel}}"  placeholder="Enter the channel..."  >
+                            <option disabled selected >Select the channel</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Other">Other</option>
+                          </select>
+                           
+                        <div class="status" id="txt"></div>
+                    </div>
+                    
+
+                    
+                            
+                            <div class="modal-footer">
+                                <button type="button" id="update-ads-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                                <button (click)="updatingAd(editForm.value)"  data-dismiss="modal" class="btn btn-primary" >Save changes</button> 
+                             </div>
+
+
+
+               
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+
+
 </section>

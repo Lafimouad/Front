@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Ads } from '../Ads';
+import { Advertisement } from '../Ads';
 import { AdsService } from '../ads.service';
 import { TokenStorgeService } from '../token-storage.service';
 
@@ -89,7 +89,7 @@ export class AdvertisementsComponent implements OnInit {
 
 
   public gettingid(username: string){
-    this.service.wantId(username).subscribe((data)=>{console.log("lafi",data) ;
+    this.service.wantId(username).subscribe((data)=>{console.log("data",data) ;
    this.id=data} );
    console.log("3ak3ek ye moufida");}
 /*public gettingid(username: string){
@@ -107,9 +107,9 @@ public gettingByid(){
     resp.subscribe((data)=>this.theads=data);
 }
 
-public updattingAd(ad: Ads){
+public updattingAd(ad: Advertisement){
   this.service.modifyAd(ad).subscribe(
-    (response: Ads) => {
+    (response: Advertisement) => {
       console.log(response);
       this.service.getAds();
     })

@@ -41,6 +41,7 @@ import { Ad3Component } from './ad3/ad3.component';
 import {ShareButtonsModule} from 'ngx-sharebuttons/buttons';
 import {ShareIconsModule} from 'ngx-sharebuttons/icons';
 import { TryComponent } from './try/try.component'
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,8 @@ import { TryComponent } from './try/try.component'
     HttpClientModule,
     ShareButtonsModule.withConfig({debug:true, }),
     ShareIconsModule,
+    Ng2SearchPipeModule,
+
 
   
   ],

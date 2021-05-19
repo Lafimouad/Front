@@ -54,8 +54,12 @@
 <div class="form-group">
    
     <label for="email"> channel: </label>
-    <input class="form-control"  type="text" [(ngModel)]="channel" name="channel"
-        id="channel" placeholder="which channel ?" />
+    <select class="form-control phone" aria-label="Default select example" name="channel" [(ngModel)]="channel" placeholder="Enter the channel..."  >
+        <option disabled selected >Select the channel</option>
+        <option value="Facebook">Facebook</option>
+        <option value="Other">Other</option>
+      </select>
+       
     <div class="status" id="txt"></div>
 </div>
 
@@ -63,12 +67,13 @@
        
     <label for="Name"> User Id </label>
     <input required type="text" [(ngModel)]="idUser" name="idUser" id="idUser"
-        class="form-control phone" maxlength="28" placeholder="Enter the target">
+        class="form-control " maxlength="28" placeholder="Enter the target">
         </div>
 
 <div class="form-group">
     <input class="btn btn-failure" type="submit" name="submit_reg" value="Add " (click)="addingAd()" routerLink="/ad3">
 </div>
 
-<td class="text-center"><button class="btn btn-danger btn-xs" (click)="updatingAd(ads)" routerLink="/ad3"> Update</button></td>
+
+
            

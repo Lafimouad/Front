@@ -1,10 +1,11 @@
 <!-----------------------------CLIENT---------------------->
 <div  *ngIf="info.token" >
     <div *ngIf="authorityclient" class="nav-item"  >
+        <div style="background-image: url('assets/images/brown.jpg');">
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form>
+            <form (ngSubmit)="f.valid && addingClaim()" #f="ngForm" novalidate>
                 <div class="form-group">
        
                     <label for="Name"> iD: <small>This will be your login user
@@ -13,20 +14,33 @@
                         class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
                         </div>
    
-    <div class="form-group">
-       
-    <label for="Name"><span class="req">* </span> subject: <small>This will be your login user
-            name</small> </label>
-    <input required type="text" [(ngModel)]="subject" name="subject" id="subject"
-        class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
-        </div>
+    
+
+        <div class="form-group">
+            <label for="firstname"> Subject </label>
+        <select class="form-control phone" aria-label="Default select example" name="subject" [(ngModel)]="subject" placeholder="Enter the claim's subject..."  >
+            <option disabled selected >Select the claim's subject :</option>
+            <option value="system">System</option>
+            <option value="product">product</option>
+            <option value="delivery">delivery</option>
+          </select>
+             
+            </div>
+
+
+
+
 
 
 <div class="form-group">
    
     <label for="firstname"> system problem: </label>
-    <input class="form-control" type="text" [(ngModel)]="systemProblem" name="systemProblem" id="txt" 
-        placeholder="Enter valid email address" />
+    <select class="form-control phone" aria-label="Default select example" name="systemProblem" [(ngModel)]="systemProblem" placeholder="Enter the system problem..."  >
+        <option disabled selected >Select a system problem:</option>
+        <option value="SERVER">Server</option>
+        <option value="OPERATIONAL_MALFUNCTION">product</option>
+        <option value="UNCORRECT_TIMING">delivery</option>
+      </select>
     <div id="errFirst"></div>
     </div>
 
@@ -34,16 +48,23 @@
 <div class="form-group">
     
     <label for="lastname"> delivery problem : </label>
-    <input class="form-control" type="text" [(ngModel)]="deliveryProblem" name="deliveryProblem" id="txt"
-        placeholder="Total year of experience"  />
+    <select class="form-control phone" aria-label="Default select example" name="deliveryProblem" [(ngModel)]="deliveryProblem" placeholder="Enter the delivery problem..."  >
+    <option disabled selected >Select a delivery problem:</option>
+    <option value="LATE_SHIPPING">Late shipping</option>
+    <option value="DAMAGED">Damaged </option>
+  </select>
     <div id="errLast"></div>
 </div>
 
 <div class="form-group">
    
     <label for="email"> product problem: </label>
-    <input class="form-control" type="text" [(ngModel)]="productProblem" name="productProblem"
-        id="email" placeholder="fullstack/backend/developer" />
+    <select class="form-control phone" aria-label="Default select example" name="productProblem" [(ngModel)]="productProblem" placeholder="Enter the product problem..."  >
+        <option disabled selected >Select a product problem:</option>
+        <option value="QUALITY">Quality</option>
+        <option value="WRONG_PRODUCT">Wrong Product </option>
+      </select>
+        id="email" />
     <div class="status" id="status"></div>
     </div>
 
@@ -59,18 +80,25 @@
    
     <label for="email"> description: </label>
     <input class="form-control"  type="text" [(ngModel)]="description" name="description"
-        id="email" placeholder="fullstack/backend/developer" />
-    <div class="status" id="txt"></div>
+        id="email" required  />
+    
 </div>
 
 <div class="form-group">
-    <input class="btn btn-failure" type="submit" name="submit_reg" value="Send Message" (click)="addingClaim()">
+    <input class="btn btn-failure" type="submit" name="submit_reg" value="Check Claims" routerLink="/displayClaim">
+    <div class="col-md-4" >
+        <input class="btn btn-failure" type="submit" name="submit_reg" value="Send Message" (click)="addingClaim()">
+        
+
+    </div>
 </div>
     
-<button type= "button" routerLink="/displayClaim">Click on meeeeeeeee</button>
+
             </form>
         </div>
+        
     </div>
+</div>
 </div>
 </div>
 </div>
@@ -90,3 +118,4 @@
 
 
 <!-----------------------------USER---------------------->
+

@@ -1,8 +1,7 @@
 import { Client } from "./auth/ClientInfo";
 
-export class Ads{
+export class Advertisement{
     idAdvertisment: number;
-    idUser: number;
     dateAdvertisment : string;
     enddate: string;
     finalviews : number ;

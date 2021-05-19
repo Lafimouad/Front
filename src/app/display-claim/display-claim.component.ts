@@ -82,8 +82,8 @@ export class DisplayClaimComponent implements OnInit {
   }
 
   public gettingBysubject(){
-    let resp = this.service.findCBySubject(this.subject);
-      resp.subscribe((data)=>this.claim=data);
+    let resp = this.service.findCBySubject(this.subject.toString().toLocaleLowerCase());
+      resp.subscribe((data)=>this.claims=data);
   }
   public gettingByid(){
     let resp = this.service.findCById(this.idClaim);
@@ -91,20 +91,20 @@ export class DisplayClaimComponent implements OnInit {
   }
 
   public gettingBystatus(){
-    let resp = this.service.findCByStatus(this.status);
-      resp.subscribe((data)=>this.claim=data);
+    let resp = this.service.findCByStatus();
+      resp.subscribe((data)=>this.claims=data);
   }
   public gettingBystatus2(){
-    let resp = this.service.findCByStatus2(this.status);
-      resp.subscribe((data)=>this.claim=data);
+    let resp = this.service.findCByStatus2();
+      resp.subscribe((data)=>this.claims=data);
   }
   public gettingBylevelA(){
     let resp = this.service.findCBylevelAsc();
-      resp.subscribe((data)=>this.claim=data);
+      resp.subscribe((data)=>this.claims=data);
   }
   public gettingBylevelD(){
     let resp = this.service.findCBylevelDesc();
-      resp.subscribe((data)=>this.claim=data);
+      resp.subscribe((data)=>this.claims=data);
   }
 
   public deletingClaim(idClaim:number){
@@ -112,7 +112,7 @@ export class DisplayClaimComponent implements OnInit {
       resp.subscribe((data)=>this.claim=data);
   }
 
-  public func (){
+ /* public func (){
 
     let level=this.level
     if (level==1) {
@@ -124,16 +124,18 @@ export class DisplayClaimComponent implements OnInit {
 
 }
 
-public func2 (){
+public func2(){
 
   let status=this.status
-  if (status="Treated")
-  return this.gettingBystatus();
+  if (status="Treated") 
+  {return this.gettingBystatus();}
   else 
+  if (status="Not_Treated") 
 
-  return this.gettingBystatus2();
+  {return this.gettingBystatus2();}
 
-}
+}*/
+
 
 
 
@@ -169,6 +171,9 @@ public answeringClaim(claim: Claim): void{
     console.log("el decision",this.editClaim.decision);
     button.click();   
 }
+
+
+
 
 
 }
