@@ -32,14 +32,34 @@
             <td>{{thead.channel}}</td>
             <td>{{thead.typeAdvertisement}}</td>
             <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletingAd(thead.idAdvertisment)"> Delete</button>
-                <button class="btn btn-warning" (click)="deletingAd(thead.idAdvertisment)"> Check</button>
-                <a (click)="onOpenModal(thead,'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a></td>
-           
+                <button class="btn btn-warning" (click)="checkingAd(thead.idAdvertisment)"> Check</button>
+                <a (click)="onOpenModal(thead,'edit')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a> <a class="btn btn-secondary tooltips" (click)="onOpenModal(thead,'delete')">INFO</a></td>
+            
         
           </tr>
     </tbody>
     </table>
     </div>
+    <!-- Count Modal -->
+  <div class="modal fade" id="deleteShelfModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Information</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>this Advertisement has {{period}} minutes left</p> 
+             <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Got it</button>
+                
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
 
             <!-- Edit Modal -->
   <div class="modal fade" id="updateAdsModal" tabindex="-1" role="dialog" aria-labelledby="adsEditModalLabel" aria-hidden="true">

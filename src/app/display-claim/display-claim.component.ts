@@ -27,6 +27,7 @@ export class DisplayClaimComponent implements OnInit {
   info : any ; 
   boo: boolean;
   editClaim: Claim;
+  nb: any;
   
 
   constructor(private service:ClaimServiceService, private tokenStorage: TokenStorgeService , private token:TokenStorgeService) { }
@@ -34,6 +35,9 @@ export class DisplayClaimComponent implements OnInit {
   ngOnInit() {
       
     this.getAllClaims();
+
+    this.service.getNb().subscribe((data)=>this.nb=data);
+
 
 
       this.info = {
@@ -110,6 +114,7 @@ export class DisplayClaimComponent implements OnInit {
   public deletingClaim(idClaim:number){
     let resp = this.service.deleteClaim(idClaim);
       resp.subscribe((data)=>this.claim=data);
+      this.getAllClaims();
   }
 
  /* public func (){

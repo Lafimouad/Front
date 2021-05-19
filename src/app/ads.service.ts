@@ -30,6 +30,9 @@ export class AdsService {
   public deleteAd(idAdvertisment) : any{
     return this.http.delete("http://localhost:8081/Ad/remove/"+idAdvertisment);
   }
+  public checkAd(idAdvertisment) : any{
+    return this.http.delete("http://localhost:8081/Ad/check/"+idAdvertisment);
+  }
 
   public modifyAd(advertisement): any{
     return this.http.put("http://localhost:8081/Ad/modify/",advertisement);
@@ -49,6 +52,11 @@ export class AdsService {
   public views(id : number){
     return this.http.delete("http://localhost:8081/Ad/fronViews/"+id);
   }
+
+  public getDays(idAdvertisment){
+    return this.http.get("http://localhost:8081/Ad/calc/"+idAdvertisment);
+  }
+
 }
 
 

@@ -48,6 +48,9 @@ export class ClaimServiceService {
     return this.http.put("http://localhost:8081/Claim/decision",claim)
 
   }
+  public getNb(): any{
+    return this.http.get("http://localhost:8081/Claim/calc");
+  }
 
    }
 

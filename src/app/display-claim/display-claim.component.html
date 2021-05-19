@@ -137,7 +137,31 @@
 
 
         <div  *ngIf="info.token" >
+            
             <div *ngIf="authorityadmin" class="nav-item"  >
+                
+                <section class="search-box">
+                    <input type="text" placeholder="Type to search.." name="subject" [(ngModel)]="subject">
+                    <button class ="search-btn" type="button" (click)="gettingBysubject()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                   
+                  </section>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                <div class="alert alert-primary" role="alert" width="10px">
+                    <strong> We Currently have {{nb}} Claim(s) </strong>
+                  </div>
+                  <!-- Inner main header -->
+                  
+                
+                    
+                   
+                      
+                    
+
                 
                 <div class= "container" id="main-container">
            
@@ -184,22 +208,7 @@
                     
                             <!-- Inner main -->
                             <div class="inner-main">
-                                <!-- Inner main header -->
-                                <div class="inner-main-header">
-                                    <div class="col-sm-6">
-                                    <section class="search-box">
-                                        <input type="text" placeholder="Type to search.." name="subject" [(ngModel)]="subject">
-                                        <button class ="search-btn" type="button" (click)="gettingBysubject()">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                       
-                                      </section>
-                                     </div>
-                                      
-                                    
-        
-                                    
-                                </div>
+                                
                                 <!-- /Inner main header -->
                     
                                 <!-- Inner main body -->

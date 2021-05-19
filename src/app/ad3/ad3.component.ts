@@ -24,15 +24,28 @@ export class Ad3Component implements OnInit {
   enddate:string;
   typeAdvertisement: string;
   message:any;
-
+  period: any;
+  id:number;
   constructor(private service : AdsService) { }
 
   ngOnInit() {
+   
+    
     this.getAllAds();
   }
   public deletingAd(idAdvertisement:number){
     let resp = this.service.deleteAd(idAdvertisement);
       resp.subscribe((data)=>this.ads=data);
+  }
+  public checkingAd(idAdvertisement:number){
+    let resp = this.service.checkAd(idAdvertisement);
+      resp.subscribe((data)=>this.ads=data);
+  }
+
+  public daying(idAdvertisement:number){
+    this.service.getDays(idAdvertisement).subscribe((data)=> {this.period=data;
+      console.log("period",this.period )})
+
   }
 
 
@@ -98,6 +111,13 @@ export class Ad3Component implements OnInit {
       button.type='button';
       button.style.display='none';
       button.setAttribute('data-toggle','modal');
+      if (mode == 'delete') {
+        this.id = advertisement.idAdvertisment;
+        console.log("the id",this.id);
+        this.service.getDays(this.id).subscribe((data)=> this.period=data);
+
+        button.setAttribute('data-target','#deleteShelfModal');
+      }  
       if (mode == 'edit') {
         this.editAds = advertisement;
         console.log("edit ads", this.editAds)
