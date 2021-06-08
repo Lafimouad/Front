@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Donation } from './shelfstock/Donation';
 import { Pool } from './shelfstock/Pool';
 import { Events } from './shelfstock/Events';
+import { User } from './auth/user';
 
 
 @Injectable({
@@ -78,6 +79,11 @@ public AddEventToClient(Idc: number,Ide: number): Observable<void> {
 ///////////////////
 public removeFromEvent(Idc: number,Ide: number): Observable<void> {
   return this.http.delete<void>(`${this.apiServerUrl}/event/RemoveClientFromEvent/${Idc}/${Ide}`);
+}
+
+///////
+public ListP(id: number): Observable<User[]> {
+  return this.http.get<User[]>(`${this.apiServerUrl}/event/List/${id}`);
 }
 
 }

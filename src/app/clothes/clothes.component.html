@@ -7,11 +7,11 @@
         </div>
         <div class="product_text_two product_text">
             <h1>{{ product.name }}</h1>
-            <p>{{ product.description }}</p>
-            <p>{{ product.quantityProduct }}</p>
-            <p>{{ product.code }}</p>
-            <p>{{ product.price }}</p>
-            <p>{{ product.weight }}</p>
+            <p>Description:<br> {{ product.description }}</p>
+            <p>Quantity: {{ product.quantityProduct }}</p>
+            <p>Code: {{ product.code }}</p>
+            <p>Price: {{ product.price }} TND</p>
+            <p>>Weight: {{ product.weight }} g</p>
             <a *ngIf="authoritymanager || authorityadmin && add2 !== i " class="shop_now_btn" (click)="Quantity(i)" >MODIFY QUANTITY</a>
             <a *ngIf="authoritymanager || authorityadmin && add1 !== i" class="shop_now_btn"  (click)="addtoshelf(i)"  >ADD TO SHELF</a>   
             <div *ngIf="add1 === i">

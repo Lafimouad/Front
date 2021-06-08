@@ -47,9 +47,10 @@
         </div>
         <div class="product_text_two product_text">
             
-            <h1>{{shelf.typeShelf}}</h1>
+            <h1><br>
+               {{shelf.typeShelf}}<br></h1>
             <p>{{shelf.description}}</p>
-            <p *ngIf="authoritymanager || authorityadmin" >{{shelf.idShelf}}</p>
+            <p *ngIf="authoritymanager || authorityadmin" >Id Shelf : {{shelf.idShelf}}</p>
             <a *ngIf="authoritymanager || authorityadmin" class="shop_now_btn" (click)="onOpenModal(shelf,'delete')">DELETE</a>
             <a *ngIf="authoritymanager || authorityadmin" class="shop_now_btn" (click)="onOpenModal(shelf,'edit')">UPDATE</a>
         </div>

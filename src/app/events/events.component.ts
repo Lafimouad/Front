@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment';
+import { User } from '../auth/user';
 import { EventsService } from '../events.service';
 import { Donation } from '../shelfstock/Donation';
 import { Events } from '../shelfstock/Events';
@@ -23,6 +24,12 @@ export class EventsComponent implements OnInit {
   imageFile
   add2: number = -1;
   add1: number = -1;
+  add3: number = -1;
+  alert: boolean = false;
+  alert1: boolean = false;
+  
+  
+
 
 ////////////////////////////////////////////////////////////////////////
   private roles: string[];
@@ -36,6 +43,7 @@ export class EventsComponent implements OnInit {
   stripePromise = loadStripe(environment.stripe);
 
   public pools: Pool[];
+  public users: User[];
   public donations: Donation[];
   info : any ; 
   usernameclient : String;
@@ -76,6 +84,8 @@ export class EventsComponent implements OnInit {
     this.getDonation();
     this.getEvents();
     this.DeleteEventsAfterYear();
+    this.getlistP();
+    
   } 
 
   public getPool(): void  {
@@ -160,7 +170,12 @@ public onOpenModal(events: Events,mode: string): void{
   if (mode == 'delete') {
     this.deleteEvent = events;
     button.setAttribute('data-target','#deleteShelfModal')
-  }  
+  } 
+  if (mode == 'list') {
+    /*this.users = events;*/
+   /* this.getlistP;*/
+    button.setAttribute('data-target','#displaylist')
+  }   
   container.appendChild(button);
   button.click();   
 }
@@ -212,7 +227,7 @@ addImage(event:any){
 public onDeleteShelves(idEvent: number): void{
   this.eventsservice.deleteEvents(idEvent).subscribe(
     (response: void) => {
-      console.log(response);
+      console.log("testtest",response);
       this.getEvents();
     },
     (error: HttpErrorResponse) => {
@@ -272,6 +287,28 @@ Quantity(index){
   this.ReloveClientfromEvent();
  }
 
+ 
+ 
+
+/* NumberP(): void {
+   let selectedproduct = this.eventsservice[this.add3]
+   let data = selectedproduct.idEvent;
+   console.log(data);
+   this.eventsservice.NombreP(data).subscribe(
+
+    (response: number) => {
+      console.log(response);
+      this.add3 = -1;
+      this.getEvents();
+      this.numberP = response;
+
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message); }
+
+   )
+ }*/
+
 
 AffectClientToEvent(): void {
  
@@ -283,11 +320,21 @@ AffectClientToEvent(): void {
       console.log(response);
       this.add2 = -1;
       this.getEvents();
+      this.alert=true;
+
     },
     (error: HttpErrorResponse) => {
       alert(error.message); });
  
 }  
+
+CloseAlert(){
+  this.alert=false;
+}
+
+CloseAlert1(){
+  this.alert1=false;
+}
 
 ReloveClientfromEvent(): void {
  
@@ -299,10 +346,46 @@ ReloveClientfromEvent(): void {
       console.log(response);
       this.add1 = -1;
       this.getEvents();
+      this.alert1=true;
     },
     (error: HttpErrorResponse) => {
       alert(error.message); });
  
 } 
+
+
+Quantity3(index){
+  this.add3 = +index
+  this.getlistP();
+ }
+
+public getlistP(): void  {
+  let selectedproduct = this.events[this.add3]
+  let data = selectedproduct.idEvent;
+  console.log(data);
+  this.eventsservice.ListP(data).subscribe(
+    (response: User[] ) => {
+      this.users = response;
+      console.log(this.users); },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      } 
+      
+      );
+
+      /*this.info = {
+        token: this.token.getToken(),
+        username: this.token.getUsername(),
+        authorities: this.token.getAuthorities()
+
+        
+        
+      };
+
+      this.usernameclient=this.info.username;*/
+
+    
+  
+}
 
 }

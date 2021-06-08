@@ -8,5 +8,6 @@ date_event: any;
 duration: number;
 nombreplace: number;
 nombredeplaceinitiale: number;
+numberP: number;
 description: String;
 image_URL: String; } 
