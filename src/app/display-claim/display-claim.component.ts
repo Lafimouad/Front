@@ -11,6 +11,7 @@ import { User } from '../user';
   styleUrls: ['./display-claim.component.css']
 })
 export class DisplayClaimComponent implements OnInit {
+  availability = "Treated";
   claims:Claim[];
   user: User;
   subject : string;
@@ -28,6 +29,13 @@ export class DisplayClaimComponent implements OnInit {
   boo: boolean;
   editClaim: Claim;
   nb: any;
+  neww: Claim;
+  systemProblem : string;
+  productProblem : string;
+  deliveryProblem: string;
+  productWithProb : number;
+  description: string;
+  message:any;
   
 
   constructor(private service:ClaimServiceService, private tokenStorage: TokenStorgeService , private token:TokenStorgeService) { }
@@ -142,13 +150,71 @@ public func2(){
 }*/
 
 
+public answeringClaim2(claim: Claim): void{
+  
+  //hne
+  this.user= new User();
 
+//this.user.idUser= this.editClaim.user.idUser;
+//console.log("arwah",this.user);
+this.neww=new Claim();
+this.neww.date=claim.date;
+this.neww.level=claim.level;
+this.neww.idClaim=claim.idClaim;
+this.neww.subject=claim.subject;
+this.neww.decision=claim.decision;
+this.neww.systemProblem=claim.systemProblem;
+this.neww.productProblem=claim.productProblem;
+this.neww.deliveryProblem=claim.deliveryProblem;
+this.neww.description=claim.description;
+this.neww.productWithProb=claim.productWithProb;
+this.neww.user=this.editClaim.user;
+
+console.log("status",this.neww.status );
+
+  //hne
+  this.service.addClaim2(this.neww).subscribe(
+    (response: Claim) => {
+  console.log("response",response);
+  this.service.getClaims();
+},
+(error: HttpErrorResponse) => {
+  alert(error.message);
+}
+)  }
 
 
 public answeringClaim(claim: Claim): void{
-  this.service.answerClaim(claim).subscribe(
-    (response: Claim) => {
-      console.log(response);
+  
+      //hne
+      this.user= new User();
+    
+    //this.user.idUser= this.editClaim.user.idUser;
+    //console.log("arwah",this.user);
+    this.neww=new Claim();
+    this.neww.date=claim.date;
+    this.neww.level=claim.level;
+    this.neww.idClaim=claim.idClaim;
+    this.neww.subject=claim.subject;
+    this.neww.decision=claim.decision;
+    this.neww.systemProblem=claim.systemProblem;
+    this.neww.productProblem=claim.productProblem;
+    this.neww.deliveryProblem=claim.deliveryProblem;
+    this.neww.description=claim.description;
+    this.neww.productWithProb=claim.productWithProb;
+    //this.neww.status="Treated";
+    this.neww.user=this.editClaim.user;
+    console.log("gimme the claim", this.neww);
+    //this.neww.user=this.editClaim.user;
+    console.log("arwah",this.neww.user);
+    
+    //console.log("gimme the claim with client pls", this.neww);
+    //this.service.addClaim(this.neww).subscribe((data)=>this.message=data);
+    console.log("hal 3ak3akna?",this.message)
+      //hne
+      this.service.answerClaim(this.neww).subscribe(
+        (response: Claim) => {
+      console.log("response",response);
       this.service.getClaims();
     },
     (error: HttpErrorResponse) => {
@@ -167,6 +233,7 @@ public answeringClaim(claim: Claim): void{
     button.setAttribute('data-toggle','modal');
     if (mode == 'edit') {
       this.editClaim = claim;
+      this.editClaim.user.idUser = claim.user.idUser;
       console.log("el claimouta",this.editClaim);
       console.log("el user",this.editClaim.user);
       button.setAttribute('data-target','#updateClaimModal');

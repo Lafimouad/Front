@@ -13,13 +13,15 @@ import { UserService } from '../user.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  subbmitted :boolean = false;
   submitted:boolean;
   claim: Claim = new Claim() ;
   message:any;
   errorMessage = '';
   user : User;
-  idUser:number;
+  idUser:any;
   id:number;
+  i: any;
   private roles: string[];
   public authority: string;
   public authoritymanager : boolean = false ;
@@ -76,12 +78,20 @@ export class ContactComponent implements OnInit {
     }
 
     public addingClaim(){
-    this.submitted = true
-    this.user= new User();
-    //this.idouda=this.usernameUser;
+      this.subbmitted=true;
+      //this.idouda=this.usernameUser;
     //console.log("idouda",this.idouda);
     //this.idouda2=this.gettingid(this.idouda);
-    this.user.idUser= this.idUser;
+   // this.submitted = true
+    
+    
+    //this.user.idUser= this.idUser;
+    this.service2.wantId(this.info.username).subscribe((data)=>{console.log("data",data) ;
+    this.id=data;
+    this.user= new User();
+    console.log("this.id",this.id);
+    this.user.idUser= this.id;
+    console.log("this.idUser",this.user.idUser);
     console.log("arwah",this.user);
     this.claim=new Claim();
     this.claim.subject=this.subject;
@@ -95,8 +105,18 @@ export class ContactComponent implements OnInit {
     console.log("gimme the claim with client pls", this.claim);
     this.service.addClaim(this.claim).subscribe((data)=>this.message=data);
     console.log("hal 3ak3akna?",this.message)
+  } );
+   
+    
+    
+    
+
+    
+    
 
     }
+
+    
     public gettingid(username: string){
       this.service2.wantId(username).subscribe((data)=>{console.log("lafi",data) ;
      this.id=data} );

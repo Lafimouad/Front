@@ -10,6 +10,7 @@ import { TokenStorgeService } from '../token-storage.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  submitted = false;
   private roles: string[];
   public authority: string;
   public authoritymanager : boolean = false ;
@@ -49,8 +50,8 @@ export class HomeComponent implements OnInit {
       /*maha*/
       authorities: this.token.getAuthorities()};
 
-      let resp = this.service.show(this.info.username);
-      resp.subscribe((data)=>this.pas=data);
+     // let resp = this.service.show(this.info.username);
+     // resp.subscribe((data)=>this.pas=data);
 
 
       
@@ -98,11 +99,12 @@ public gettingid(username: string){
  console.log("3ak3ek ye moufida");}
 
 public target(){
+  this.submitted = true
   this.service.wantId(this.info.username).subscribe((data)=>{console.log("get id",data) ;
       this.id=data;
       console.log("hedha id", this.id);
       // this.service.views(3).subscribe((res)=>{console.log("lafi2",res) ;
-      this.service.findAById(2).subscribe((res)=>{console.log("get pub",res) ;
+      this.service.findAById(this.id).subscribe((res)=>{console.log("get pub",res) ;
       this.ad=res;
       this.ad.finalviews++;
      /*console.log("hedhi pub", this.ad);
@@ -122,6 +124,8 @@ public target(){
      console.log(" jdida", this.jdida);
      this.jdida.finalviews=this.ad.finalviews;
      this.service.addAd(this.jdida).subscribe((data)=>this.message=data);
+
+     this.service.show(this.info.username).subscribe((data)=>this.pas=data);
     
 
     } );   });}

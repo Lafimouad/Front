@@ -11,6 +11,10 @@ export class ClaimServiceService {
     public addClaim(claim){
       return this.http.post("http://localhost:8081/Claim/add",claim);
     }
+    public addClaim2(claim){
+      return this.http.put("http://localhost:8081/Claim/add2",claim)
+  
+    }
 
     public findCById(idClaim): any{
       return this.http.get("http://localhost:8081/Claim/Find/"+idClaim);

@@ -5,17 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form (ngSubmit)="f.valid && addingClaim()" #f="ngForm" novalidate>
-                <div class="form-group">
-       
-                    <label for="Name"> iD: <small>This will be your login user
-                            name</small> </label>
-                    <input required type="text" [(ngModel)]="idUser" name="idUser" id="idUser"
-                        class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
-                        </div>
-   
-    
-
+            <form >
+              
         <div class="form-group">
             <label for="firstname"> Subject </label>
         <select class="form-control phone" aria-label="Default select example" name="subject" [(ngModel)]="subject" placeholder="Enter the claim's subject..."  >
@@ -38,8 +29,9 @@
     <select class="form-control phone" aria-label="Default select example" name="systemProblem" [(ngModel)]="systemProblem" placeholder="Enter the system problem..."  >
         <option disabled selected >Select a system problem:</option>
         <option value="SERVER">Server</option>
-        <option value="OPERATIONAL_MALFUNCTION">product</option>
-        <option value="UNCORRECT_TIMING">delivery</option>
+        <option value="OPERATIONAL_MALFUNCTION">Operational malfunction</option>
+        <option value="UNCORRECT_TIMING">Uncorrect Timing</option>
+        <option value="NO_PROBLEM">No Problem</option>
       </select>
     <div id="errFirst"></div>
     </div>
@@ -52,6 +44,7 @@
     <option disabled selected >Select a delivery problem:</option>
     <option value="LATE_SHIPPING">Late shipping</option>
     <option value="DAMAGED">Damaged </option>
+    <option value="NO_PROBLEM">No Problem</option>
   </select>
     <div id="errLast"></div>
 </div>
@@ -63,6 +56,7 @@
         <option disabled selected >Select a product problem:</option>
         <option value="QUALITY">Quality</option>
         <option value="WRONG_PRODUCT">Wrong Product </option>
+        <option value="NO_PROBLEM">No Problem</option>
       </select>
         id="email" />
     <div class="status" id="status"></div>
@@ -87,7 +81,12 @@
 <div class="form-group">
     <input class="btn btn-failure" type="submit" name="submit_reg" value="Check Claims" routerLink="/displayClaim">
     <div class="col-md-4" >
-        <input class="btn btn-failure" type="submit" name="submit_reg" value="Send Message" (click)="addingClaim()">
+        <input class="btn btn-failure" type="submit" name="submit_reg" value="Send Message" (click)="addingClaim()" routerLink="/displayClaim">
+        
+            
+        <div [hidden]="!subbmitted">
+            Claim sent 
+        </div>
         
 
     </div>
@@ -95,6 +94,7 @@
     
 
             </form>
+
         </div>
         
     </div>
@@ -118,4 +118,25 @@
 
 
 <!-----------------------------USER---------------------->
+<li *ngIf="!authority" class="nav-item">
+<section >
 
+       
+       
+        
+        <img src="assets/images/ahna.png"> 
+        
+            <div class="vertical-center">
+        <a class ="shoop_now_btn"  routerLink="/auth/login">Log in</a>
+            
+        </div>
+            <br>
+        <br>
+        <br>
+        <br>
+        
+        <br>
+        <br>
+    
+</section>
+</li>

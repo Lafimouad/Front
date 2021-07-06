@@ -1,10 +1,8 @@
-<div class="form-group">
-       
-    <label for="Name"><span class="req">* </span> end date: <small> Please respect this format yyyy-mm-ddThh:mm
-       </small></label>
-    <input required type="text" [(ngModel)]="idAdvertisment" name="idAdvertisment" id="idAdvertisment"
-        class="form-control phone" maxlength="28" placeholder="Enter the in case you wanna update" />
-        </div>
+<div style="background-image: url('assets/images/brown.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
         <div class="form-group">
        
     <label for="Name"><span class="req">* </span> end date: <small> Please respect this format yyyy-mm-ddThh:mm
@@ -47,7 +45,7 @@
    
     <label for="email"> cost </label>
     <input class="form-control" type="text" [(ngModel)]="cost" name="cost"
-        id="cost" placeholder="fullstack/backend/developer" />
+        id="cost" placeholder="cost" />
     <div class="status" id="status"></div>
     </div>
 
@@ -74,6 +72,9 @@
     <input class="btn btn-failure" type="submit" name="submit_reg" value="Add " (click)="addingAd()" routerLink="/ad3">
 </div>
 
-
+</div>
+        </div>
+    </div>
+</div>
 
            

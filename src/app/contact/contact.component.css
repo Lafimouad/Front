@@ -41,7 +41,7 @@ hr.light {
 }
 
 a {
-    color: #9c27b0;
+    color: #fff;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -49,7 +49,7 @@ a {
 
 a:hover,
 a:focus {
-    color: #9c27c1;
+    color: #fff;
     outline: 0;
 }
 
@@ -95,7 +95,7 @@ p {
 }
 
 .text-primary {
-    color: #9c27b0;
+    color: #fff;
 }
 
 .modal-content {
@@ -229,7 +229,8 @@ footer {
 
     .navbar-default.affix .nav > li>a:hover,
     .navbar-default.affix .nav>li>a:focus:hover {
-        color: #9c27b0;
+        color : #fff;
+       /* color: #9c27b0;*/
     }
 }
 
@@ -530,4 +531,21 @@ img::-moz-selection {
     background: 0 0;
 }
   /*****************************************************************************************/
-  
+.shoop_now_btn {
+    position: relative ;
+    font-size: 16px;
+   margin-top: 50px;
+    padding: 10px 30px;
+    border: 2px solid #fff;
+    }
+
+
+
+      
+.vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 100%;
+       /* -ms-transform: translate(-50%, -50%);*/
+        transform: translate(440%, -150%);
+      }

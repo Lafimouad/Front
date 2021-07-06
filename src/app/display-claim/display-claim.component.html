@@ -83,7 +83,7 @@
                                             <tr><a href="#" data-toggle="collapse" data-target=".forum-content"><img src="assets/images/chachia.jpg" class="mr-3 rounded-circle" width="50" alt="User" /></a></tr>
                                             <tr><strong>Claim Id </strong>{{c.idClaim}}</tr>
                                             <tr> <strong>Subject </strong>{{c.subject}}</tr> 
-                                            <tr> <strong>Subject </strong>{{c.description}}</tr> 
+                                            <tr> <strong>Description </strong>{{c.description}}</tr> 
                                             <tr> <strong>Status </strong>{{c.status}}</tr> 
 
                                         </td>
@@ -224,7 +224,7 @@
                                                 <tr >
                                                     
                                                     <th scope="col" >Claim Id</th>
-                                                    <th scope="col">Client Id</th>
+                                                    <th scope="col">Client </th>
                                                     <th scope="col">Subject</th>
                                                     <th scope="col">System Problem </th>
                                                     <th scope="col">Delivery Problem</th>
@@ -245,7 +245,7 @@
                                                 <tr *ngFor="let c of claims" >
                                                     
                                                     <th>{{c.idClaim}}</th>
-                                                    <td>{{c.user.idUser}}</td>
+                                                    <td>{{c.user.usernameUser}}</td>
                                                     <td>{{c.subject}}</td>
                                                     <td>{{c.systemProblem}}</td>
                                                     <td>{{c.deliveryProblem}}</td>
@@ -282,54 +282,57 @@
                    </div>
 
                    <div class="form-group">
-                    <label for="idUser">Client</label>
-                    <input type="text" ngModel="{{editClaim?.user.idUser}}" name="idUser" class="form-control" id="idUser" placeholder="idUser"> 
-                 </div>
-                <div class="form-group">
-                   <label for="subject">Subject</label>
-                   <input type="text" ngModel="{{editClaim?.subject}}" name="subject" class="form-control" id="subject" placeholder="subject"> 
-                </div>
-                <div class="form-group">
-                    <label for="systemProblem">System Problem</label>
-                    <input type="text" ngModel="{{editClaim?.systemProblem}}" name="systemProblem" class="form-control" id="systemProblem" placeholder="systemProblem"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="productProblem">Product Problem</label>
-                    <input type="text" ngModel="{{editClaim?.productProblem}}" name="productProblem" class="form-control" id="productProblem" placeholder="productProblem"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="deliveryProblem">Delivery Problem</label>
-                    <input type="text" ngModel="{{editClaim?.deliveryProblem}}" name="deliveryProblem" class="form-control" id="deliveryProblem" placeholder="deliveryProblem"> 
-                 </div>
-                 <div class="form-group">
-                    <label for="description">description</label>
-                    <input type="text" ngModel="{{editClaim?.description}}" name="description" class="form-control" id="description" placeholder="description"> 
-                 </div>
-                 <div class="form-group">
                     <label for="decision">Our Answer </label>
                     <input type="text" ngModel="{{editClaim?.decision}}" name="decision" class="form-control" id="decision" placeholder="decision"> 
                  </div>
+
+                   <div class="form-group">
+                    <label for="usernameUser">Client</label>
+                    <input type="hidden" ngModel="{{editClaim?.user.usernameUser}}" name="usernameUser" class="form-control" id="usernameUser" placeholder="usernameUser"> 
+                 </div>
+                <div class="form-group">
+                   <label for="subject">Subject</label>
+                   <input  ngModel="{{editClaim?.subject}}" type="hidden" name="subject" class="form-control" id="subject" placeholder="subject"> 
+                </div>
+                <div class="form-group">
+                    <label for="systemProblem">System Problem</label>
+                    <input type="hidden" ngModel="{{editClaim?.systemProblem}}" name="systemProblem" class="form-control" id="systemProblem" placeholder="systemProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="productProblem">Product Problem</label>
+                    <input type="hidden" ngModel="{{editClaim?.productProblem}}" name="productProblem" class="form-control" id="productProblem" placeholder="productProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="deliveryProblem">Delivery Problem</label>
+                    <input type="hidden" ngModel="{{editClaim?.deliveryProblem}}" name="deliveryProblem" class="form-control" id="deliveryProblem" placeholder="deliveryProblem"> 
+                 </div>
+                 <div class="form-group">
+                    <label for="description">description</label>
+                    <input type="hidden" ngModel="{{editClaim?.description}}" name="description" class="form-control" id="description" placeholder="description"> 
+                 </div>
+               
                  <div class="form-group">
                     <label for="level">level</label>
-                    <input type="text" ngModel="{{editClaim?.level}}" name="level" class="form-control" id="level" placeholder="level"> 
+                    <input type="hidden" ngModel="{{editClaim?.level}}" name="level" class="form-control" id="level" placeholder="level"> 
                  </div>
                  <div class="form-group">
                     <label for="status">Status</label>
-                    <input type="text" ngModel="{{editClaim?.status}}" name="status" class="form-control" id="status" placeholder="status"> 
+                    <input type="hidden" ngModel="{{editClaim?.status}}" name="status" class="form-control" id="status" placeholder="status"> 
                  </div>
                  <div class="form-group">
                     <label for="date">Date Of Posting</label>
-                    <input type="text" ngModel="{{editClaim?.date}}" name="date" class="form-control" id="date" placeholder="date"> 
+                    <input type="hidden" ngModel="{{editClaim?.date}}" name="date" class="form-control" id="date" placeholder="date"> 
                  </div>
 
                  <div class="form-group">
                     <label for="productWithProb">Product with issue</label>
-                    <input type="text" ngModel="{{editClaim?.productWithProb}}" name="productWithProb" class="form-control" id="productWithProb" placeholder="productWithProb"> 
+                    <input type="hidden" ngModel="{{editClaim?.productWithProb}}" name="productWithProb" class="form-control" id="productWithProb" placeholder="productWithProb"> 
                  </div>
 
                 <div class="modal-footer">
                    <button type="button" id="update-claim-form" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="answeringClaim(editForm.value)"  data-dismiss="modal" class="btn btn-primary" >Save changes</button> 
+                   <button (click)="answeringClaim(editForm.value)"  data-dismiss="modal" class="btn btn-warning" >Bot answer</button>
+                   <button (click)="answeringClaim2(editForm.value)"  data-dismiss="modal" class="btn btn-warning" >Answer</button>  
                 </div>
              </form>
             </div>
