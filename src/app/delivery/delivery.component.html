@@ -1,0 +1,90 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
+<div class="panel panel-default">  
+    <div class="panel-heading">  
+        <h2 style="text-align: center"><strong>Delivery List</strong></h2><br> 
+    </div>
+      
+    <div class="row">
+          
+               
+        <div id="custom-search-input"  >
+             
+            
+            
+            <div class="input-group col-md-12" style="text-align: center">
+                
+                <input type="text" class="search-query form-control"  placeholder="Search.."  name="id_delivery" [(ngModel)]="id_delivery" (ngModelChange)="Search()"/>
+               
+    
+            </div>
+           
+        </div>
+        
+        <div id="custom-search-input"  >
+            <div class="input-group col-md-12" style="text-align: center">
+                <input type="text" class="search-query form-control"  placeholder="Search With Place"  name="destination_delivery" [(ngModel)]="destination_delivery" (ngModelChange)="Searchh()"/>
+                
+                <span class="input-group-btn">
+                    
+                    <a routerLink="addDelivery"><button class="btn btn-danger" type="button">Add</button></a>
+                </span>
+            </div>
+            
+        </div>
+                            
+
+    </div>
+   
+    <div class="panel-body">  
+    <div class="table-responsive">
+    <div class="row col-md-6 custyle">
+    <table class="table table-hover table-sm">
+    <thead  class="thead-light">
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Place</th>
+            <th>Transport</th>
+            <th>Cost</th>
+            <th>Quality</th>
+            <th>Duration</th>
+            <th>Score</th>
+            <th>Distance</th>
+            <th>Service</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of deliveries">
+            <td>{{d.id_delivery}}</td>
+            <td>{{d.date_delivery}}</td>
+            <td>{{d.destination_delivery}}</td>
+            <td>{{d.meanOfTransport_delivery}}</td>
+            <td>{{d.cost_delivery}}</td>
+            <td>{{d.quality_delivery}}</td>
+            <td>{{d.duration_delivery}}</td>
+            <td>{{d.scoreDelivery}}</td>
+            <td>{{d.distance}}</td>
+            <td>{{d.service_delivery}}</td>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delteDel(d.id_delivery)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                <p></p>
+             <a routerLink="updateDelivery"><button class="btn btn-primary" ><span class="glyphicon glyphicon-edit"></span> update</button></a></td>
+             <td class="text-center"><button class="btn btn-info btn-xs" ><span class="glyphicon glyphicon-stats"></span> Calculate Score</button></td>
+
+          </tr>
+    </tbody>
+    </table>
+    </div>
+
+    </div>
+    </div>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

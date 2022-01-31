@@ -21,10 +21,73 @@ import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
 import { ToolsComponent } from './tools/tools.component';
 import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
+<<<<<<< Updated upstream
+=======
+import { DeliveryComponent } from './delivery/delivery.component';
+import { DelivererSarraComponent } from './deliverer-sarra/deliverer-sarra.component';
+import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
+import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
+import { AddDeliverySarraComponent } from './add-delivery-sarra/add-delivery-sarra.component';
+import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-delivery-sarra.component';
+import { MapsSarraComponent } from './maps-sarra/maps-sarra.component';
+import { OrderSarraComponent } from './order-sarra/order-sarra.component';
+import { FormSarraComponent } from './form-sarra/form-sarra.component';
+import { PromotionComponent } from './promotion/promotion.component';
+import { ChartsSarraComponent } from './charts-sarra/charts-sarra.component';
+>>>>>>> Stashed changes
 
 
 const routes: Routes = [ 
   {
+<<<<<<< Updated upstream
+=======
+    path :'chartsSarra', 
+    component : ChartsSarraComponent
+  },
+  {
+    path :'promotion', 
+    component : PromotionComponent
+  },
+
+  {
+    path :'SarraOrder/formSarra', 
+    component : FormSarraComponent
+  },
+   
+  {
+    path :'SarraOrder', 
+    component : OrderSarraComponent
+  },
+  {
+    path :'SarraOrder/SarraMaps', 
+    component : MapsSarraComponent
+  },
+  {
+    path :'delivery/updateDelivery', 
+    component : UpdateDeliverySarraComponent
+  },
+  {
+    path :'delivery/addDelivery', 
+    component : AddDeliverySarraComponent
+  },
+  {
+    path :'deliverySarra/upDev', 
+    component : UpdateDelSarraComponent
+  },
+  {
+    path :'deliverySarra/addDev', 
+    component : AddDelSarraComponent
+  },
+  {
+    path :'deliverySarra', 
+    component : DelivererSarraComponent
+  },
+  {
+    path :'delivery', 
+    component : DeliveryComponent
+  },
+  {
+>>>>>>> Stashed changes
     path :'meme', 
     component : MemeComponent
   },
