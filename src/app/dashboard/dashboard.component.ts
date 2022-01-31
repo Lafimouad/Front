@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  accounts : boolean = true ; 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onAccounts() : void {
+    this.accounts=true;
+  }
 }

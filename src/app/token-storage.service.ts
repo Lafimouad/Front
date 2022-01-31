@@ -7,6 +7,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TokenStorgeService {
   public nb : number;
   private roles = [];

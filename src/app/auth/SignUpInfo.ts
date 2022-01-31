@@ -23,3 +23,20 @@ export class SignUpInfo {
         this.dateBirthUser=birthdate;
     }
 }
+export class SignUpInfoM {
+    phoneNumberUser : string ;
+    lastNameUser: string;
+    firstNameUser: string;
+    usernameUser: string;
+    emailAddressUser: string;
+    passwordUser: string;
+
+    constructor(firstname: string, lastname: string,username: string, email: string, password: string , phone:string) {
+        this.firstNameUser = firstname;
+        this.lastNameUser = lastname;
+        this.usernameUser = username;
+        this.emailAddressUser = email;
+        this.passwordUser = password;
+        this.phoneNumberUser = phone; 
+    }
+}

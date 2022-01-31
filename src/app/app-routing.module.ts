@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccessoriesComponent } from './accessories/accessories.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
 import { AccountComponent } from './account/account.component';
+import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
+import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
+import { CancelComponent } from './cancel/cancel.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { ClientComponent } from './client/client.component';
 import { ClothesComponent } from './clothes/clothes.component';
 import { ContactComponent } from './contact/contact.component';
@@ -19,10 +25,9 @@ import { ManagerComponent } from './manager/manager.component';
 import { MemeComponent } from './meme/meme.component';
 import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
+import { SucessComponent } from './sucess/sucess.component';
 import { ToolsComponent } from './tools/tools.component';
 import { VirtualVisitComponent } from './virtual-visit/virtual-visit.component';
-<<<<<<< Updated upstream
-=======
 import { DeliveryComponent } from './delivery/delivery.component';
 import { DelivererSarraComponent } from './deliverer-sarra/deliverer-sarra.component';
 import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
@@ -34,13 +39,11 @@ import { OrderSarraComponent } from './order-sarra/order-sarra.component';
 import { FormSarraComponent } from './form-sarra/form-sarra.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { ChartsSarraComponent } from './charts-sarra/charts-sarra.component';
->>>>>>> Stashed changes
 
 
 const routes: Routes = [ 
   {
-<<<<<<< Updated upstream
-=======
+
     path :'chartsSarra', 
     component : ChartsSarraComponent
   },
@@ -87,7 +90,21 @@ const routes: Routes = [
     component : DeliveryComponent
   },
   {
->>>>>>> Stashed changes
+
+    path :'accountsmanag', 
+    component : AccountsManagementComponent},
+    
+  {path :'cart', 
+    component : CartComponent
+  },
+  { path: 'cancel', component: CancelComponent },
+  { path: 'success', component: SucessComponent },
+  {
+    path :'checkout', 
+    component : CheckoutComponent
+  },
+  {
+
     path :'meme', 
     component : MemeComponent
   },
@@ -152,17 +169,18 @@ const routes: Routes = [
   component: ClientComponent
 },
 {
-  path: 'deliverer',
+  path: 'accountsmanag/deliverer',
   component: DelivererComponent
 },
 {
-  path: 'admin',
+  path: 'accountsmanag/admin',
   component: AdminComponent
 },
 {
-  path: 'manager',
+  path: 'accountsmanag/manager',
   component: ManagerComponent
 },
+{ path: 'add-product', component: AddProductComponent },
 {
   path: 'auth/login',
   component: LoginComponent

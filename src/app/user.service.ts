@@ -1,30 +1,96 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SignUpInfoM } from './auth/SignUpInfo';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private clientUrl = 'http://localhost:8081/client';
-  private managerUrl = 'http://localhost:8081/manager';
-  private adminUrl = 'http://localhost:8081/admin';
-  private delivererUrl = 'http://localhost:8081/deliverer';
+
+ 
+  private managerUrl = 'http://localhost:8081/register/manager';
 
   constructor(private http: HttpClient) { }
 
-  getClientBoard(): any {
-    return this.http.get(this.clientUrl, { responseType: 'text' });
+  public getNbClients(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/countClients`);
+  }
+  public getNbManagers(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/countManagers`);
+  }
+  public getNbDeliverers(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/countDeliverers`);
+  }
+  public getNbAdmins(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/countAdmins`);
   }
 
-  getManagerBoard(): any {
-    return this.http.get(this.managerUrl, { responseType: 'text' });
+  public getAvailable(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/available`);
   }
 
-  getAdminBoard(): any {
-    return this.http.get(this.adminUrl, { responseType: 'text' });
+  public getNotAvailable(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/notavailable`);
   }
-  getDelivererBoard(): any {
-    return this.http.get(this.delivererUrl, { responseType: 'text' });
+
+
+  public getAAccounts(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbAAccounts`);
   }
+
+  public getAAds(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbAAds`);
+  }
+
+  public getAClaims(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbAClaims`);
+  }
+
+  public getADeleveries(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbADeliveries`);
+  }
+
+  public getAProducts(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbAProducts`);
+  }
+
+  public getCEdu(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbCEdu`);
+  }
+
+  public getCCos(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbCCos`);
+  }
+
+  public getCF(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbCF`);
+  }
+
+  public getAEvents(): Observable<number> {
+    return this.http.get<number>(`http://localhost:8081/ressources/user/nbAEvents`);
+  }
+
+
+  public getClientOfMonth(): Observable<any> {
+    return this.http.get(`http://localhost:8081/ressources/user/clientOftheMonth`,{responseType: 
+    'text'});
+  }
+
+  public getDelivererOfMonth(): Observable<any> {
+    return this.http.get(`http://localhost:8081/ressources/user/delivererOftheMonth`,{responseType: 
+    'text'});
+  }
+
+  signUp(info: SignUpInfoM): any {
+    console.log(info);
+    return this.http.post(this.managerUrl, info, httpOptions);
+  }
+
+
 }

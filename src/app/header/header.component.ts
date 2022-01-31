@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenStorgeService } from '../token-storage.service';
 
 @Component({
@@ -14,14 +15,9 @@ export class HeaderComponent implements OnInit {
   public authorityadmin : boolean = false ;
   public authorityclient : boolean = false ;
   public authoritydeliverer : boolean = false ;
-
-
-    title = 'Consomi Tounsi';
   
     info : any ; 
-    constructor(private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
-
-    
+    constructor(private route : Router , private tokenStorage: TokenStorgeService , private token:TokenStorgeService ) { }
     
   ngOnInit() {
     this.info = {
@@ -53,9 +49,13 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
+  
   logout() {
     this.token.signOut();
+    this.route.navigateByUrl("home")
+    .then(() => {
     window.location.reload();
+  }); 
   }
 }
 

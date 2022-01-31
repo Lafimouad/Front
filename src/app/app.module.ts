@@ -34,6 +34,19 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
 import { ProductsComponent } from './products/products.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemeComponent } from './meme/meme.component';
+import { AccountsManagementComponent } from './accounts-management/accounts-management.component';
+import { MyaccountadminComponent } from './myaccountadmin/myaccountadmin.component';
+import { MyaccountdelivererComponent } from './myaccountdeliverer/myaccountdeliverer.component';
+import { AccountsDashboardComponent } from './accounts-dashboard/accounts-dashboard.component';
+import { ChartsModule } from 'ng2-charts';
+import { AddProductComponent } from './admin/add-product/add-product/add-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CancelComponent } from './cancel/cancel.component';
+import { SucessComponent } from './sucess/sucess.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -66,13 +79,26 @@ import { MemeComponent } from './meme/meme.component';
     AdvertisementsComponent,
     ProductsComponent,
     DashboardComponent,
-    MemeComponent
+    MemeComponent,
+    AccountsManagementComponent,
+    MyaccountadminComponent,
+    MyaccountdelivererComponent,
+    AccountsDashboardComponent,
+    AddProductComponent,
+    CancelComponent,
+    SucessComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule,
+    NgbModule,
+    HttpClientModule,ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule,
+    NoopAnimationsModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

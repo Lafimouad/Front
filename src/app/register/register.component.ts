@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { SignUpInfo } from '../auth/SignUpInfo';
+import { Order } from '../models/order';
+import { OrderService } from '../MouadhServices/order.service';
 
 @Component({
   selector: 'app-register',
@@ -12,9 +14,10 @@ export class RegisterComponent implements OnInit {
   private signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
-  errorMessage = '';
+  errorMessage = 'Email is not Valid !';
+  order:Order=new Order();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private orderservice:OrderService) { }
 
   ngOnInit() { }
 
