@@ -1,0 +1,45 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<h3>Update Deliverer</h3>
+<div class="container">
+    <button class="btn btn-warning" (click)="backClicked()">Back</button>
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <fieldset>
+                    <legend class="text-center">Update deliverer information <span class="req"><small>
+                                required *</small></span></legend>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="firstNameUser" required [(ngModel)]="deliverer.firstNameUser" name="firstNameUser" placeholder="Update name..">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Id:</label>
+      <input type="text" class="form-control" id="idUser" required [(ngModel)]="deliverer.idUser" name="idUser" placeholder="Update Id..">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Email:</label>
+      <input type="text" class="form-control" id="emailAddressUser" required [(ngModel)]="deliverer.emailAddressUser" name="emailAddressUser" placeholder="Update email..">
+    </div>
+    <div class="form-group">
+        <label for="name">Phone number:</label>
+        <input type="text" class="form-control" id="phoneNumberUser" required [(ngModel)]="deliverer.phoneNumberUser" name="phoneNumberUser" placeholder="Update phone number..">
+      </div>
+
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+
+    <p></p>
+    
+  </form>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div>

@@ -47,6 +47,11 @@ import { SucessComponent } from './sucess/sucess.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PromotionComponent } from './promotion/promotion.component';
+import { UpdateDelSarraComponent } from './update-del-sarra/update-del-sarra.component';
+import { AddDelSarraComponent } from './add-del-sarra/add-del-sarra.component';
+import { AddDeliverySarraComponent } from './add-delivery-sarra/add-delivery-sarra.component';
+import { UpdateDeliverySarraComponent } from './update-delivery-sarra/update-delivery-sarra.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +91,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     AccountsDashboardComponent,
     AddProductComponent,
     CancelComponent,
-    SucessComponent
+    SucessComponent,
+    PromotionComponent,
+    UpdateDelSarraComponent,
+    AddDelSarraComponent,
+    AddDeliverySarraComponent,
+    UpdateDeliverySarraComponent
   ],
   imports: [
     BrowserModule,
