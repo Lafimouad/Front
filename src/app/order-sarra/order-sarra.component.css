@@ -19,7 +19,7 @@
   .wrap{
     position: absolute;
     height: 100px;
-    bottom: 100px;
+    bottom: 1px;
     left: 0;
     width: 100%;
   }

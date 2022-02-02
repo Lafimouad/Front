@@ -16,5 +16,17 @@ export class OrderSARRAService {
   public addPromotion(delivery: Delivery): Observable<Delivery> {
     return this.http.post<Delivery>('http://localhost:8081/Delivery/add', delivery);
   }
+  getFrais(id){
+    return this.http.put('http://localhost:8081/Delivery/frais/',+id);
+  }
+  public getDelivery(){
+    return this.http.get("http://localhost:8081/Delivery/get");
+  }
+  public getMaxDelivery(){
+    return this.http.get("http://localhost:8081/Delivery/maxid");
+  }
+  updateDeliveryform(delivery: Delivery){
+    return this.http.put('http://localhost:8081/Delivery/modiify', delivery);
+  }
 
 }
